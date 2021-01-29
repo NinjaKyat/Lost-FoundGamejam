@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
             {
                 equippedItems.Add(item);
                 item.transform.parent = position;
-                item.transform.position = Vector3.zero; //Could set an offset here instead of 0
+                item.transform.localPosition = Vector3.zero; //Could set an offset here instead of 0
             }
         }
 
@@ -41,11 +41,11 @@ public class Player : MonoBehaviour
     }
     
     Dictionary<Common.CharacterItemSlots, EquipmentSlot> CharacterEquipment = new Dictionary<Common.CharacterItemSlots,EquipmentSlot>();
-
     public Transform[] equipmentSlotPositions;
-    // Start is called before the first frame update
+    private Camera cam;
     void Start()
     {
+        cam = Camera.main;
         SetupPlayerEquipmentSlots();
         SetupPlayerStats();
     }
@@ -73,7 +73,18 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+            if (hit.collider != null)
+            {
+                if (hit.collider.tag == "Item")
+                {
+                    hit.collider.GetComponent<Item>().OnClick();
+                }
+            }
+        }
     }
     
     public bool AddItem(Common.CharacterItemSlots targetSlot, Item item)
@@ -86,7 +97,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Debug.Log($"Can't add item {item.name}. Slot is full");
+            Debug.Log($"Can't add item {item.name}. {slot.position.name}Slot is full");
             return false;
         }
     }
@@ -101,33 +112,38 @@ public class Player : MonoBehaviour
     {
         if (item.targetSlots.Length == 0)
             return;
-        
-        Common.CharacterItemSlots targetSlot = item.targetSlots[0];
 
         for (int i = 0; i < item.targetSlots.Length; i++)
         {
-            targetSlot = targetSlot | item.targetSlots[i];
+            if (TryToEquip(item.targetSlots[i], item))
+                return;
         }
 
+    }
+
+    bool TryToEquip(Common.CharacterItemSlots targetSlot, Item item)
+    {
         if (targetSlot == Common.CharacterItemSlots.Head)
         {
             if (AddItem(Common.CharacterItemSlots.Head, item))
-                return;
+                return true;
         }
         if (targetSlot == Common.CharacterItemSlots.RightHand)
         {
             if (AddItem(Common.CharacterItemSlots.RightHand, item))
-                return;
+                return true;
         }
         if (targetSlot == Common.CharacterItemSlots.LeftHand)
         {
-            if (AddItem(Common.CharacterItemSlots.RightHand, item))
-                return;
+            if (AddItem(Common.CharacterItemSlots.LeftHand, item))
+                return true;
         }
         if (targetSlot == Common.CharacterItemSlots.Back)
         {
             if (AddItem(Common.CharacterItemSlots.Back, item))
-                return;
+                return true;
         }
+
+        return false;
     }
 }

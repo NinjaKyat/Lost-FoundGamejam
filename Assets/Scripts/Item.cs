@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-
-    public Sprite sprite;
     public Common.CharacterItemSlots[] targetSlots;
     private Player player;
     
@@ -21,7 +19,7 @@ public class Item : MonoBehaviour
         
     }
 
-    void OnClick()
+    public void OnClick()
     {
         player.OnClickItem(this);
     }
