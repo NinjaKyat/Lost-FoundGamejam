@@ -25,6 +25,6 @@ public class GridGenerator : MonoBehaviour
     void PlaceObjects(Vector2Int position, ref Tile tile)
     {
         if (tile.type == Tile.Type.Tree)
-            Instantiate(treePrefab, (Vector2)position, Quaternion.identity);
+            Instantiate(treePrefab, (Vector2)position - size / 2, Quaternion.identity);
     }
 }
