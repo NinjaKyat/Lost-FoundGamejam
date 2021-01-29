@@ -8,9 +8,14 @@ public class Stats
     Dictionary<string, int> internalStats = new Dictionary<string, int>();
     public const string healthStat = "health";
     public const string moveSpeedStat = "movementSpeed";
+    public const string randomStat = "random";
 
     public int GetStat(string stat)
     {
+        if (stat == randomStat)
+        {
+            return Random.Range(0, 100);
+        }
         if (internalStats.ContainsKey(stat))
         {
             return internalStats[stat];
