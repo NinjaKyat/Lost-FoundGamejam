@@ -22,7 +22,7 @@ public class ConditionParsingTests
     {
         var stats = new Stats();
         stats.AddStat(testStat, 3);
-        var condition = new EventCondition($"{testStat} > 3");
+        var condition = new EventCondition($"{testStat} = 3");
         Assert.IsTrue(condition.Evaluate(stats));
     }
 
