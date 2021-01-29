@@ -24,4 +24,14 @@ public class Player : MonoBehaviour
     {
         
     }
+    
+    public void AddItem(Common.CharacterItemSlots slot, Item item)
+    {
+        
+    }
+
+    public void RemoveItem(Item item)
+    {
+        
+    }
 }
