@@ -6,6 +6,8 @@ using UnityEngine;
 public class Stats
 {
     Dictionary<string, int> internalStats = new Dictionary<string, int>();
+    public const string healthStat = "health";
+    public const string moveSpeedStat = "movementSpeed";
 
     public int GetStat(string stat)
     {
