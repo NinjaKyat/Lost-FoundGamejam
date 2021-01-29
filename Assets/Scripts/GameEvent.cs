@@ -79,8 +79,8 @@ public class EventCondition
     int GetOffsetFromComparison()
     {
         if (cmpOperator == ComparisonOperator.GreaterOrEqual || cmpOperator == ComparisonOperator.LessOrEqual)
-            return 2;
-        return 1;
+            return 3;
+        return 2;
     }
 
     void ParseValueToCompare(string substring)
@@ -88,7 +88,7 @@ public class EventCondition
         int result = 0;
         if (int.TryParse(substring, out result))
         {
-            return;
+            valueToCompare = result;
         }
         else
         {
