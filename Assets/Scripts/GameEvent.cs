@@ -96,7 +96,7 @@ public class EventCondition
         }
     }
 
-    bool Evaluate(Stats stats)
+    public bool Evaluate(Stats stats)
     {
         var firstValue = stats.GetStat(targetStat);
         var secondValue = string.IsNullOrEmpty(statToCompare) ? valueToCompare : stats.GetStat(statToCompare);
