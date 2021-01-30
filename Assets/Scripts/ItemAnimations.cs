@@ -10,6 +10,8 @@ public class ItemAnimations : MonoBehaviour
     public float dropDuration = 1.5f;
     private float dropTimer;
     private Vector2 originalPosition;
+    Vector3 velocity = Vector3.zero;
+    float smoothTime = 0.15F;
     void Start()
     {
         item = GetComponent<Item>();
@@ -22,7 +24,7 @@ public class ItemAnimations : MonoBehaviour
         if (dropped && dropTimer < dropDuration)
         {
             dropTimer += Time.deltaTime;
-            transform.position = new Vector3(originalPosition.x, offsetY);
+            transform.position = Vector3.SmoothDamp(transform.position, Ground, ref velocity, smoothTime);
         }
 
         if (dropTimer > dropDuration)
