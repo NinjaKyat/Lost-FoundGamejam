@@ -30,4 +30,12 @@ public class EventOutcome : ISerializationCallbackReceiver
             Actions.Add(new EventAction(action));
         }
     }
+
+    public void Evaluate(Stats stats)
+    {
+        foreach(var action in Actions)
+        {
+            action.Evaluate(stats);
+        }
+    }
 }

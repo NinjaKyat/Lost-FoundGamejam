@@ -15,6 +15,18 @@ enum ComparisonOperator
 public class EventConditionGroup
 {
     public List<AndConditions> anyMustBeTrue = new List<AndConditions>();
+
+    public bool Evaluate(Stats stats)
+    {
+        foreach(var condition in anyMustBeTrue)
+        {
+            if (condition.Evaluate(stats))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 [System.Serializable]
@@ -43,6 +55,18 @@ public class AndConditions : ISerializationCallbackReceiver
         {
             allMustBeTrue.Add(cond.ToString());
         }
+    }
+
+    public bool Evaluate(Stats stats)
+    {
+        foreach(var condition in Conditions)
+        {
+            if (!condition.Evaluate(stats))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
 
