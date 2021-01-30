@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSlots: 03000000
-  EquipOffset: {x: 0.06, y: 0.04, z: 0}
+  EquipOffset: {x: 0, y: 0, z: 0}
   equipped: 0
 --- !u!58 &108240809
 CircleCollider2D:
@@ -225,8 +225,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2116908727
+  m_SortingLayer: -1
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 8028c574c4dd20540917c5c899c06762, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -421,8 +421,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1753973653
+  m_SortingLayer: -2
   m_SortingOrder: -10
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -456,22 +456,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 955063117, guid: 1e36e603c24824cdb80a74ae86fd025a, type: 3}
-      propertyPath: m_Size.x
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 955063117, guid: 1e36e603c24824cdb80a74ae86fd025a, type: 3}
-      propertyPath: m_Size.y
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 955063117, guid: 1e36e603c24824cdb80a74ae86fd025a, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 955063117, guid: 1e36e603c24824cdb80a74ae86fd025a, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6610036206564438472, guid: 1e36e603c24824cdb80a74ae86fd025a, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -685,7 +669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSlots: 03000000
-  EquipOffset: {x: 0.06, y: 0.04, z: 0}
+  EquipOffset: {x: 0, y: 0, z: 0}
   equipped: 0
 --- !u!58 &973347079
 CircleCollider2D:
@@ -740,8 +724,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2116908727
+  m_SortingLayer: -1
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 105d6759e14fca148b8c95c5c13f800a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1250,7 +1234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSlots: 03000000
-  EquipOffset: {x: 0.06, y: 0.04, z: 0}
+  EquipOffset: {x: 0, y: 0, z: 0}
   equipped: 0
 --- !u!58 &2060259153
 CircleCollider2D:
@@ -1305,8 +1289,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2116908727
+  m_SortingLayer: -1
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: cbcb908003486d64482dc4a4cbb7aa0b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1555,8 +1539,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2116908727
+  m_SortingLayer: -1
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 7bd4fd2ed31d4a5419e8ee06c0e3bdac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1598,7 +1582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSlots: 03000000
-  EquipOffset: {x: 0.06, y: 0.04, z: 0}
+  EquipOffset: {x: 0, y: 0, z: 0}
   equipped: 0
 --- !u!1 &7722664803706661155
 GameObject:
