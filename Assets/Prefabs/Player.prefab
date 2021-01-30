@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 6610036206564438472}
   - component: {fileID: 6610036206564438473}
   - component: {fileID: 6610036206564438478}
+  - component: {fileID: 1165217934118546975}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -145,6 +146,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipDistance: 0.5
+--- !u!114 &1165217934118546975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6610036206564438479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7860ed4b5750414bb2937d921c6fac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6610036207056589630
 GameObject:
   m_ObjectHideFlags: 0
