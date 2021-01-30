@@ -32,7 +32,10 @@ public class Item : MonoBehaviour, IInteractible
         if (!equipped)
         {
             if (player.OnClickItemEquip(this))
+            {
                 equipped = true;
+                ItemPickedUp();
+            }
         }
         else
         {
@@ -51,6 +54,11 @@ public class Item : MonoBehaviour, IInteractible
     public void ItemDropped()
     {
         animations.ItemDropped(player.transform.position);
+    }
+
+    public void ItemPickedUp()
+    {
+        animations.PickedUp();
     }
     
 }

@@ -11,7 +11,7 @@ public class ItemAnimations : MonoBehaviour
     private float dropTimer;
     private Vector2 originalPosition;
     Vector3 velocity = Vector3.zero;
-    float smoothTime = 0.15F;
+    float smoothTime = 0.1F;
     void Start()
     {
         item = GetComponent<Item>();
@@ -39,5 +39,11 @@ public class ItemAnimations : MonoBehaviour
         dropped = true;
         Ground = ground;
         originalPosition = transform.position;
+    }
+
+    public void PickedUp()
+    {
+        dropped = false;
+        dropTimer = dropDuration;
     }
 }
