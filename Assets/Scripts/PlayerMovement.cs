@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float equipDistance = 0.5f;
     private Item queuedItem;
+    public bool isMoving = false;
 
     private LayerMask interactablesLayer = 1 << 6;
     void Start()
@@ -71,8 +72,11 @@ public class PlayerMovement : MonoBehaviour
         rb.MovePosition(Vector2.MoveTowards(this.transform.position, targetPosition, moveSpeed * Time.deltaTime));
         if (Mathf.Abs(directionX) + Mathf.Abs(directionY) > 0.05f)
         {
+            isMoving = true;
             transform.localScale = new Vector3(Mathf.Sign(directionX), 1, 1);
         }
+
+        isMoving = false;
     }
 
     void CheckToPickUp()
