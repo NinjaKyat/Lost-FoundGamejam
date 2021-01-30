@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraTarget : MonoBehaviour
 {
-    static List<CameraTarget> instances = new List<CameraTarget>();
+    public static List<CameraTarget> instances = new List<CameraTarget>();
 
     void OnEnable()
     {

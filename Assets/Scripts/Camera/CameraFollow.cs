@@ -12,6 +12,8 @@ public class CameraFollow : MonoBehaviour
     public float maxZoom = 10;
     float zoomChangeVelocity;
 
+    Vector2 positionChangeVelocity;
+
     private void Awake()
     {
         camera = GetComponent<Camera>();
@@ -23,5 +25,11 @@ public class CameraFollow : MonoBehaviour
         targetZoom = Mathf.Clamp01(targetZoom);
         currentZoom = Mathf.SmoothDamp(currentZoom, targetZoom, ref zoomChangeVelocity, 0.1f);
         camera.orthographicSize = Mathf.Lerp(minZoom, maxZoom, currentZoom);
+
+        var targetPosition = CameraTarget.instances[0].transform.position;
+        var currentPosition = transform.position;
+        currentPosition = Vector2.SmoothDamp(currentPosition, targetPosition, ref positionChangeVelocity, 0.2f);
+        currentPosition.z = transform.position.z;
+        transform.position = currentPosition;
     }
 }
