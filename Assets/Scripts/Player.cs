@@ -21,16 +21,7 @@ public class Player : MonoBehaviour
             {
                 equippedItems.Add(item);
                 item.transform.parent = position;
-                if (!flip)
-                {
-                    item.transform.localPosition = item.EquipOffset + AdditionalItemOffset;
-                }
-                else
-                {
-                    item.GetComponent<SpriteRenderer>().flipX = flip;
-                    item.transform.localPosition = new Vector3(-item.EquipOffset.x, item.EquipOffset.y, item.EquipOffset.z) + AdditionalItemOffset; 
-                }
-
+                item.transform.localPosition = item.EquipOffset + AdditionalItemOffset;
                 AdditionalItemOffset += OffsetToAdd;
             }
         }
@@ -57,7 +48,12 @@ public class Player : MonoBehaviour
                 int lastItem = equippedItems.Count - 1;
                 Item toReturn = equippedItems[lastItem];
                 toReturn.transform.parent = null;
-                if (flip) toReturn.GetComponent<SpriteRenderer>().flipX = !flip;
+                Vector3 localScale = toReturn.transform.localScale;
+                if (localScale.x < 0)
+                {
+                    toReturn.transform.localScale = new Vector3(-localScale.x, localScale.y, localScale.z);
+                    toReturn.GetComponent<SpriteRenderer>().flipX = false;
+                }
                 AdditionalItemOffset -= OffsetToAdd;
                 equippedItems.RemoveAt(lastItem);
                 return toReturn;
@@ -146,16 +142,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnClickItemEquip(Item item)
+    public bool OnClickItemEquip(Item item)
     {
         if (item.targetSlots.Length == 0)
-            return;
+            return false;
 
         for (int i = 0; i < item.targetSlots.Length; i++)
         {
             if (TryToEquip(item.targetSlots[i], item))
-                return;
+                return true;
         }
+
+        return false;
     }
 
     public Item OnClickItemUnequip(Common.CharacterItemSlots[] targetSlots, Item item)

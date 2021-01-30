@@ -21,15 +21,15 @@ public class Item : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void OnClick()
     {
         if (!equipped)
         {
-            equipped = true;
-            player.OnClickItemEquip(this);
+            if (player.OnClickItemEquip(this))
+                equipped = true;
         }
         else
         {
