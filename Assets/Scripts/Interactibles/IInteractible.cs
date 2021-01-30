@@ -5,5 +5,5 @@ using UnityEngine;
 public interface IInteractible
 {
     void Interact();
-    Transform Transform { get; }
+    Collider2D Collider { get; }
 }

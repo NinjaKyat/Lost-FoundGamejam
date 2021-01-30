@@ -7,15 +7,14 @@ public class PlayerMovement : MonoBehaviour
 {
     private Player player;
     private Rigidbody2D rb;
+    Collider2D collider;
     private Vector2 targetPosition;
     [SerializeField]
-    private float equipDistance = 0.5f;
+    private float interactDistance = 0.5f;
     private IInteractible targetInteractible;
     public bool isMoving = false;
 
     Vector2Int previousGridPosition;
-
-    private LayerMask interactablesLayer = 1 << 6;
 
     CameraTarget cameraTarget;
 
@@ -23,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     {
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
+        collider = GetComponent<Collider2D>();
         targetPosition = transform.position;
         cameraTarget = GetComponent<CameraTarget>();
     }
@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         if (EventUI.instance && EventUI.instance.IsShowingUI())
         {
             isMoving = false;
+            targetPosition = transform.position;
             return;
         }
 
@@ -58,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            Collider2D hit = Physics2D.OverlapPoint(point, interactablesLayer);
+            Collider2D hit = Physics2D.OverlapPoint(point);
             
             if (hit != null)
             {
@@ -141,8 +142,9 @@ public class PlayerMovement : MonoBehaviour
         if (targetInteractible == null)
             return;
 
-        float distance = Vector3.Distance(transform.position, targetInteractible.Transform.position);
-        if (distance < equipDistance)
+        float distance = collider.Distance(targetInteractible.Collider).distance;
+        Debug.Log(distance);
+        if (distance < interactDistance)
         {
             targetInteractible.Interact();
             targetInteractible = null;

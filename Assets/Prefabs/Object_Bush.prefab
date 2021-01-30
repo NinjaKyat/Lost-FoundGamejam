@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9160355810819923803}
   - component: {fileID: 2417243549517297596}
+  - component: {fileID: -33860054141427832}
   m_Layer: 0
   m_Name: Object_Bush
   m_TagString: Untagged
@@ -43,6 +44,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8ef96b76cda36f41bf2dade2006e9b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-33860054141427832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2465000371160260444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 887fd00a3aad96842b916ca0e10506dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3508456022842014959
