@@ -40,4 +40,9 @@ public class Stats
             internalStats[stat] = amount;
         }
     }
+
+    public void SetStat(string stat, int value)
+    {
+        internalStats[stat] = value;
+    }
 }
