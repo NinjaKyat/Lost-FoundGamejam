@@ -3,7 +3,10 @@ guid: bb11faf043c13ca4d98002f2663917c6
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - treePrefab: {fileID: 2417243549517297596, guid: 47ddb26cc2b506245a35740b14eb8fba, type: 3}
+  - grassPrefab: {fileID: 2417243549517297596, guid: 4f78fae905bbd2b4bbccc9abf78bc032, type: 3}
+  - sandPrefab: {fileID: 2417243549517297596, guid: a5f7e511e647d8240919516f40a0088f, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
