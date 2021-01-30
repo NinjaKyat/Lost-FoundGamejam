@@ -26,6 +26,9 @@ public class CameraFollow : MonoBehaviour
         currentZoom = Mathf.SmoothDamp(currentZoom, targetZoom, ref zoomChangeVelocity, 0.1f);
         camera.orthographicSize = Mathf.Lerp(minZoom, maxZoom, currentZoom);
 
+        if (CameraTarget.instances.Count == 0)
+            return;
+
         var targetPosition = CameraTarget.instances[0].transform.position;
         var currentPosition = transform.position;
         currentPosition = Vector2.SmoothDamp(currentPosition, targetPosition, ref positionChangeVelocity, 0.2f);
