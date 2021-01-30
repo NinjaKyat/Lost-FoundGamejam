@@ -11,10 +11,7 @@ public class JsonFunTests
     [Test]
     public void CanSerializeEventConditionGroup()
     {
-        EventConditionGroup group = new EventConditionGroup();
-        var andConditions = new AndConditions();
-        andConditions.Conditions.Add(new EventCondition("hello = 1"));
-        group.anyMustBeTrue.Add(andConditions);
+        var group = new EventConditionGroup("health > 0 & speed > 1");
         var json = JsonUtility.ToJson(group, true);
         Debug.Log(json);
         Assert.IsTrue(json.Length > 0);
@@ -24,7 +21,6 @@ public class JsonFunTests
     public void CheckEventSerialization()
     {
         var evt = GameEvent.GetTestEvent();
-
         var json = JsonUtility.ToJson(evt, true);
         Debug.Log(json);
     }

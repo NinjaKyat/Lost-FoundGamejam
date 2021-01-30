@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class GameEvent
+public class GameEvent : ISerializationCallbackReceiver
 {
     public string name;
     public string description;
-    public EventConditionGroup conditions;
+    public EventConditionGroup Conditions { get; set; }
+    [SerializeField]
+    string conditions;
+
     public List<EventChoice> choices = new List<EventChoice>();
 
     public static GameEvent GetTestEvent()
@@ -38,7 +41,33 @@ public class GameEvent
         var leaveOutcome = new EventOutcome();
         leaveChoice.possibleOutcomes.Add(leaveOutcome);
         leaveOutcome.outcomeText = "You don't know if these are safe to eat, better leave them.";
+
+        var knowledgeChoice = new EventChoice();
+        evt.choices.Add(knowledgeChoice);
+        knowledgeChoice.actionText = "Use your knowledge to eat only the edible berries.";
+        knowledgeChoice.Conditions = new EventConditionGroup("berryKnowledge >= 3 | encyclopedia > 0 & canRead > 0");
+        var deliciousOutcome = new EventOutcome();
+        deliciousOutcome.outcomeText = "You recognize the edible berries and avoid the poisonous ones. You feel less hungry.";
+        deliciousOutcome.Actions.Add(new EventAction("food += 1"));
+        knowledgeChoice.possibleOutcomes.Add(deliciousOutcome);
         return evt;
+    }
+
+    public void OnBeforeSerialize()
+    {
+        if (Conditions != null)
+        {
+            conditions = Conditions.ToString();
+        }
+        else
+        {
+            conditions = "";
+        }
+    }
+
+    public void OnAfterDeserialize()
+    {
+        Conditions = new EventConditionGroup(conditions);
     }
 }
 

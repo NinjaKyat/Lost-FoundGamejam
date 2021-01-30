@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
 
 enum ComparisonOperator
 {
@@ -14,67 +15,100 @@ enum ComparisonOperator
 [System.Serializable]
 public class EventConditionGroup
 {
-    public List<AndConditions> anyMustBeTrue = new List<AndConditions>();
+    List<List<EventCondition>> internalConditions = new List<List<EventCondition>>();
+
+    public EventConditionGroup(string conditions)
+    {
+        ParseConditions(conditions);
+    }
 
     public bool Evaluate(Stats stats)
     {
-        if (anyMustBeTrue != null)
+        if (internalConditions != null)
         {
-            foreach (var condition in anyMustBeTrue)
+            if (internalConditions.Count == 0)
             {
-                if (condition.Evaluate(stats))
-                {
+                return true;
+            }
+            // One of these must be true
+            foreach (var andConditionsGroup in internalConditions)
+            {
+                if (EvaluateAndConditions(stats, andConditionsGroup))
                     return true;
-                }
             }
             return false;
         }
-        return true;
-    }
-}
-
-[System.Serializable]
-public class AndConditions : ISerializationCallbackReceiver
-{
-    public List<EventCondition> Conditions { get; } = new List<EventCondition>();
-
-    [SerializeField]
-    List<string> allMustBeTrue = new List<string>();
-
-    public void OnAfterDeserialize()
-    {
-        Conditions.Clear();
-
-        foreach (var stringCondition in allMustBeTrue)
+        else
         {
-            Conditions.Add(new EventCondition(stringCondition));
+            return true;
         }
     }
 
-    public void OnBeforeSerialize()
+    bool EvaluateAndConditions(Stats stats, List<EventCondition> conditionList)
     {
-        allMustBeTrue.Clear();
-
-        foreach (var cond in Conditions)
+        // All conditions must be true
+        if (conditionList != null)
         {
-            allMustBeTrue.Add(cond.ToString());
-        }
-    }
-
-    public bool Evaluate(Stats stats)
-    {
-        if (Conditions != null)
-        {
-            foreach (var condition in Conditions)
+            foreach(var cond in conditionList)
             {
-                if (!condition.Evaluate(stats))
+                if (!cond.Evaluate(stats))
                 {
                     return false;
                 }
             }
-            return true;
         }
         return true;
+    }
+
+    void ParseConditions(string conditions)
+    {
+        internalConditions.Clear();
+        if (!string.IsNullOrEmpty(conditions))
+        {
+            var orGroups = conditions.Split('|');
+            foreach (var group in orGroups)
+            {
+                var andList = new List<EventCondition>();
+                var andGroups = group.Split('&');
+                foreach (var andCondition in andGroups)
+                {
+                    var trimmed = andCondition.Trim();
+                    andList.Add(new EventCondition(trimmed));
+                }
+                internalConditions.Add(andList);
+            }
+        }
+    }
+
+    public override string ToString()
+    {
+        if (internalConditions != null)
+        {
+            var sb = new StringBuilder();
+            for (int i = 0; i < internalConditions.Count; i++)
+            {
+                var andGroup = internalConditions[i];
+                for (int y = 0; y < andGroup.Count; y++)
+                {
+                    sb.Append(andGroup[y].ToString());
+                    if (y < andGroup.Count - 1)
+                    {
+                        sb.Append(" & ");
+                    }
+                }
+
+                if (i < internalConditions.Count - 1)
+                {
+                    sb.Append(" | ");
+                }
+            }
+
+            return sb.ToString();
+        }
+        else
+        {
+            return "";
+        }
     }
 }
 

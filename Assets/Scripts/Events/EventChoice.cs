@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class EventChoice
+public class EventChoice : ISerializationCallbackReceiver
 {
-    public EventConditionGroup conditions;
+    public EventConditionGroup Conditions { get; set; }
+    [SerializeField]
+    string conditions;
     public string actionText;
     public List<EventOutcome> possibleOutcomes = new List<EventOutcome>();
 
     public bool ConditionsSatisfied(Stats stats)
     {
-        if (conditions != null)
+        if (Conditions != null)
         {
-            return conditions.Evaluate(stats);
+            return Conditions.Evaluate(stats);
         }
         return true;
     }
@@ -36,5 +38,22 @@ public class EventChoice
         }
 
         return possibleOutcomes[0];
+    }
+
+    public void OnBeforeSerialize()
+    {
+        if (Conditions != null)
+        {
+            conditions = Conditions.ToString();
+        }
+        else
+        {
+            conditions = "";
+        }
+    }
+
+    public void OnAfterDeserialize()
+    {
+        Conditions = new EventConditionGroup(conditions);
     }
 }
