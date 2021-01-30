@@ -34,7 +34,7 @@ public class RandomizeSpriteRendererFeatures : MonoBehaviour
         hash ^= 47581;
 
         if (flipX)
-            spriteRenderer.flipX = (hash & 1) == 1;
+            spriteRenderer.flipX = (hash >> 5 & 1) == 1;
         hash ^= 47;
         var euler = transform.rotation.eulerAngles;
         euler.z += Mathf.Repeat(hash / 100f, tilt * 2) - tilt;
