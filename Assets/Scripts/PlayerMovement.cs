@@ -48,15 +48,20 @@ public class PlayerMovement : MonoBehaviour
                 else targetPosition = point;
             }
         }
-
-        //transform.position = Vector2.MoveTowards(this.transform.position, targetPosition, moveSpeed * Time.deltaTime);
         CheckToPickUp();
     }
 
+    private Vector2 previousPosition = Vector2.zero;
     private void FixedUpdate()
     {
+        float direction = transform.position.x - previousPosition.x;
+        previousPosition = transform.position;
         int moveSpeed = player.playerStats.GetStat("movementSpeed");
         rb.MovePosition(Vector2.MoveTowards(this.transform.position, targetPosition, moveSpeed * Time.deltaTime));
+        if (Mathf.Abs(direction) > 0.1f)
+        {
+            transform.localScale = new Vector3(Mathf.Sign(direction), 1, 1);
+        }
     }
 
     void CheckToPickUp()
