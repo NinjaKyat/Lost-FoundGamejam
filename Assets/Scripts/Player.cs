@@ -107,17 +107,16 @@ public class Player : MonoBehaviour
             ApplyItemStats(item);
             return true;
         }
-        else
-        {
-            Debug.Log($"Can't add item {item.name}. {slot.position.name}Slot is full");
-            return false;
-        }
+
+        //Debug.Log($"Can't add item {item.name}. {slot.position.name}Slot is full");
+        return false;
     }
 
     public Item RemoveItem(Common.CharacterItemSlots targetSlot)
     {
         EquipmentSlot slot = CharacterEquipment[targetSlot];
         Item temp = slot.RemoveItem();
+        temp.equipped = false;
         RemoveItemStats(temp);
         return temp;
     }
@@ -153,7 +152,8 @@ public class Player : MonoBehaviour
                 return true;
         }
 
-        return false;
+        RemoveItem(item.targetSlots[0]);
+        return OnClickItemEquip(item);
     }
 
     public Item OnClickItemUnequip(Common.CharacterItemSlots[] targetSlots, Item item)
@@ -189,7 +189,6 @@ public class Player : MonoBehaviour
             if (AddItem(Common.CharacterItemSlots.Back, item))
                 return true;
         }
-
         return false;
     }
 }

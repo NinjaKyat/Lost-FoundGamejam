@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     {
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
-        targetPosition = new Vector2(0.0f, 0.0f);
+        targetPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -38,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (!item.equipped)
                     {
-                        targetPosition = point;
                         queuedItem = item;
                         queuedToPickUp = true;
                     }
@@ -47,8 +46,8 @@ public class PlayerMovement : MonoBehaviour
                         item.OnClick();
                     }
                 }
-                else targetPosition = point;
             }
+            targetPosition = point;
         }
         CheckToPickUp();
     }
