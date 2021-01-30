@@ -58,13 +58,13 @@ public class EventMeister : MonoBehaviour
         EventCollection eventCollection = null;
         var treeEventsPath = Path.Combine(Application.streamingAssetsPath, treeEventsFolder);
         var bushEventsPath = Path.Combine(Application.streamingAssetsPath, bushEventsFolder);
-        LoadEventsAtPath(treeEventsPath, eventCollection);
-        LoadEventsAtPath(bushEventsPath, eventCollection);
+        LoadEventsAtPath(treeEventsPath, ref eventCollection);
+        LoadEventsAtPath(bushEventsPath, ref eventCollection);
 
         treeEvents = eventCollection;
     }
 
-    void LoadEventsAtPath(string path, EventCollection eventCollection)
+    void LoadEventsAtPath(string path, ref EventCollection eventCollection)
     {
         if (Directory.Exists(path))
         {

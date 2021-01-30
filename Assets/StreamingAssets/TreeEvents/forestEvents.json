@@ -2,7 +2,7 @@
     "events": [
         {
             "name": "A supermarket??",
-            "description": "While walking through the junge you notice a... supermarket? There don't seem to be any buildings nearby, just this one chain-market building. What.",
+            "description": "While walking through the jungle you notice a... supermarket? There don't seem to be any buildings nearby, just this one chain-market building. What.",
             "conditions": "supermarketDiscovered = 0",
             "image": "supermarket",
             "choices": [
@@ -63,7 +63,7 @@
                     "actionText": "Go inside and hope the coupon is still valid.",
                     "possibleOutcomes": [
                         {
-                            "outcomeText": "You strut in and graciously give the cashier your coupon. They didn't really know what to do with. After a 15 minute talk with the store manager you finally wear them down and receive a pair of fancy new supersneakers!",
+                            "outcomeText": "You strut in and graciously give the cashier your coupon. They didn't really know what to do with it. After a 15 minute talk with the store manager you finally wear them down and receive a pair of fancy new supersneakers!",
                             "actions": [
                                 "superSneakers += 1",
                                 "movementSpeed += 3",
