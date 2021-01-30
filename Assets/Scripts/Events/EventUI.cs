@@ -31,9 +31,9 @@ public class EventUI : MonoBehaviour
 
     private IEnumerator Start()
     {
-        yield return new WaitForSeconds(2f);
-        var evt = EventMeister.GetRandomEvent(player.playerStats);
-        DisplayEvent(evt);
+        //yield return new WaitForSeconds(2f);
+        //var evt = EventMeister.GetRandomEvent(player.playerStats);
+        //DisplayEvent(evt);
     }
 
     void ResetState()
