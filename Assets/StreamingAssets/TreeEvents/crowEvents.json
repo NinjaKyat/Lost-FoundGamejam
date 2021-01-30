@@ -222,7 +222,7 @@
                             "chance": 5,
                             "outcomeText": "The large crow swiftly dives and strikes at your head, ripping it from your body. You take a final glance at the jungle from above before your vision fades away.",
                             "actions": [
-                                "health = 0",
+                                "health = 0"
                             ]
                         },
                         {
@@ -242,7 +242,7 @@
                             "chance": 10,
                             "outcomeText": "The crow claws at your back as you try to escape. You are left with a few deep scratches, but manage to hide from the bird.",
                             "actions": [
-                                "health -= 3",
+                                "health -= 3"
                             ]
                         },
                         {
