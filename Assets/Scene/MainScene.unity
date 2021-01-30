@@ -496,7 +496,7 @@ MonoBehaviour:
   choiceLocation: {fileID: 1901993509}
   canvasGroup: {fileID: 384046341}
   eventImage: {fileID: 337665897}
-  player: {fileID: 0}
+  player: {fileID: 1012537924}
 --- !u!1 &414156320
 GameObject:
   m_ObjectHideFlags: 0

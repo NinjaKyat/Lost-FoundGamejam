@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private IInteractibe targetInteractible;
     public bool isMoving = false;
 
+    Vector2Int previousGridPosition;
+
     private LayerMask interactablesLayer = 1 << 6;
 
     CameraTarget cameraTarget;
@@ -90,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new Vector3(Mathf.Sign(directionX), 1, 1);
         }
         CheckIfWarpNeeded();
+        CheckIfSteppedOnEvent();
     }
 
     void CheckIfWarpNeeded()
@@ -107,6 +110,21 @@ public class PlayerMovement : MonoBehaviour
                 cameraTarget.JumpedBy(jumpOffset);
             }
         }
+    }
+
+    void CheckIfSteppedOnEvent()
+    {
+        var gridPosition = GameGrid.instance.WrappedPosition(transform.position);
+        if (gridPosition != previousGridPosition)
+        {
+            var gameEvent = GameGrid.instance.GetTile(gridPosition).GetTopEventIfAvailable(player);
+            if (gameEvent != null)
+            {
+                EventUI.instance.DisplayEvent(gameEvent);
+            }
+        }
+
+        previousGridPosition = gridPosition;
     }
 
     void CheckToPickUp()

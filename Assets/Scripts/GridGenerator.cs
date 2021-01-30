@@ -16,6 +16,7 @@ public class GridGenerator : MonoBehaviour
         grid.ForEachTile(PlaceGround);
         grid.ForEachTile(PlaceRocks);
         grid.ForEachTile(PlaceTrees);
+        grid.ForEachTile(PlaceEvents);
         grid.ForEachTile(PlaceObjects);
     }
 
@@ -52,6 +53,12 @@ public class GridGenerator : MonoBehaviour
                 else
                     tile.AddContent(new TileObject(TileObject.Type.Tree));
         }
+    }
+
+    void PlaceEvents(Vector2Int position, ref Tile tile)
+    {
+        if (position.x % 2 == position.y % 3)
+            tile.AddContent(new TileEvent());
     }
 
     void PlaceObjects(Vector2Int position, ref Tile tile)

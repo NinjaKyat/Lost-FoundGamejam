@@ -57,16 +57,22 @@ public class GameGrid
     public bool WrapAround(ref Vector2 worldPosition)
     {
         var intPosition = Vector2Int.RoundToInt(worldPosition);
-        var newIntPosition = intPosition + size / 2;
-        newIntPosition = new Vector2Int(((newIntPosition.x % size.x) + size.x) % size.x, ((newIntPosition.y % size.y) + size.y) % size.y) - size / 2;
-        if (intPosition != newIntPosition)
+        var wrappedPosition = WrappedPosition(worldPosition);
+        if (intPosition != wrappedPosition)
         {
-            worldPosition += newIntPosition - intPosition;
+            worldPosition += wrappedPosition - intPosition;
             return true;
         }
         else
         {
             return false;
         }
+    }
+
+    public Vector2Int WrappedPosition(Vector2 position)
+    {
+        var intPosition = Vector2Int.RoundToInt(position);
+        var newIntPosition = intPosition + size / 2;
+        return new Vector2Int(((newIntPosition.x % size.x) + size.x) % size.x, ((newIntPosition.y % size.y) + size.y) % size.y) - size / 2;
     }
 }

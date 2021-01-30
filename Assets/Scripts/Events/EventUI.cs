@@ -20,7 +20,7 @@ public class EventUI : MonoBehaviour
     [SerializeField]
     Player player;
 
-    static EventUI instance;
+    public static EventUI instance;
 
     List<Button> currentButtons = new List<Button>();
 

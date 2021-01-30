@@ -106,4 +106,18 @@ public struct Tile
         }
         return false;
     }
+
+    public GameEvent GetTopEventIfAvailable(Player player)
+    {
+        if (contents.Count == 0)
+            return null;
+
+        if (contents[contents.Count - 1] is TileEvent)
+        {
+            RemoveTopContent();
+            return EventMeister.GetRandomEvent(player.playerStats);
+        }
+        else
+            return null;
+    }
 }
