@@ -86,9 +86,6 @@ public class Player : MonoBehaviour
             if (currentSlot == Common.CharacterItemSlots.Head)
                 slot.maxItems = 99;
             else slot.maxItems = 1;
-            if (currentSlot == Common.CharacterItemSlots.LeftHand)
-                slot.flip = true;
-            else slot.flip = false;
             CharacterEquipment[(Common.CharacterItemSlots) i] = slot;
         }
 
@@ -102,7 +99,7 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-
+        
     }
     
     public bool AddItem(Common.CharacterItemSlots targetSlot, Item item)

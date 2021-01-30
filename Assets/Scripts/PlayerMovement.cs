@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Player player;
+    private Rigidbody2D rb;
     private Vector2 targetPosition;
     private bool queuedToPickUp = false;
     [SerializeField]
@@ -13,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         player = GetComponent<Player>();
+        rb = GetComponent<Rigidbody2D>();
         targetPosition = new Vector2(0.0f, 0.0f);
     }
 
@@ -20,20 +23,20 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Vector2 movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        int moveSpeed = player.playerStats.GetStat("movementSpeed");
         
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-
-            if (hit.collider != null)
+            Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Collider2D hit = Physics2D.OverlapPoint(point);
+            
+            if (hit != null)
             {
-                if (hit.collider.tag == "Item")
+                Item item = hit.GetComponent<Item>();
+                if (item != null)
                 {
-                    Item item = hit.collider.GetComponent<Item>();
                     if (!item.equipped)
                     {
-                        targetPosition = hit.point;
+                        targetPosition = point;
                         queuedItem = item;
                         queuedToPickUp = true;
                     }
@@ -42,11 +45,18 @@ public class PlayerMovement : MonoBehaviour
                         item.OnClick();
                     }
                 }
-                else targetPosition = hit.point;
+                else targetPosition = point;
             }
         }
-        transform.position = Vector2.MoveTowards(this.transform.position, targetPosition, moveSpeed * Time.deltaTime);
+
+        //transform.position = Vector2.MoveTowards(this.transform.position, targetPosition, moveSpeed * Time.deltaTime);
         CheckToPickUp();
+    }
+
+    private void FixedUpdate()
+    {
+        int moveSpeed = player.playerStats.GetStat("movementSpeed");
+        rb.MovePosition(Vector2.MoveTowards(this.transform.position, targetPosition, moveSpeed * Time.deltaTime));
     }
 
     void CheckToPickUp()
