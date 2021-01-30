@@ -24,4 +24,15 @@ public class JsonFunTests
         var json = JsonUtility.ToJson(evt, true);
         Debug.Log(json);
     }
+
+    [Test]
+    public void SerializeEventCollection()
+    {
+        var evt = GameEvent.GetTestEvent();
+        var collection = new EventCollection();
+        collection.events.Add(evt);
+        collection.events.Add(evt);
+        var json = JsonUtility.ToJson(collection, true);
+        Debug.Log(json);
+    }
 }

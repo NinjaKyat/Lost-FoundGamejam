@@ -88,4 +88,10 @@ public class GameEvent : ISerializationCallbackReceiver
     }
 }
 
+[System.Serializable]
+public class EventCollection
+{
+    public List<GameEvent> events = new List<GameEvent>();
+}
+
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.Networking;
+using System;
 
 public class EventMeister : MonoBehaviour
 {
@@ -10,8 +11,10 @@ public class EventMeister : MonoBehaviour
     Sprite defaultImage;
     static EventMeister instance;
     Dictionary<string, Sprite> imageLibrary = new Dictionary<string, Sprite>();
+    EventCollection treeEvents = null;
 
     const string imageFolder = "Images";
+    const string treeEventsFolder = "TreeEvents";
 
     void Awake()
     {
@@ -22,6 +25,8 @@ public class EventMeister : MonoBehaviour
     public IEnumerator LoadEverything()
     {
         yield return LoadImages();
+        LoadEvents();
+        Debug.Log("Events loaded");
     }
 
     IEnumerator LoadImages()
@@ -47,6 +52,38 @@ public class EventMeister : MonoBehaviour
         }
     }
 
+    void LoadEvents()
+    {
+        var treeEventsPath = Path.Combine(Application.streamingAssetsPath, treeEventsFolder);
+        EventCollection eventCollection = null;
+        if (Directory.Exists(treeEventsPath))
+        {
+            var allFiles = Directory.GetFiles(treeEventsPath, "*.json");
+            foreach(var file in allFiles)
+            {
+                try
+                {
+                    var text = File.ReadAllText(file);
+                    var collection = JsonUtility.FromJson<EventCollection>(text);
+                    if (eventCollection == null)
+                    {
+                        eventCollection = collection;
+                    }
+                    else
+                    {
+                        eventCollection.events.AddRange(collection.events);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError("Failed to parse json for file " + file + ". " + ex.Message);
+                }
+            }
+        }
+
+        treeEvents = eventCollection;
+    }
+
     public static GameEvent GetRandomEvent(Stats playerStats)
     {
         return instance.GetRandomEventInternal(playerStats);
@@ -54,6 +91,27 @@ public class EventMeister : MonoBehaviour
 
     private GameEvent GetRandomEventInternal(Stats playerStats)
     {
+        if (treeEvents != null)
+        {
+            var eventList = treeEvents.events;
+            var searchStartIndex = UnityEngine.Random.Range(0, eventList.Count);
+            var currentIndex = searchStartIndex;
+            do
+            {
+                var evt = eventList[currentIndex];
+                if (evt.Conditions.Evaluate(playerStats))
+                {
+                    // Condition satisfied, event found!
+                    return evt;
+                }
+                currentIndex++;
+                if (currentIndex >= eventList.Count)
+                {
+                    currentIndex = 0;
+                }
+            }
+            while (currentIndex != searchStartIndex);
+        }
         return GameEvent.GetTestEvent();
     }
 

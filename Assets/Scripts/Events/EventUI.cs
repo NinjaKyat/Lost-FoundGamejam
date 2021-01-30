@@ -29,10 +29,11 @@ public class EventUI : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
-        //var evt = GameEvent.GetTestEvent();
-        //DisplayEvent(evt);
+        yield return new WaitForSeconds(2f);
+        var evt = EventMeister.GetRandomEvent(player.playerStats);
+        DisplayEvent(evt);
     }
 
     void ResetState()
