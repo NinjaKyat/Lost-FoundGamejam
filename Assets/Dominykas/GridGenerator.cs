@@ -8,6 +8,7 @@ public class GridGenerator : MonoBehaviour
     public GameObject treePrefab;
 
     Grid grid;
+
     void Awake()
     {
         grid = new Grid(size);
