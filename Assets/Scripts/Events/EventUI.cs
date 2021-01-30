@@ -29,7 +29,7 @@ public class EventUI : MonoBehaviour
         instance = this;
     }
 
-    private IEnumerator Start()
+    private void Start()
     {
         //yield return new WaitForSeconds(2f);
         //var evt = EventMeister.GetRandomEvent(player.playerStats);
