@@ -114,6 +114,9 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckIfSteppedOnEvent()
     {
+        if (GameGrid.instance == null)
+            return;
+
         var gridPosition = GameGrid.instance.WrappedPosition(transform.position);
         if (gridPosition != previousGridPosition)
         {
