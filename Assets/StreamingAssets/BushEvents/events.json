@@ -1,0 +1,379 @@
+{
+    "events": [
+        {
+            "name": "Food?",
+            "description": "You find berries.",
+            "conditions": "",
+            "image": "berries",
+            "choices": [
+                {
+                    "conditions": "",
+                    "actionText": "Eat the berries.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 50,
+                            "outcomeText": "Suddenly you don't feel so well. The berries were poisonous!",
+                            "actions": [
+                                "health -= 1",
+                                "food -= 1",
+                                "berryKnowledge += 1"
+                            ]
+                        },
+                        {
+                            "chance": 0,
+                            "outcomeText": "The berries are delicious! You feel a bit less hungry.",
+                            "actions": [
+                                "food += 1",
+                                "berryKnowledge += 1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "",
+                    "actionText": "Leave the berries.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 0,
+                            "outcomeText": "You don't know if these are safe to eat, better leave them.",
+                            "actions": []
+                        }
+                    ]
+                },
+                {
+                    "conditions": "berryKnowledge >= 3 | encyclopedia > 0",
+                    "actionText": "Use your knowledge to eat only the edible berries.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 0,
+                            "outcomeText": "You recognize the edible berries and avoid the poisonous ones. You feel less hungry.",
+                            "actions": [
+                                "food += 1"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+                {
+            "name": "Checken!",
+            "description": "You find a chicken hiding in the bush!",
+            "conditions": "",
+            "image": "bird",
+            "choices": [
+                {
+                    "conditions": "",
+                    "actionText": "Grab the chicken.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 25,
+                            "outcomeText": "You jump towards the chicken and manage to grab it. Barely.\n\n You eat a filling meal!",
+                            "actions": [
+                                "health += 1",
+                                "food += 5"
+                            ]
+                        },
+                        {
+                            "chance": 0,
+                            "outcomeText": "The chicken gets away and scoots through the jungle.",
+                            "actions": [
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "speed > 6",
+                    "actionText": "Chase the chicken.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 50,
+                            "outcomeText": "You outrun the chicken and corner it. You eat a filling meal!",
+                            "actions": [
+                                "health += 1",
+                                "food += 5"
+                            ]
+                        },
+                        {
+                            "chance": 0,
+                            "outcomeText": "You outrun the chicken and then lose sight of it. Where did it go?",
+                            "actions": [
+                            ]
+                        }
+                    ]
+                },
+                                {
+                    "conditions": "attack > 3",
+                    "actionText": "Hunt the chicken.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 50,
+                            "outcomeText": "You slowly creep towards the chicken and lunge forward at the very last moment. You grab the bird! You ear a filling meal!",
+                            "actions": [
+                                "health += 1",
+                                "food += 5"
+                            ]
+                        },
+                        {
+                            "chance": 0,
+                            "outcomeText": "You slowly creep towards the chicken and it simply runs away. Whoops!",
+                            "actions": [
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "",
+                    "actionText": "Leave the chicken.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 0,
+                            "outcomeText": "You don't feel like eating chicken today. You leave it be.",
+                            "actions": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Healing Herbs",
+            "description": "You find some medicinal herbs. These could help you heal your wounds, but you might get an alergic reaction.",
+            "conditions": "health < 6 & food > 0",
+            "image": "berries",
+            "choices": [
+                {
+                    "conditions": "",
+                    "actionText": "Pick the herbs.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 25,
+                            "outcomeText": "You pick the herbs and tend to your wounds. You gain a sudden and intense alergic reaction!",
+                            "actions": [
+                                "health -= 3",
+                                "herbKnowledge += 1"
+                            ]
+                        },
+                        {
+                            "chance": 0,
+                            "outcomeText": "You pick the herbs and tend to your wounds. The herbs soothe your pain and you feel just a little bit better.",
+                            "actions": [
+                                "health += 1",
+                                "herbKnowledge += 1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "",
+                    "actionText": "Leave the herbs.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 0,
+                            "outcomeText": "You don't know much about these herbs. It's safer to leave them be.",
+                            "actions": []
+                        }
+                    ]
+                },
+                {
+                    "conditions": "herbKnowledge >= 3 | encyclopedia > 0",
+                    "actionText": "Use your knowledge to use the herbs safely.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 0,
+                            "outcomeText": "You carefully use just the roots of the herbs to tend to your wounds. The effect is pleasant and immediate.",
+                            "actions": [
+                                "health += 2"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Mysterious Spices",
+            "description": "You find a bush with mysterious spices. It won't sate your hunger, but...",
+            "conditions": "",
+            "image": "berries",
+            "choices": [
+                {
+                    "conditions": "",
+                    "actionText": "Eat the spices.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 25,
+                            "outcomeText": "THAT WAS A BAD IDEA. The fiery explosive spiciness burns through your mouth. It takes a few hours before you can move again.",
+                            "actions": [
+                                "health -= 1",
+                                "food -= 1"
+                            ]
+                        },
+                        {
+                            "chance": 10,
+                            "outcomeText": "You tame the wild spices without even flinching. Impressive!",
+                            "actions": [
+                                "spiceLord += 1",
+                                "health += 1"
+                            ]
+                        },
+                        {
+                            "chance": 0,
+                            "outcomeText": "It's spicy! You shed a few tears and breathe through your mouth for a little while and move on.",
+                            "actions": [
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "",
+                    "actionText": "Leave the spices.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 0,
+                            "outcomeText": "There's no point in eating spices. You leave them.",
+                            "actions": []
+                        }
+                    ]
+                },
+                {
+                    "conditions": "spiceLord > 0 | encyclopedia > 0",
+                    "actionText": "You recognize these particular spices. They have healing properties!",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 0,
+                            "outcomeText": "You eat the spices and feel your wounds closing. Somehow.",
+                            "actions": [
+                                "health += 1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "spiceLord > 0",
+                    "actionText": "You could rub your legs with these spices to run faster... Somehow.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 0,
+                            "outcomeText": "You rub your legs with the spices. They hurt become red like lobsters, but you feel like you can move faster now.",
+                            "actions": [
+                                "health -= 1",
+                                "movementSpeed += 1"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Mysterious Box",
+            "description": "You find a mysterious box hidden inside the bushes. You wonder what could be inside.",
+            "conditions": "",
+            "image": "box",
+            "choices": [
+                {
+                    "conditions": "",
+                    "actionText": "Open the box.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 5,
+                            "outcomeText": "It's a box filled with apples! Delicious, juicy, crunchy apples! You eat the whole box.",
+                            "actions": [
+                                "food += 4"
+                            ]
+                        },
+                        {
+                            "chance": 5,
+                            "outcomeText": "A large snake springs out of the box. You fall over backwards, trying to avoid it.",
+                            "actions": [
+                                "health -= 1"
+                            ]
+                        },
+                        {
+                            "chance": 5,
+                            "outcomeText": "The box contains a jungle encyclopedia! This could be a true life-saver.",
+                            "actions": [
+                                "encyclopedia += 1"
+                            ]
+                        },
+                        {
+                            "chance": 5,
+                            "outcomeText": "The box contains a television set. You're unsure of what it's doing here in the jungle. You try turning it on, but, predictably, nothings happens.",
+                            "actions": [
+                            ]
+                        },
+                        {
+                            "chance": 5,
+                            "outcomeText": "The box contains a bunch of martial arts magazines. You read a few of them and feel ready to take on tougher foes.",
+                            "actions": [
+                                "attack += 1"
+                            ]
+                        },
+                        {
+                            "chance": 5,
+                            "outcomeText": "The box contains a bunch of sports magazines. You read some tips about running and keeping in shape.",
+                            "actions": [
+                                "movementSpeed += 1"
+                            ]
+                        },
+                        {
+                            "chance": 5,
+                            "outcomeText": "The box contains candy. You happily eat all of it and then get a very bad stomach cramp.",
+                            "actions": [
+                                "food += 1",
+                                "health -= 1"
+                            ]
+                        },
+                        {
+                            "chance": 5,
+                            "outcomeText": "The box contains another box. It's a box filled with boxes! Crazy!",
+                            "actions": [
+                            ]
+                        },
+                        {
+                            "chance": 5,
+                            "outcomeText": "The box suddenly exposes some teeth and bites you. You jump away in panic. After you regain your senses the box is nowhere to be seen.",
+                            "actions": [
+                                "health -= 2"
+                            ]
+                        },
+                        {
+                            "chance": 5,
+                            "outcomeText": "The box contains a bunch of band-aids. You carefully tend to your wounds.",
+                            "actions": [
+                                "health += 2"
+                            ]
+                        },
+                        {
+                            "chance": 1,
+                            "outcomeText": "The box pulls you in! You fall into the void and disappear completely.",
+                            "actions": [
+                                "health = 0"
+                            ]
+                        },
+                        {
+                            "outcomeText": "The box is empty. How disappointing.",
+                            "actions": [
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "",
+                    "actionText": "Leave the box.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 2,
+                            "outcomeText": "The box starts following you! It jumps in the air, falls and crumples over, dropping a bunch of apples on the floor. What what that all about?",
+                            "actions": [
+                                "food += 5"
+                            ]
+                        },
+                        {
+                            "chance": 0,
+                            "outcomeText": "You don't know where the box has been or what could be waiting inside. It's best to leave it.",
+                            "actions": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
