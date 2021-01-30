@@ -11,6 +11,7 @@ public class Item : MonoBehaviour, IInteractibe
     public bool equipped = false;
     public Dictionary<string, int> AppliedStats;
     public Transform Transform => transform;
+    private ItemAnimations animations;
     
     // Start is called before the first frame update
     void Start()
