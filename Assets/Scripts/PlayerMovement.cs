@@ -24,13 +24,21 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         Vector2 movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        if (movementInput.magnitude > 0) 
+        if (movementInput.magnitude > 0)
+        {
             targetPosition = new Vector2(transform.position.x, transform.position.y) + movementInput.normalized * 0.1f;
+            queuedToPickUp = false;
+            queuedItem = null;
+        }
+
+        Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (Input.GetMouseButton(0))
         {
-            Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            targetPosition = point;
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
             Collider2D hit = Physics2D.OverlapPoint(point, interactablesLayer);
             
             if (hit != null)
@@ -38,18 +46,17 @@ public class PlayerMovement : MonoBehaviour
                 Item item = hit.GetComponent<Item>();
                 if (item != null)
                 {
-                    if (!item.equipped)
+                    if (!item.equipped)    //Set item to be equipped once we reach distance
                     {
                         queuedItem = item;
                         queuedToPickUp = true;
                     }
-                    else
+                    else    //UN-EQUIP ITEM
                     {
                         item.OnClick();
                     }
                 }
             }
-            targetPosition = point;
         }
         CheckToPickUp();
     }
@@ -57,13 +64,14 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 previousPosition = Vector2.zero;
     private void FixedUpdate()
     {
-        float direction = transform.position.x - previousPosition.x;
+        float directionX = transform.position.x - previousPosition.x;
+        float directionY = transform.position.y - previousPosition.y;
         previousPosition = transform.position;
         int moveSpeed = player.playerStats.GetStat("movementSpeed");
         rb.MovePosition(Vector2.MoveTowards(this.transform.position, targetPosition, moveSpeed * Time.deltaTime));
-        if (Mathf.Abs(direction) > 0.05f)
+        if (Mathf.Abs(directionX) + Mathf.Abs(directionY) > 0.05f)
         {
-            transform.localScale = new Vector3(Mathf.Sign(direction), 1, 1);
+            transform.localScale = new Vector3(Mathf.Sign(directionX), 1, 1);
         }
     }
 
