@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item : MonoBehaviour, IInteractibe
 {
     public Common.CharacterItemSlots[] targetSlots;
     public Vector3 EquipOffset;
@@ -10,6 +10,7 @@ public class Item : MonoBehaviour
     private Player player;
     public bool equipped = false;
     public Dictionary<string, int> AppliedStats;
+    public Transform Transform => transform;
     
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,7 @@ public class Item : MonoBehaviour
 
     }
 
-    public void OnClick()
+    public void Interact()
     {
         if (!equipped)
         {

@@ -8,10 +8,9 @@ public class PlayerMovement : MonoBehaviour
     private Player player;
     private Rigidbody2D rb;
     private Vector2 targetPosition;
-    private bool queuedToPickUp = false;
     [SerializeField]
     private float equipDistance = 0.5f;
-    private Item queuedItem;
+    private IInteractibe targetInteractible;
     public bool isMoving = false;
 
     private LayerMask interactablesLayer = 1 << 6;
@@ -41,8 +40,7 @@ public class PlayerMovement : MonoBehaviour
         if (movementInput.magnitude > 0)
         {
             targetPosition = new Vector2(transform.position.x, transform.position.y) + movementInput.normalized * 0.1f;
-            queuedToPickUp = false;
-            queuedItem = null;
+            targetInteractible = null;
             isMoving = true;
         }
 
@@ -56,17 +54,22 @@ public class PlayerMovement : MonoBehaviour
             
             if (hit != null)
             {
-                Item item = hit.GetComponent<Item>();
-                if (item != null)
+                var interactible = hit.GetComponent<IInteractibe>();
+                if (interactible != null)
                 {
-                    if (!item.equipped)    //Set item to be equipped once we reach distance
+                    if (interactible is Item item)
                     {
-                        queuedItem = item;
-                        queuedToPickUp = true;
-                    }
-                    else    //UN-EQUIP ITEM
+                        if (!item.equipped)    //Set item to be equipped once we reach distance
+                        {
+                            targetInteractible = item;
+                        }
+                        else    //UN-EQUIP ITEM
+                        {
+                            item.Interact();
+                        }
+                    } else
                     {
-                        item.OnClick();
+                        targetInteractible = interactible;
                     }
                 }
             }
@@ -108,15 +111,14 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckToPickUp()
     {
-        if (!queuedToPickUp)
+        if (targetInteractible == null)
             return;
 
-        float distance = Vector3.Distance(transform.position,queuedItem.transform.position);
+        float distance = Vector3.Distance(transform.position, targetInteractible.Transform.position);
         if (distance < equipDistance)
         {
-            queuedToPickUp = false;
-            queuedItem.OnClick();
-            queuedItem = null;
+            targetInteractible.Interact();
+            targetInteractible = null;
         }
     }
 }
