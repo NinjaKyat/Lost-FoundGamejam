@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
                 int lastItem = equippedItems.Count - 1;
                 Item toReturn = equippedItems[lastItem];
                 toReturn.transform.parent = null;
+                toReturn.transform.localEulerAngles = Vector3.zero;
                 Vector3 localScale = toReturn.transform.localScale;
                 if (localScale.x < 0)
                 {

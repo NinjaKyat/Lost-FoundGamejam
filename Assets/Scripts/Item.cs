@@ -16,6 +16,7 @@ public class Item : MonoBehaviour, IInteractibe
     void Start()
     {
         player = FindObjectOfType<Player>();
+        animations = FindObjectOfType<ItemAnimations>();
         rend = GetComponent<SpriteRenderer>();
     }
 
@@ -36,11 +37,19 @@ public class Item : MonoBehaviour, IInteractibe
         {
             Item returned = player.OnClickItemUnequip(targetSlots, this);
             if (returned != null)
+            {
                 returned.equipped = false;
+                returned.ItemDropped();
+            }
         }
         if (player.transform.localScale.x >= 0)
             rend.flipX = false;
         else rend.flipX = true;
+    }
+
+    public void ItemDropped()
+    {
+        //animations.ItemDropped(player.transform.position);
     }
     
 }
