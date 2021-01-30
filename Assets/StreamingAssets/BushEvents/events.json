@@ -55,8 +55,76 @@
                 }
             ]
         },
+        {
+            "name": "Dangerous Encounter",
+            "description": "You find some fruit, but notice a pair of eyes, peeking through a bush. You freeze, thinking about what to do next.",
+            "conditions": "",
+            "image": "predator",
+            "choices": [
                 {
-            "name": "Checken!",
+                    "conditions": "",
+                    "actionText": "Pick up the fruit and go.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 50,
+                            "outcomeText": "You are attacked by a large feline predator! You fail to gather any food and barely make it out alive.",
+                            "actions": [
+                                "health -= 4"
+                            ]
+                        },
+                        {
+                            "chance": 0,
+                            "outcomeText": "You slowly grab the fruit you can reach and creep away from the bushes. After walking for a a good while you finally relax, knowing you are safe.",
+                            "actions": [
+                                "food += 3"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "movementSpeed > 2",
+                    "actionText": "Run away.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 25,
+                            "outcomeText": "The predator catches up and mauls you. You barely manage to escape.",
+                            "actions": [
+                                "health -= 3"
+                            ]
+                        },
+                        {
+                            "chance": 0,
+                            "outcomeText": "You run without looking back. You do so until you run out of breath and stop. It seems that you are safe. For now.",
+                            "actions": [
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "attack > 2",
+                    "actionText": "Prepare to fight.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 5,
+                            "outcomeText": "You anticipate the predator attack, but misjudge the amount of predators. You get surrounded and shredded to pieces.",
+                            "actions": [
+                                "health = 0"
+                            ]
+                        },
+                        {
+                            "chance": 0,
+                            "outcomeText": "You anticipate the predator and manage to fend it off with just a few scratches.",
+                            "actions": [
+                                "health -= 1",
+                                "food += 5"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Chicken!",
             "description": "You find a chicken hiding in the bush!",
             "conditions": "",
             "image": "bird",
