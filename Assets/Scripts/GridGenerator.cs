@@ -9,11 +9,11 @@ public class GridGenerator : MonoBehaviour
     public TileObjectRepresentation grassPrefab;
     public TileObjectRepresentation sandPrefab;
 
-    Grid grid;
+    GameGrid grid;
 
     void Awake()
     {
-        grid = new Grid(size);
+        grid = new GameGrid(size);
         grid.ForEachTile(PlaceGround);
         grid.ForEachTile(PlaceTrees);
         grid.ForEachTile(PlaceObjects);

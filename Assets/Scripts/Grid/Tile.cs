@@ -31,14 +31,14 @@ public struct TileObject : ITileContent
 
 public struct Tile
 {
-    public Grid Grid { get; private set; }
+    public GameGrid Grid { get; private set; }
     public Vector2Int Position { get; private set; }
     public Vector2 WorldPosition => Position - Grid.Size / 2;
 
     List<ITileContent> contents;
     public IReadOnlyList<ITileContent> Contents => contents;
 
-    public Tile(Grid grid, Vector2Int position)
+    public Tile(GameGrid grid, Vector2Int position)
     {
         Grid = grid;
         Position = position;

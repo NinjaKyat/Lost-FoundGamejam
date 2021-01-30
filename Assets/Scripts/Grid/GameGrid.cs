@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid
+public class GameGrid
 {
     Vector2Int size;
     public Vector2Int Size => size;
@@ -12,7 +12,7 @@ public class Grid
 
     public delegate void TileRef(Vector2Int position, ref Tile tile);
 
-    public Grid(Vector2Int size)
+    public GameGrid(Vector2Int size)
     {
         this.size = size;
         data = new Tile[size.x, size.y];
