@@ -12,13 +12,23 @@ public class Player : MonoBehaviour
         private List<Item> equippedItems = new List<Item>();
         public int maxItems;
         public Transform position;
+        public bool flip;
         public void AddItem(Item item)
         {
             if (item != null)
             {
                 equippedItems.Add(item);
                 item.transform.parent = position;
-                item.transform.localPosition = Vector3.zero; //Could set an offset here instead of 0
+                if (!flip)
+                {
+                    item.transform.localPosition = item.EquipOffset;
+                }
+                else
+                {
+                    item.GetComponent<SpriteRenderer>().flipX = flip;
+                    item.transform.localPosition = new Vector3(-item.EquipOffset.x, item.EquipOffset.y, item.EquipOffset.z); 
+                }
+
             }
         }
 
@@ -33,6 +43,7 @@ public class Player : MonoBehaviour
                 int lastItem = equippedItems.Count - 1;
                 Item toReturn = equippedItems[lastItem];
                 toReturn.transform.parent = null;
+                if (flip) toReturn.GetComponent<SpriteRenderer>().flipX = !flip;
                 equippedItems.RemoveAt(lastItem);
                 return toReturn;
             }
@@ -56,9 +67,13 @@ public class Player : MonoBehaviour
         {
             EquipmentSlot slot = new EquipmentSlot();
             slot.position = equipmentSlotPositions[i];
-            if ((Common.CharacterItemSlots) i == Common.CharacterItemSlots.Head)
+            Common.CharacterItemSlots currentSlot = (Common.CharacterItemSlots) i;
+            if (currentSlot == Common.CharacterItemSlots.Head)
                 slot.maxItems = 99;
             else slot.maxItems = 1;
+            if (currentSlot == Common.CharacterItemSlots.LeftHand)
+                slot.flip = true;
+            else slot.flip = false;
             CharacterEquipment[(Common.CharacterItemSlots) i] = slot;
         }
 

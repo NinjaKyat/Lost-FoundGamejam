@@ -5,6 +5,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public Common.CharacterItemSlots[] targetSlots;
+    public Vector3 EquipOffset;
     private Player player;
     
     // Start is called before the first frame update
