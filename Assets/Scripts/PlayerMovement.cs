@@ -34,6 +34,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
+        float distanceToTarget = Vector2.Distance(transform.position, targetPosition);
+        if (distanceToTarget > 0.2f) 
+            isMoving = true;
+            else isMoving = false;
+        
         if (Input.GetMouseButton(0))
         {
             targetPosition = point;
@@ -72,11 +78,8 @@ public class PlayerMovement : MonoBehaviour
         rb.MovePosition(Vector2.MoveTowards(this.transform.position, targetPosition, moveSpeed * Time.deltaTime));
         if (Mathf.Abs(directionX) + Mathf.Abs(directionY) > 0.05f)
         {
-            isMoving = true;
             transform.localScale = new Vector3(Mathf.Sign(directionX), 1, 1);
         }
-
-        isMoving = false;
     }
 
     void CheckToPickUp()

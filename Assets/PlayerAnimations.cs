@@ -8,6 +8,8 @@ public class PlayerAnimations : MonoBehaviour
     private PlayerMovement playerMove;
     private Vector3 originalPlayerPosition;
     private Quaternion originalPlayerRotation;
+    Vector3 velocity = Vector3.zero;
+    float smoothTime = 0.15F;
     void Start()
     {
         playerMove = FindObjectOfType<PlayerMovement>();
@@ -21,14 +23,18 @@ public class PlayerAnimations : MonoBehaviour
     {
         if (!playerMove.isMoving)
         {
-            playerBody.localPosition = originalPlayerPosition;
+            playerBody.localPosition = Vector3.SmoothDamp(playerBody.localPosition, originalPlayerPosition, ref velocity, smoothTime);
             playerBody.localRotation = originalPlayerRotation;
         }
         else
         {
-            Debug.Log("Animating");
             Vector3 position = playerBody.localPosition;
-            playerBody.localPosition +=  new Vector3(position.x, position.y + Mathf.Sin(Time.realtimeSinceStartup * 5), position.z);
+            float yOffset = (Mathf.Abs(Mathf.Sin(Time.realtimeSinceStartup * 10)) / 2.5f);
+            playerBody.localPosition =  new Vector3(position.x, yOffset , position.z);
+
+            Vector3 rotation = playerBody.localRotation.eulerAngles;
+            float zOffset = Mathf.Pow(Mathf.Sin(Time.realtimeSinceStartup * 10) * 3, 3);
+            playerBody.localEulerAngles = new Vector3(rotation.x, rotation.y, zOffset);
         }
     }
 }
