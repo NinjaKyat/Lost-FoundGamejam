@@ -3,7 +3,7 @@
         {
             "name": "A supermarket??",
             "description": "While walking through the jungle you notice a... supermarket? There don't seem to be any buildings nearby, just this one chain-market building. What.",
-            "conditions": "supermarketDiscovered = 0",
+            "conditions": "supermarketDiscovered = 0 & random < 10",
             "image": "supermarket",
             "choices": [
                 {
