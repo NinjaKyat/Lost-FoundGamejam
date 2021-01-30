@@ -10,8 +10,8 @@ public class Item : MonoBehaviour, IInteractible
     private Player player;
     public bool equipped = false;
     public Dictionary<string, int> AppliedStats;
-    public Collider2D Collider => collider;
-    Collider2D collider;
+    public Collider2D Collider => _collider;
+    Collider2D _collider;
     private ItemAnimations animations;
     
     // Start is called before the first frame update
@@ -20,7 +20,7 @@ public class Item : MonoBehaviour, IInteractible
         player = FindObjectOfType<Player>();
         animations = GetComponent<ItemAnimations>();
         rend = GetComponent<SpriteRenderer>();
-        collider = GetComponent<Collider2D>();
+        _collider = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame

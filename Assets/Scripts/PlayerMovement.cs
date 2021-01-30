@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Player player;
     private Rigidbody2D rb;
-    Collider2D collider;
+    Collider2D _collider;
     private Vector2 targetPosition;
     [SerializeField]
     private float interactDistance = 0.5f;
@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     {
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
-        collider = GetComponent<Collider2D>();
+        _collider = GetComponent<Collider2D>();
         targetPosition = transform.position;
         cameraTarget = GetComponent<CameraTarget>();
     }
@@ -143,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
         if (targetInteractible == null)
             return;
 
-        float distance = collider.Distance(targetInteractible.Collider).distance;
+        float distance = _collider.Distance(targetInteractible.Collider).distance;
         if (distance < interactDistance)
         {
             targetInteractible.Interact();
