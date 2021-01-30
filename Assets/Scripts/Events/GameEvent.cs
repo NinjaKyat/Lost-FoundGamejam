@@ -11,6 +11,22 @@ public class GameEvent : ISerializationCallbackReceiver
     [SerializeField]
     string conditions;
 
+    Sprite imageInternal;
+    public Sprite Image { get
+        {
+            if (imageInternal == null)
+            {
+                return EventMeister.GetImage("");
+            }
+            else
+            {
+                return imageInternal;
+            }
+        }
+    }
+    [SerializeField]
+    string image;
+
     public List<EventChoice> choices = new List<EventChoice>();
 
     public static GameEvent GetTestEvent()
@@ -68,6 +84,7 @@ public class GameEvent : ISerializationCallbackReceiver
     public void OnAfterDeserialize()
     {
         Conditions = new EventConditionGroup(conditions);
+        imageInternal = EventMeister.GetImage(image);
     }
 }
 

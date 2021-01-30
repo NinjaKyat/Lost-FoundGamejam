@@ -16,6 +16,8 @@ public class EventUI : MonoBehaviour
     [SerializeField]
     CanvasGroup canvasGroup;
     [SerializeField]
+    Image eventImage;
+    [SerializeField]
     Player player;
 
     static EventUI instance;
@@ -25,8 +27,8 @@ public class EventUI : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        //var evt = GameEvent.GetTestEvent();
-        //DisplayEvent(evt);
+        var evt = GameEvent.GetTestEvent();
+        DisplayEvent(evt);
     }
 
     void ResetState()
@@ -51,6 +53,7 @@ public class EventUI : MonoBehaviour
         SetUIVisibility(true);
         nameField.text = targetEvent.name;
         descriptionField.text = targetEvent.description;
+        eventImage.sprite = targetEvent.Image;
         foreach(var choice in targetEvent.choices)
         {
             if (choice.ConditionsSatisfied(player.playerStats))
@@ -66,6 +69,7 @@ public class EventUI : MonoBehaviour
         SetUIVisibility(true);
         nameField.text = mainEvent.name;
         descriptionField.text = outcome.outcomeText;
+        eventImage.sprite = mainEvent.Image;
         CreateButton("Okay", () =>
         {
             SetUIVisibility(false);
