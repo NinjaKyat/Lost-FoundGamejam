@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     Camera camera;
+    CameraTarget mainTarget;
 
     float targetZoom;
     float currentZoom;
@@ -19,7 +20,43 @@ public class CameraFollow : MonoBehaviour
         camera = GetComponent<Camera>();
         targetZoom = currentZoom = Mathf.InverseLerp(minZoom, maxZoom, camera.orthographicSize);
     }
-    void Update()
+
+    private void OnEnable()
+    {
+        CameraTarget.onCameraTargetAdded += HandleCameraAdded;
+        CameraTarget.onCameraTargetRemoved += HandleCameraRemoved;
+    }
+
+    private void OnDisable()
+    {
+        CameraTarget.onCameraTargetAdded -= HandleCameraAdded;
+        CameraTarget.onCameraTargetRemoved -= HandleCameraRemoved;
+    }
+
+    void HandleCameraAdded(CameraTarget target)
+    {
+        if (mainTarget == null)
+        {
+            mainTarget = target;
+            mainTarget.onJump += HandleJump;
+        }
+    }
+
+    void HandleCameraRemoved(CameraTarget target)
+    {
+        if (mainTarget == target)
+        {
+            mainTarget.onJump -= HandleJump;
+            mainTarget = null;
+        }
+    }
+
+    void HandleJump(Vector2 offset)
+    {
+        transform.position += (Vector3)offset;
+    }
+
+    void LateUpdate()
     {
         targetZoom -= Input.mouseScrollDelta.y * 0.1f;
         targetZoom = Mathf.Clamp01(targetZoom);

@@ -64,7 +64,7 @@ public struct Tile
 {
     public GameGrid Grid { get; private set; }
     public Vector2Int Position { get; private set; }
-    public Vector2 WorldPosition => Position - Grid.Size / 2;
+    public Vector2 WorldPosition => Grid.LocalToWorldPosition(Position);
 
     List<ITileContent> contents;
     public IReadOnlyList<ITileContent> Contents => contents;

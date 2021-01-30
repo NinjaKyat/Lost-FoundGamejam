@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GameGrid
 {
+    public static GameGrid instance;
+
     Vector2Int size;
     public Vector2Int Size => size;
 
@@ -23,6 +25,11 @@ public class GameGrid
                 data[x,y] = new Tile(this, new Vector2Int(x,y));
             }
         }
+        if (instance != null)
+        {
+            Debug.LogError("Game Grid singleton already exists, but new one is created");
+        }
+        instance = this;
     }
 
     public void ForEachTile(TileRef action)
@@ -40,5 +47,26 @@ public class GameGrid
     {
         var warpedPosition = new Vector2Int((position.x % size.x + size.x) % size.x, (position.y % size.y + size.y) % size.y);
         return data[warpedPosition.x, warpedPosition.y];
+    }
+
+    public Vector2Int LocalToWorldPosition(Vector2Int localPosition)
+    {
+        return localPosition - Size / 2;
+    }
+
+    public bool WrapAround(ref Vector2 worldPosition)
+    {
+        var intPosition = Vector2Int.RoundToInt(worldPosition);
+        var newIntPosition = intPosition + size / 2;
+        newIntPosition = new Vector2Int(((newIntPosition.x % size.x) + size.x) % size.x, ((newIntPosition.y % size.y) + size.y) % size.y) - size / 2;
+        if (intPosition != newIntPosition)
+        {
+            worldPosition += newIntPosition - intPosition;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

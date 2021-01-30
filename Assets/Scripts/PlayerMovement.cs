@@ -15,11 +15,15 @@ public class PlayerMovement : MonoBehaviour
     public bool isMoving = false;
 
     private LayerMask interactablesLayer = 1 << 6;
+
+    CameraTarget cameraTarget;
+
     void Start()
     {
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
         targetPosition = transform.position;
+        cameraTarget = GetComponent<CameraTarget>();
     }
 
     // Update is called once per frame
@@ -79,6 +83,24 @@ public class PlayerMovement : MonoBehaviour
         if (Mathf.Abs(directionX) + Mathf.Abs(directionY) > 0.05f)
         {
             transform.localScale = new Vector3(Mathf.Sign(directionX), 1, 1);
+        }
+        CheckIfWarpNeeded();
+    }
+
+    void CheckIfWarpNeeded()
+    {
+        if (GameGrid.instance == null)
+            return;
+
+        var position = (Vector2)transform.position;
+        if (GameGrid.instance.WrapAround(ref position))
+        {
+            var jumpOffset = position - (Vector2)transform.position;
+            transform.position = position;
+            if (cameraTarget != null)
+            {
+                cameraTarget.JumpedBy(jumpOffset);
+            }
         }
     }
 
