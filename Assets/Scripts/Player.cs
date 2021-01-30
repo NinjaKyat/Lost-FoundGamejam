@@ -70,6 +70,7 @@ public class Player : MonoBehaviour
         cam = Camera.main;
         SetupPlayerEquipmentSlots();
         SetupPlayerStats();
+        StartCoroutine(HungerLoop());
     }
 
     void SetupPlayerEquipmentSlots()
@@ -89,13 +90,36 @@ public class Player : MonoBehaviour
     void SetupPlayerStats()
     {
         playerStats = new Stats();
-        playerStats.AddStat(Stats.healthStat, 10);
-        playerStats.AddStat(Stats.moveSpeedStat, 4);
+        playerStats.SetStat(Stats.healthStat, 10);
+        playerStats.SetStat(Stats.moveSpeedStat, 4);
+        playerStats.SetStat(Stats.attackStat, 1);
+        playerStats.SetStat(Stats.foodStat, 5);
+    }
+
+    IEnumerator HungerLoop()
+    {
+        while(playerStats.GetStat(Stats.healthStat) > 0)
+        {
+            yield return new WaitForSeconds(30);
+            var currentFood = playerStats.GetStat(Stats.foodStat);
+            if (currentFood > 0)
+            {
+                playerStats.AddStat(Stats.foodStat, -1);
+            }
+            else
+            {
+                playerStats.AddStat(Stats.healthStat, -1);
+            }
+        }
     }
     
     void Update()
     {
-        
+        var currentHealth = playerStats.GetStat(Stats.healthStat);
+        if (currentHealth < 1)
+        {
+            Debug.Log("YOU ARE DEAD");
+        }
     }
     
     public bool AddItem(Common.CharacterItemSlots targetSlot, Item item)

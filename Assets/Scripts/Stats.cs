@@ -8,6 +8,8 @@ public class Stats
     Dictionary<string, int> internalStats = new Dictionary<string, int>();
     public const string healthStat = "health";
     public const string moveSpeedStat = "movementSpeed";
+    public const string foodStat = "food";
+    public const string attackStat = "attack";
     public const string randomStat = "random";
 
     public int GetStat(string stat)
