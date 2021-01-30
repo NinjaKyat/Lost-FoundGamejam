@@ -27,8 +27,12 @@ public class EventUI : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        var evt = GameEvent.GetTestEvent();
-        DisplayEvent(evt);
+    }
+
+    private void Start()
+    {
+        //var evt = GameEvent.GetTestEvent();
+        //DisplayEvent(evt);
     }
 
     void ResetState()
