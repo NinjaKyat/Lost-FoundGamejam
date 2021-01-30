@@ -394,6 +394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2125180783989838142}
   - component: {fileID: 379953243166712903}
+  - component: {fileID: 7992042333107543013}
   m_Layer: 0
   m_Name: PalmTree1_Nuts
   m_TagString: Untagged
@@ -408,7 +409,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6017060179406413503}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.093, y: 0.997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -466,6 +467,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7992042333107543013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6017060179406413503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88d2988f3f78304db152c4333e24d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 379953243166712903}
+  flipX: 1
+  tilt: 10
+  scale: 0.01
 --- !u!1 &7630432162874701735
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8307255897489677399}
   - component: {fileID: 5791701731032348205}
+  - component: {fileID: 2616296643629416260}
   m_Layer: 0
   m_Name: PalmTree1_Trunk
   m_TagString: Untagged
@@ -548,6 +566,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2616296643629416260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7630432162874701735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88d2988f3f78304db152c4333e24d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 5791701731032348205}
+  flipX: 1
+  tilt: 4
+  scale: 0.03
 --- !u!1 &8416572308535821649
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,6 +592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9198709384107656229}
   - component: {fileID: 3945558738167118592}
+  - component: {fileID: 8214757367546566480}
   m_Layer: 0
   m_Name: PalmTree1_Head
   m_TagString: Untagged
@@ -573,7 +608,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8416572308535821649}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.046, y: 1.29, z: 0}
+  m_LocalPosition: {x: -0, y: 1.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4881024709153073022}
@@ -630,3 +665,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8214757367546566480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8416572308535821649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88d2988f3f78304db152c4333e24d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 3945558738167118592}
+  flipX: 1
+  tilt: 25
+  scale: 0.05
