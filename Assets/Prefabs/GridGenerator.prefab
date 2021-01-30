@@ -46,5 +46,8 @@ MonoBehaviour:
   size: {x: 100, y: 100}
   representations:
     treePrefab: {fileID: 2417243549517297596, guid: 47ddb26cc2b506245a35740b14eb8fba, type: 3}
+    rockPrefab: {fileID: 2417243549517297596, guid: a638b26f6f949cf4399f09d62c95428a, type: 3}
+    bushPrefab: {fileID: 2417243549517297596, guid: d000498ca0b82ca47861f5b21e8abdc5, type: 3}
     grassPrefab: {fileID: 2417243549517297596, guid: 4f78fae905bbd2b4bbccc9abf78bc032, type: 3}
     sandPrefab: {fileID: 2417243549517297596, guid: a5f7e511e647d8240919516f40a0088f, type: 3}
+    waterPrefab: {fileID: 2417243549517297596, guid: c94680893ebd39a4f8f47c994d652a15, type: 3}

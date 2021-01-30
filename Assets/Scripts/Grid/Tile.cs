@@ -19,21 +19,30 @@ public struct TileObject : ITileContent
     public struct TileObjectRepresentations
     {
         public TileObjectRepresentation treePrefab;
+        public TileObjectRepresentation rockPrefab;
+        public TileObjectRepresentation bushPrefab;
+
         public TileObjectRepresentation grassPrefab;
         public TileObjectRepresentation sandPrefab;
+        public TileObjectRepresentation waterPrefab;
+
 
         public TileObjectRepresentation GetPrefab(Type type)
         {
             switch (type)
             {
                 case Type.Water:
-                    return null; //waterPrefab;
+                    return waterPrefab; //waterPrefab;
                 case Type.Sand:
                     return sandPrefab;
                 case Type.Grass:
                     return grassPrefab;
                 case Type.Tree:
                     return treePrefab;
+                case Type.Rock:
+                    return rockPrefab;
+                case Type.Bush:
+                    return bushPrefab;
                 default:
                     return null;
             }
@@ -46,6 +55,8 @@ public struct TileObject : ITileContent
         Sand,
         Grass,
         Tree,
+        Rock,
+        Bush,
     }
     public Type type;
     public TileObject(Type type)

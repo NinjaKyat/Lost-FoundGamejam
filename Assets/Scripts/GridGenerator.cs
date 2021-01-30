@@ -14,18 +14,9 @@ public class GridGenerator : MonoBehaviour
     {
         grid = new GameGrid(size);
         grid.ForEachTile(PlaceGround);
+        grid.ForEachTile(PlaceRocks);
         grid.ForEachTile(PlaceTrees);
         grid.ForEachTile(PlaceObjects);
-    }
-
-    void PlaceTrees(Vector2Int position, ref Tile tile)
-    {
-        if (tile.Contains(x => x is TileObject ob && ob.type == TileObject.Type.Grass))
-        {
-            var scale = new Vector2(0.69f, 0.35f) * 0.2f;
-            if (SampleNoise(scale, Vector2.zero, position) > 0.5f)
-                tile.AddContent(new TileObject(TileObject.Type.Tree));
-        }
     }
 
     void PlaceGround(Vector2Int position, ref Tile tile)
@@ -36,11 +27,31 @@ public class GridGenerator : MonoBehaviour
         var noiseValue = SampleNoise(scaledPos, offset, position);
         if (noiseValue <= 0.2f)
             placedTile = TileObject.Type.Sand;
-        //if (noiseValue <= 0.1f)
-        //    placedTile = TileObject.Type.Water;
+        if (noiseValue <= 0.1f)
+            placedTile = TileObject.Type.Water;
 
 
         tile.AddContent(new TileObject(placedTile));
+    }
+
+    void PlaceRocks(Vector2Int position, ref Tile tile)
+    {
+        var scale = new Vector2(0.269f, 0.135f);
+        if (SampleNoise(scale, Vector2.up * 123f, position) > 0.85f)
+            tile.AddContent(new TileObject(TileObject.Type.Rock));
+    }
+
+    void PlaceTrees(Vector2Int position, ref Tile tile)
+    {
+        if (tile.Contains(x => x is TileObject ob && ob.type == TileObject.Type.Grass) && !tile.Contains(x => x is TileObject ob && ob.type == TileObject.Type.Rock))
+        {
+            var scale = new Vector2(0.69f, 0.35f) * 0.2f;
+            if (SampleNoise(scale, Vector2.zero, position) > 0.5f)
+                if (SampleNoise(scale * 0.95f, Vector2.up * 0.1f, position) > 0.65f)
+                    tile.AddContent(new TileObject(TileObject.Type.Bush));
+                else
+                    tile.AddContent(new TileObject(TileObject.Type.Tree));
+        }
     }
 
     void PlaceObjects(Vector2Int position, ref Tile tile)
