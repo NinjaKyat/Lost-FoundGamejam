@@ -480,6 +480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 379953243166712903}
+  tile: {fileID: 2417243549517297596}
   flipX: 1
   tilt: 10
   scale: 0.01
@@ -579,6 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 5791701731032348205}
+  tile: {fileID: 2417243549517297596}
   flipX: 1
   tilt: 4
   scale: 0.03
@@ -678,6 +680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 3945558738167118592}
+  tile: {fileID: 2417243549517297596}
   flipX: 1
   tilt: 25
   scale: 0.05

@@ -6,6 +6,8 @@ using UnityEngine;
 public class RandomizeSpriteRendererFeatures : MonoBehaviour
 {
     [SerializeField, HideInInspector] SpriteRenderer spriteRenderer;
+    [SerializeField] TileObjectRepresentation tile;
+
 
     [SerializeField] bool flipX;
     [SerializeField] float tilt;
@@ -15,11 +17,22 @@ public class RandomizeSpriteRendererFeatures : MonoBehaviour
     {
         if (!spriteRenderer)
             spriteRenderer = GetComponent<SpriteRenderer>();
+        if (!tile)
+            tile = GetComponentInParent<TileObjectRepresentation>();
+    }
+    private void Awake()
+    {
+        tile.onInitialized += HandleTileInitialized;
     }
 
-    private void OnEnable()
+    private void HandleTileInitialized()
     {
-        var hash = transform.position.GetHashCode();
+        var hash = tile.GridPosition.x * 13;
+        hash ^= 2147483647;
+        hash ^= tile.GridPosition.y * 17;
+        hash ^= (transform.GetSiblingIndex() * 13);
+        hash ^= 47581;
+
         if (flipX)
             spriteRenderer.flipX = (hash & 1) == 1;
         hash ^= 47;
