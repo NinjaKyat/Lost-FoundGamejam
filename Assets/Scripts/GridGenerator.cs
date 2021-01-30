@@ -5,9 +5,8 @@ using UnityEngine;
 public class GridGenerator : MonoBehaviour
 {
     public Vector2Int size;
-    public TileObjectRepresentation treePrefab;
-    public TileObjectRepresentation grassPrefab;
-    public TileObjectRepresentation sandPrefab;
+
+    public TileObject.TileObjectRepresentations representations;
 
     GameGrid grid;
 
@@ -48,22 +47,7 @@ public class GridGenerator : MonoBehaviour
         foreach (var contents in tile.Contents)
         {
             if (contents is TileObject tileObject)
-                switch (tileObject.type)
-                {
-                    case TileObject.Type.Water:
-                        break;
-                    case TileObject.Type.Sand:
-                        sandPrefab.Spawn(tile);
-                        break;
-                    case TileObject.Type.Grass:
-                        grassPrefab.Spawn(tile);
-                        break;
-                    case TileObject.Type.Tree:
-                            treePrefab.Spawn(tile);
-                        break;
-                    default:
-                        break;
-                }
+                tileObject.Spawn(representations, tile);
         }
     }
 }

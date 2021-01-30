@@ -15,6 +15,31 @@ public struct TileEvent : ITileContent
 
 public struct TileObject : ITileContent
 {
+    [Serializable]
+    public struct TileObjectRepresentations
+    {
+        public TileObjectRepresentation treePrefab;
+        public TileObjectRepresentation grassPrefab;
+        public TileObjectRepresentation sandPrefab;
+
+        public TileObjectRepresentation GetPrefab(Type type)
+        {
+            switch (type)
+            {
+                case Type.Water:
+                    return null; //waterPrefab;
+                case Type.Sand:
+                    return sandPrefab;
+                case Type.Grass:
+                    return grassPrefab;
+                case Type.Tree:
+                    return treePrefab;
+                default:
+                    return null;
+            }
+        }
+    }
+
     public enum Type
     {
         Water,
@@ -26,6 +51,12 @@ public struct TileObject : ITileContent
     public TileObject(Type type)
     {
         this.type = type;
+    }
+
+    public void Spawn(TileObjectRepresentations representations, Tile tile)
+    {
+        var prefab = representations.GetPrefab(type);
+        prefab.Spawn(tile);
     }
 }
 
