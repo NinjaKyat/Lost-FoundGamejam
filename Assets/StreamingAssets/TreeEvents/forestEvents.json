@@ -1,0 +1,78 @@
+{
+    "events": [
+        {
+            "name": "A supermarket??",
+            "description": "While walking through the junge you notice a... supermarket? There don't seem to be any buildings nearby, just this one chain-market building. What.",
+            "conditions": "supermarketDiscovered = 0",
+            "image": "supermarket",
+            "choices": [
+                {
+                    "conditions": "",
+                    "actionText": "Go inside.",
+                    "possibleOutcomes": [
+                        {
+                            "outcomeText": "You go inside. It's just a regular supermarket. There are some free cheese samples. You eat a few of those. You browse around a bit and leave before security starts looking at you weird.",
+                            "actions": [
+                                "food += 2",
+                                "supermarketDiscovered += 1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "",
+                    "actionText": "Walk away.",
+                    "possibleOutcomes": [
+                        {
+                            "outcomeText": "Supermarkets are scary enough on their own. It seems way out of place and it would be a bad idea to go in. You leave.",
+                            "actions": [
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Coupons",
+            "description": "You find a coupon for the supermarket you saw before. Free sneakers for the first five customers!",
+            "conditions": "supermarketDiscovered > 0 & supermarketCoupon = 0",
+            "image": "supermarket",
+            "choices": [
+                {
+                    "conditions": "",
+                    "actionText": "Take the coupon.",
+                    "possibleOutcomes": [
+                        {
+                            "outcomeText": "It's always nice to have a coupon.",
+                            "actions": [
+                                "supermarketCoupon += 1"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Supermarket... again?",
+            "description": "You notice a familiar sign. It's the jungle supermarket. And you have a coupon for those sneakers!",
+            "conditions": "supermarketDiscovered > 0 & supermarketCoupon > 0 & superSneakers = 0",
+            "image": "supermarket",
+            "choices": [
+                {
+                    "conditions": "",
+                    "actionText": "Go inside and hope the coupon is still valid.",
+                    "possibleOutcomes": [
+                        {
+                            "outcomeText": "You strut in and graciously give the cashier your coupon. They didn't really know what to do with. After a 15 minute talk with the store manager you finally wear them down and receive a pair of fancy new supersneakers!",
+                            "actions": [
+                                "superSneakers += 1",
+                                "movementSpeed += 3",
+                                "attack += 1"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
