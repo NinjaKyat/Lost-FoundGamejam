@@ -36,6 +36,11 @@ public class EventUI : MonoBehaviour
         //DisplayEvent(evt);
     }
 
+    public bool IsShowingUI()
+    {
+        return canvasGroup.alpha > 0f;
+    }
+
     void ResetState()
     {
         foreach(var button in currentButtons)
