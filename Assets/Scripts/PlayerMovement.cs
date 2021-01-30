@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float equipDistance = 0.5f;
     private Item queuedItem;
+
+    private LayerMask interactablesLayer = 1 << 6;
     void Start()
     {
         player = GetComponent<Player>();
@@ -27,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Collider2D hit = Physics2D.OverlapPoint(point);
+            Collider2D hit = Physics2D.OverlapPoint(point, interactablesLayer);
             
             if (hit != null)
             {
@@ -58,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
         previousPosition = transform.position;
         int moveSpeed = player.playerStats.GetStat("movementSpeed");
         rb.MovePosition(Vector2.MoveTowards(this.transform.position, targetPosition, moveSpeed * Time.deltaTime));
-        if (Mathf.Abs(direction) > 0.1f)
+        if (Mathf.Abs(direction) > 0.05f)
         {
             transform.localScale = new Vector3(Mathf.Sign(direction), 1, 1);
         }

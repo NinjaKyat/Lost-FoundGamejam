@@ -6,6 +6,7 @@ public class Item : MonoBehaviour
 {
     public Common.CharacterItemSlots[] targetSlots;
     public Vector3 EquipOffset;
+    private SpriteRenderer rend;
     private Player player;
     public bool equipped = false;
     public Dictionary<string, int> AppliedStats;
@@ -14,6 +15,7 @@ public class Item : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<Player>();
+        rend = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -35,6 +37,9 @@ public class Item : MonoBehaviour
             if (returned != null)
                 returned.equipped = false;
         }
+        if (player.transform.localScale.x >= 0)
+            rend.flipX = false;
+        else rend.flipX = true;
     }
     
 }

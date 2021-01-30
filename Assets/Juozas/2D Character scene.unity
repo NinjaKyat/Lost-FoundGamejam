@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 572222562}
   - component: {fileID: 572222561}
   - component: {fileID: 572222560}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,6 +486,22 @@ PrefabInstance:
     - target: {fileID: 6610036206564438479, guid: 1e36e603c24824cdb80a74ae86fd025a, type: 3}
       propertyPath: m_Name
       value: Player (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6610036207322503162, guid: 1e36e603c24824cdb80a74ae86fd025a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.399
+      objectReference: {fileID: 0}
+    - target: {fileID: 6610036207546839501, guid: 1e36e603c24824cdb80a74ae86fd025a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.329
+      objectReference: {fileID: 0}
+    - target: {fileID: 6610036207589184871, guid: 1e36e603c24824cdb80a74ae86fd025a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.48499998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6610036207889950912, guid: 1e36e603c24824cdb80a74ae86fd025a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.916
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e36e603c24824cdb80a74ae86fd025a, type: 3}
