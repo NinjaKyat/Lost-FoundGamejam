@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
     {
         playerStats = new Stats();
         playerStats.AddStat(Stats.healthStat, 10);
-        playerStats.AddStat(Stats.moveSpeedStat, 10);
+        playerStats.AddStat(Stats.moveSpeedStat, 4);
     }
     
     void Update()

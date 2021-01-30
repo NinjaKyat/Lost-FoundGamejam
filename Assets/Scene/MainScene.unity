@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hat_OOHOOHAHHAHH
       objectReference: {fileID: 0}
+    - target: {fileID: 7773776822698806049, guid: 4ddf9322f289d4740a7ad007a10df685, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7773776822698806053, guid: 4ddf9322f289d4740a7ad007a10df685, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -739,6 +743,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hat_HiredGun
       objectReference: {fileID: 0}
+    - target: {fileID: 1550314523989496595, guid: fd40236844a874a7cab0357078d1991e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1550314523989496607, guid: fd40236844a874a7cab0357078d1991e, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -963,6 +971,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hat_Explorer
       objectReference: {fileID: 0}
+    - target: {fileID: 5217071845701201421, guid: c0f825dafcb374f1a97ead08bfe84989, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5217071845701201425, guid: c0f825dafcb374f1a97ead08bfe84989, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1087,6 +1099,10 @@ PrefabInstance:
     - target: {fileID: 6210398296030408983, guid: f1338ebed2ff74e1db83b62ee2f5d250, type: 3}
       propertyPath: m_Name
       value: Hat_MrMagic
+      objectReference: {fileID: 0}
+    - target: {fileID: 6210398296030408983, guid: f1338ebed2ff74e1db83b62ee2f5d250, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1338ebed2ff74e1db83b62ee2f5d250, type: 3}
@@ -1236,6 +1252,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hat_MinimumWage
       objectReference: {fileID: 0}
+    - target: {fileID: 3602931792471980862, guid: b5dccb2bf399e40b79e6879f8bc83862, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5dccb2bf399e40b79e6879f8bc83862, type: 3}
 --- !u!1001 &1699857590
@@ -1304,6 +1324,10 @@ PrefabInstance:
     - target: {fileID: 5281173988425870500, guid: 966e9400473c644238ea25697713e831, type: 3}
       propertyPath: m_Name
       value: Hat_TheInfiltrator
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281173988425870500, guid: 966e9400473c644238ea25697713e831, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 966e9400473c644238ea25697713e831, type: 3}
@@ -1445,6 +1469,10 @@ PrefabInstance:
     - target: {fileID: 3644735910509890019, guid: d8a233e9003d1413a9352bcbff60c03f, type: 3}
       propertyPath: m_Name
       value: Hat_IdeaMan
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644735910509890019, guid: d8a233e9003d1413a9352bcbff60c03f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3644735910509890023, guid: d8a233e9003d1413a9352bcbff60c03f, type: 3}
       propertyPath: m_RootOrder

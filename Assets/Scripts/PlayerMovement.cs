@@ -24,9 +24,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         
-        if (Input.GetMouseButtonDown(0))
+        Vector2 movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        if (movementInput.magnitude > 0) 
+            targetPosition = new Vector2(transform.position.x, transform.position.y) + movementInput.normalized * 0.1f;
+        if (Input.GetMouseButton(0))
         {
             Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Collider2D hit = Physics2D.OverlapPoint(point, interactablesLayer);
