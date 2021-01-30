@@ -16,6 +16,13 @@ public class Grid
     {
         this.size = size;
         data = new Tile[size.x, size.y];
+        for (int x = 0; x < size.x; x++)
+        {
+            for (int y = 0; y < size.y; y++)
+            {
+                data[x,y] = new Tile(this, new Vector2Int(x,y));
+            }
+        }
     }
 
     public void ForEachTile(TileRef action)

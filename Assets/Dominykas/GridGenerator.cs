@@ -5,7 +5,7 @@ using UnityEngine;
 public class GridGenerator : MonoBehaviour
 {
     public Vector2Int size;
-    public GameObject treePrefab;
+    public TileObjectRepresentation treePrefab;
 
     Grid grid;
 
@@ -20,12 +20,16 @@ public class GridGenerator : MonoBehaviour
     {
         var scaledPos = new Vector2(position.x * 0.69f, position.y * 0.35f) * 0.2f;
         if (Mathf.PerlinNoise(scaledPos.x, scaledPos.y) > 0.5f)
-            tile = new Tile() { type = Tile.Type.Tree };
+            tile.contents.Add(new TileObject(TileObject.Type.Tree));
     }
 
     void PlaceObjects(Vector2Int position, ref Tile tile)
     {
-        if (tile.type == Tile.Type.Tree)
-            Instantiate(treePrefab, (Vector2)position - size / 2, Quaternion.identity);
+        foreach (var contents in tile.contents)
+        {
+            if (contents is TileObject tileObject)
+                if (tileObject.type == TileObject.Type.Tree)
+                    treePrefab.Spawn(tile);
+        }
     }
 }

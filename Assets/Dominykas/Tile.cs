@@ -2,15 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct Tile
+
+public interface ITileContents
+{
+}
+
+public struct TileEvent : ITileContents
+{
+    public GameEvent gameEvent;
+}
+
+public struct TileObject : ITileContents
 {
     public enum Type
     {
+        Tree,
         Water,
         Ground,
-        Tree,
     }
     public Type type;
+    public TileObject(Type type)
+    {
+        this.type = type;
+    }
+}
 
-    // public FoundEvent event
+public struct Tile
+{
+    public Grid Grid { get; private set; }
+    public Vector2Int Position { get; private set; }
+    public List<ITileContents> contents;
+
+    public Tile(Grid grid, Vector2Int position)
+    {
+        Grid = grid;
+        Position = position;
+        contents = new List<ITileContents>();
+    }
+
+    public Vector2 WorldPosition => Position - Grid.Size / 2;
 }

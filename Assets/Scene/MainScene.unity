@@ -981,7 +981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 100, y: 100}
-  treePrefab: {fileID: 2465000371160260444, guid: 47ddb26cc2b506245a35740b14eb8fba, type: 3}
+  treePrefab: {fileID: 2417243549517297596, guid: 47ddb26cc2b506245a35740b14eb8fba, type: 3}
 --- !u!4 &1901876710
 Transform:
   m_ObjectHideFlags: 0
