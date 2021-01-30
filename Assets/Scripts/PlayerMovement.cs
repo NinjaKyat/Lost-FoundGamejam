@@ -30,6 +30,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (EventUI.instance && EventUI.instance.IsShowingUI())
+        {
+            isMoving = false;
+            return;
+        }
+
         Vector2 movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
