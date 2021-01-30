@@ -45,4 +45,41 @@ public class ConditionParsingTests
         var condition = new EventCondition($"{testStat} <= {otherStat}");
         Assert.IsTrue(condition.Evaluate(stats));
     }
+
+    [Test]
+    public void ConditionGroupWithAndCorrectlyInterpreted()
+    {
+        var stats = new Stats();
+        stats.SetStat("health", 7);
+        var evt = new EventConditionGroup("health > 5 & health < 10");
+        Assert.IsTrue(evt.Evaluate(stats));
+    }
+
+    [Test]
+    public void ConditionGroupWithAndCorrectlyFalse()
+    {
+        var stats = new Stats();
+        stats.SetStat("health", 12);
+        var evt = new EventConditionGroup("health > 5 & health < 10");
+        Assert.IsFalse(evt.Evaluate(stats));
+    }
+
+    [Test]
+    public void ConditionGroupWithOrStatementCorrectlyTrue()
+    {
+        var stats = new Stats();
+        stats.SetStat("health", 5);
+        var evt = new EventConditionGroup("health > 10 | health < 7");
+        Assert.IsTrue(evt.Evaluate(stats));
+    }
+
+    [Test]
+    public void ConditionGroupWithOrAndAndCorrectlyFalse()
+    {
+        var stats = new Stats();
+        stats.SetStat("health", 1);
+        stats.SetStat("speed", 1);
+        var evt = new EventConditionGroup("health > 5 | health > 0 & speed > 5");
+        Assert.IsFalse(evt.Evaluate(stats));
+    }
 }
