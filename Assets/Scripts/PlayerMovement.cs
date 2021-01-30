@@ -30,12 +30,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Vector2 movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        if (movementInput.magnitude > 0)
-        {
-            targetPosition = new Vector2(transform.position.x, transform.position.y) + movementInput.normalized * 0.1f;
-            queuedToPickUp = false;
-            queuedItem = null;
-        }
 
         Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
@@ -44,6 +38,14 @@ public class PlayerMovement : MonoBehaviour
             isMoving = true;
             else isMoving = false;
         
+        if (movementInput.magnitude > 0)
+        {
+            targetPosition = new Vector2(transform.position.x, transform.position.y) + movementInput.normalized * 0.1f;
+            queuedToPickUp = false;
+            queuedItem = null;
+            isMoving = true;
+        }
+
         if (Input.GetMouseButton(0))
         {
             targetPosition = point;
