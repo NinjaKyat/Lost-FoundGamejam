@@ -1,0 +1,259 @@
+{
+    "events": [
+        {
+            "name": "Curious Crow",
+            "description": "You notice a crow watching you. Oddly enough, it does not seem to be afraid of you.",
+            "conditions": "crowFriend = 0 & crowEnemy = 0",
+            "image": "bird",
+            "choices": [
+                {
+                    "conditions": "",
+                    "actionText": "Scare off the crow.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 10,
+                            "outcomeText": "You slip on a branch while trying to scare off the crow, hurting your knee.",
+                            "actions": [
+                                "health -= 1",
+                                "movementSpeed -= 1"
+                            ]
+                        },
+                        {
+                            "outcomeText": "The crow flies away. You feel rather silly for trying to scare off a bird.",
+                            "actions": [
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "",
+                    "actionText": "Catch and eat the crow.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 50,
+                            "outcomeText": "You snatch the crow before it is able to fly away. The bird makes for a nice meal. However, you can't shake off a weird sense of danger.",
+                            "actions": [
+                                "food += 2",
+                                "crowEnemy += 1"
+                            ]
+                        },
+                        {
+                            "outcomeText": "You slip on a branch while trying to catch the crow, hurting your knee.",
+                            "actions": [
+                                "health -= 1",
+                                "movementSpeed -= 1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "food > 0",
+                    "actionText": "Feed the crow.",
+                    "possibleOutcomes": [
+                        {
+                            "outcomeText": "You feed the crow the few crumbs of food you had left. It appears to nod at you and flies away.",
+                            "actions": [
+                                "food -= 1",
+                                "crowFriend += 1"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Friendly Crow",
+            "description": "You notice a familiar crow. It caws and looks at you. It probably wants more food.",
+            "conditions": "crowFriend = 1 & crowEnemy = 0",
+            "image": "bird",
+            "choices": [
+                {
+                    "conditions": "",
+                    "actionText": "Catch and eat the crow.",
+                    "possibleOutcomes": [
+                        {
+                            "outcomeText": "The crow does not expect this sudden turn of events. You easily catch the bird and it becomes your meal for the day. However, you get a bad feeling about this.",
+                            "actions": [
+                                "crowFriend = 0",
+                                "crowEnemy += 1",
+                                "food += 2"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "food > 1",
+                    "actionText": "Feed the crow some more food.",
+                    "possibleOutcomes": [
+                        {
+                            "outcomeText": "You offer the bird some of your food and it gladly pecks away. It follows you around for a bit and flies off after a while.",
+                            "actions": [
+                                "food -= 2",
+                                "crowFriend += 1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "food <= 1",
+                    "actionText": "Apologise and explain that you don't have any food.",
+                    "possibleOutcomes": [
+                        {
+                            "outcomeText": "You try to reason with the crow, explaining that you've got nothing left to give. The crow seems confused. You feel a bit silly for trying to talk to a bird. The crow caws and flies away into the distance.",
+                            "actions": [
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Helpful Crow",
+            "description": "You notice a familiar crow. It caws and looks at you. It is holding a piece of meat with its talons. Is that for you?",
+            "conditions": "crowFriend > 0 & crowEnemy = 0 & food <= 1",
+            "image": "bird",
+            "choices": [
+                {
+                    "conditions": "",
+                    "actionText": "Take the meat from the crow and eat it.",
+                    "possibleOutcomes": [
+                        {
+                            "outcomeText": "The crow lets go of the meat as you come closer. The bird caws and flies away. You eat the meat and feel a bit less hungry.",
+                            "actions": [
+                                "food += 2"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "",
+                    "actionText": "Share the meat with the crow.",
+                    "possibleOutcomes": [
+                        {
+                            "outcomeText": "It's only fair to share with your friends. The crow seems to appreciate this. It follows you around for a little while before flying away.",
+                            "actions": [
+                                "food += 1",
+                                "crowFriend += 1"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "The Crowerlord",
+            "description": "A mysterious, human/bird figure stands before you. \"I am the crowerlord\" is says. \"You are a true friend. If you are ever in trouble, we will be there to help you\". The figure disappears into the jungle.",
+            "conditions": "crowFriend = 2 & crowEnemy = 0",
+            "image": "bird",
+            "choices": [
+                {
+                    "conditions": "",
+                    "actionText": "Okay...?",
+                    "possibleOutcomes": [
+                        {
+                            "outcomeText": "You feel a protective eye watching over you.",
+                            "actions": [
+                                "attack += 2",
+                                "crowFriend += 1"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Furious Crow",
+            "description": "All of a sudden, a crow starts pecking and scratching your head. It's furious! The crow appears to be aiming for the eyes.",
+            "conditions": "crowEnemy > 1",
+            "image": "bird",
+            "choices": [
+                {
+                    "conditions": "attack > 2",
+                    "actionText": "Fight off the crow.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 5,
+                            "outcomeText": "The crow scores a critical hit. You cry in pain as the bird flies away.",
+                            "actions": [
+                                "health -= 3",
+                                "crowEnemy -= 1"
+                            ]
+                        },
+                        {
+                            "outcomeText": "You successfully fend off the crow. But for how long..?",
+                            "actions": [
+                                "crowEnemy += 1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "",
+                    "actionText": "Run away.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 5,
+                            "outcomeText": "The crow scores a critical hit. You cry in pain as the bird flies away.",
+                            "actions": [
+                                "health -= 3",
+                                "crowEnemy -= 1"
+                            ]
+                        },
+                        {
+                            "outcomeText": "You successfully manage to evade the bird. But for how long..?",
+                            "actions": [
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Giant Crow",
+            "description": "The sky darkens as a large bird approaches you. The majestic creature lands on top of a nearby tree. It prepares to dive towards you.",
+            "conditions": "crowEnemy > 2",
+            "image": "bird",
+            "choices": [
+                {
+                    "conditions": "attack > 5",
+                    "actionText": "Fight the beast.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 5,
+                            "outcomeText": "The large crow swiftly dives and strikes at your head, ripping it from your body. You take a final glance at the jungle from above before your vision fades away.",
+                            "actions": [
+                                "health = 0",
+                            ]
+                        },
+                        {
+                            "outcomeText": "You prepare to fight the giant crow. The bird caws as it leaps from the tree, flying towards you. One swift strike and the crow falls over and collapses on the floor. You will not be hungry today!",
+                            "actions": [
+                                "crowEnemy = 0",
+                                "food += 7"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "",
+                    "actionText": "Run away.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 10,
+                            "outcomeText": "The crow claws at your back as you try to escape. You are left with a few deep scratches, but manage to hide from the bird.",
+                            "actions": [
+                                "health -= 3",
+                            ]
+                        },
+                        {
+                            "outcomeText": "You dive into the nearby bushes and run. You are left with a few scratches, but manage to escape the crow.",
+                            "actions": [
+                                "health -= 1"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

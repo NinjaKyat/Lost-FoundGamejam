@@ -54,67 +54,6 @@
                     ]
                 }
             ]
-        },
-        {
-            "name": "Curious Crow",
-            "description": "You notice a crow watching you. Oddly enough, it does not seem to be afraid of you.",
-            "conditions": "crowFriend = 0 & crowEnemy = 0",
-            "image": "bird",
-            "choices": [
-                {
-                    "conditions": "",
-                    "actionText": "Scare off the crow.",
-                    "possibleOutcomes": [
-                        {
-                            "chance": 10,
-                            "outcomeText": "You slip on a branch while trying to scare off the crow, hurting your knee.",
-                            "actions": [
-                                "health -= 1",
-                                "movementSpeed -= 1"
-                            ]
-                        },
-                        {
-                            "outcomeText": "The crow flies away. You feel rather silly for trying to scare off a bird.",
-                            "actions": [
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "conditions": "",
-                    "actionText": "Catch and eat the crow.",
-                    "possibleOutcomes": [
-                        {
-                            "chance": 50,
-                            "outcomeText": "You snatch the crow before it is able to fly away. The bird makes for a nice meal. However, you can't shake off a weird sense of danger.",
-                            "actions": [
-                                "food += 2",
-                                "crowEnemy += 1"
-                            ]
-                        },
-                        {
-                            "outcomeText": "You slip on a branch while trying to catch the crow, hurting your knee.",
-                            "actions": [
-                                "health -= 1",
-                                "movementSpeed -= 1"
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "conditions": "food > 0",
-                    "actionText": "Feed the crow.",
-                    "possibleOutcomes": [
-                        {
-                            "outcomeText": "You feed the crow the few crumbs of food you had left. It appears to nod at you and flies away.",
-                            "actions": [
-                                "food -= 1",
-                                "crowFriend += 1"
-                            ]
-                        }
-                    ]
-                }
-            ]
         }
     ]
 }
