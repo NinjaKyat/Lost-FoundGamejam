@@ -18,7 +18,14 @@ public class EventUI : MonoBehaviour
     [SerializeField]
     Player player;
 
+    static EventUI instance;
+
     List<Button> currentButtons = new List<Button>();
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void ResetState()
     {
@@ -33,6 +40,7 @@ public class EventUI : MonoBehaviour
     {
         canvasGroup.alpha = visible ? 1f : 0f;
         canvasGroup.interactable = visible;
+        canvasGroup.blocksRaycasts = visible;
     }
 
     public void DisplayEvent(GameEvent targetEvent)
