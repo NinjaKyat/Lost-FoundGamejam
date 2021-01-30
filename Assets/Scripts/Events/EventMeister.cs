@@ -15,6 +15,7 @@ public class EventMeister : MonoBehaviour
 
     const string imageFolder = "Images";
     const string treeEventsFolder = "TreeEvents";
+    const string bushEventsFolder = "BushEvents";
 
     void Awake()
     {
@@ -54,12 +55,21 @@ public class EventMeister : MonoBehaviour
 
     void LoadEvents()
     {
-        var treeEventsPath = Path.Combine(Application.streamingAssetsPath, treeEventsFolder);
         EventCollection eventCollection = null;
-        if (Directory.Exists(treeEventsPath))
+        var treeEventsPath = Path.Combine(Application.streamingAssetsPath, treeEventsFolder);
+        var bushEventsPath = Path.Combine(Application.streamingAssetsPath, bushEventsFolder);
+        LoadEventsAtPath(treeEventsPath, eventCollection);
+        LoadEventsAtPath(bushEventsPath, eventCollection);
+
+        treeEvents = eventCollection;
+    }
+
+    void LoadEventsAtPath(string path, EventCollection eventCollection)
+    {
+        if (Directory.Exists(path))
         {
-            var allFiles = Directory.GetFiles(treeEventsPath, "*.json");
-            foreach(var file in allFiles)
+            var allFiles = Directory.GetFiles(path, "*.json");
+            foreach (var file in allFiles)
             {
                 try
                 {
@@ -80,8 +90,6 @@ public class EventMeister : MonoBehaviour
                 }
             }
         }
-
-        treeEvents = eventCollection;
     }
 
     public static GameEvent GetRandomEvent(Stats playerStats)
