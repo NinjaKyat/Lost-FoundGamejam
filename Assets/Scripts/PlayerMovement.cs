@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         if (EventUI.instance && EventUI.instance.IsShowingUI())
         {
             isMoving = false;
+            targetInteractible = null;
             targetPosition = transform.position;
             return;
         }
@@ -143,7 +144,6 @@ public class PlayerMovement : MonoBehaviour
             return;
 
         float distance = collider.Distance(targetInteractible.Collider).distance;
-        Debug.Log(distance);
         if (distance < interactDistance)
         {
             targetInteractible.Interact();
