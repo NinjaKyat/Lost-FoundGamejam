@@ -25,13 +25,15 @@ public class EventUI : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        //var evt = GameEvent.GetTestEvent();
+        //DisplayEvent(evt);
     }
 
     void ResetState()
     {
         foreach(var button in currentButtons)
         {
-            Destroy(button);
+            Destroy(button.gameObject);
         }
         currentButtons.Clear();
     }
@@ -53,15 +55,16 @@ public class EventUI : MonoBehaviour
         {
             if (choice.ConditionsSatisfied(player.playerStats))
             {
-                CreateButtonForChoice(choice);
+                CreateButtonForChoice(targetEvent, choice);
             }
         }
     }
 
-    public void DisplayOutcome(EventOutcome outcome)
+    public void DisplayOutcome(GameEvent mainEvent, EventOutcome outcome)
     {
         ResetState();
         SetUIVisibility(true);
+        nameField.text = mainEvent.name;
         descriptionField.text = outcome.outcomeText;
         CreateButton("Okay", () =>
         {
@@ -70,24 +73,26 @@ public class EventUI : MonoBehaviour
         });
     }
 
-    public void CreateButtonForChoice(EventChoice choice)
+    public void CreateButtonForChoice(GameEvent mainEvent, EventChoice choice)
     {
-        CreateButton(choice.actionText, () => { PerformChoice(choice); });
+        CreateButton(choice.actionText, () => { PerformChoice(mainEvent, choice); });
     }
 
     public void CreateButton(string text, System.Action onClick)
     {
         var buttonInstance = Instantiate(buttonPrefab);
         buttonInstance.transform.SetParent(choiceLocation);
-        buttonInstance.GetComponent<Text>().text = text;
+        buttonInstance.GetComponentInChildren<Text>().text = text;
         buttonInstance.onClick.AddListener(() =>
         {
             onClick();
         });
+        currentButtons.Add(buttonInstance);
     }
 
-    public void PerformChoice(EventChoice choice)
+    public void PerformChoice(GameEvent mainEvent, EventChoice choice)
     {
         var outcome = choice.PerformChoice();
+        DisplayOutcome(mainEvent, outcome);
     }
 }

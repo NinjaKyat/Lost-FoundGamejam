@@ -11,7 +11,11 @@ public class EventChoice
 
     public bool ConditionsSatisfied(Stats stats)
     {
-        return conditions.Evaluate(stats);
+        if (conditions != null)
+        {
+            return conditions.Evaluate(stats);
+        }
+        return true;
     }
 
     public EventOutcome PerformChoice()

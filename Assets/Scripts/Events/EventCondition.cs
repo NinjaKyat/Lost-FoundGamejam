@@ -18,14 +18,18 @@ public class EventConditionGroup
 
     public bool Evaluate(Stats stats)
     {
-        foreach(var condition in anyMustBeTrue)
+        if (anyMustBeTrue != null)
         {
-            if (condition.Evaluate(stats))
+            foreach (var condition in anyMustBeTrue)
             {
-                return true;
+                if (condition.Evaluate(stats))
+                {
+                    return true;
+                }
             }
+            return false;
         }
-        return false;
+        return true;
     }
 }
 
@@ -59,12 +63,16 @@ public class AndConditions : ISerializationCallbackReceiver
 
     public bool Evaluate(Stats stats)
     {
-        foreach(var condition in Conditions)
+        if (Conditions != null)
         {
-            if (!condition.Evaluate(stats))
+            foreach (var condition in Conditions)
             {
-                return false;
+                if (!condition.Evaluate(stats))
+                {
+                    return false;
+                }
             }
+            return true;
         }
         return true;
     }
