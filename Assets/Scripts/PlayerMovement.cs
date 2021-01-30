@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 targetPosition;
     [SerializeField]
     private float equipDistance = 0.5f;
-    private IInteractibe targetInteractible;
+    private IInteractible targetInteractible;
     public bool isMoving = false;
 
     Vector2Int previousGridPosition;
@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
             
             if (hit != null)
             {
-                var interactible = hit.GetComponent<IInteractibe>();
+                var interactible = hit.GetComponent<IInteractible>();
                 if (interactible != null)
                 {
                     if (interactible is Item item)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour, IInteractibe
+public class Item : MonoBehaviour, IInteractible
 {
     public Common.CharacterItemSlots[] targetSlots;
     public Vector3 EquipOffset;
