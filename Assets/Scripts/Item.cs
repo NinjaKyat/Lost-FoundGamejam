@@ -17,7 +17,7 @@ public class Item : MonoBehaviour, IInteractibe
     void Start()
     {
         player = FindObjectOfType<Player>();
-        animations = FindObjectOfType<ItemAnimations>();
+        animations = GetComponent<ItemAnimations>();
         rend = GetComponent<SpriteRenderer>();
     }
 
@@ -50,7 +50,7 @@ public class Item : MonoBehaviour, IInteractibe
 
     public void ItemDropped()
     {
-        //animations.ItemDropped(player.transform.position);
+        animations.ItemDropped(player.transform.position);
     }
     
 }

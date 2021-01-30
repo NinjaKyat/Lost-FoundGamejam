@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
             {
                 equippedItems.Add(item);
                 item.transform.parent = position;
+                item.transform.localEulerAngles = Vector3.zero;
                 item.transform.localPosition = item.EquipOffset + AdditionalItemOffset;
                 AdditionalItemOffset += OffsetToAdd;
             }

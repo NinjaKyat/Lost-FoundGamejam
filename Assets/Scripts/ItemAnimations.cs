@@ -7,7 +7,7 @@ public class ItemAnimations : MonoBehaviour
     private Item item;
     public Vector2 Ground;
     public bool dropped = false;
-    public float dropDuration = 1.5f;
+    private float dropDuration = 1.5f;
     private float dropTimer;
     private Vector2 originalPosition;
     Vector3 velocity = Vector3.zero;
