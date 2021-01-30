@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Stats playerStats;
+    public Stats playerStats;
 
     class EquipmentSlot
     {
         private List<Item> equippedItems = new List<Item>();
+        public Vector3 AdditionalItemOffset = Vector3.zero;
+        private Vector3 OffsetToAdd = new Vector3(0,0.4f);
         public int maxItems;
         public Transform position;
         public bool flip;
@@ -21,15 +23,27 @@ public class Player : MonoBehaviour
                 item.transform.parent = position;
                 if (!flip)
                 {
-                    item.transform.localPosition = item.EquipOffset;
+                    item.transform.localPosition = item.EquipOffset + AdditionalItemOffset;
                 }
                 else
                 {
                     item.GetComponent<SpriteRenderer>().flipX = flip;
-                    item.transform.localPosition = new Vector3(-item.EquipOffset.x, item.EquipOffset.y, item.EquipOffset.z); 
+                    item.transform.localPosition = new Vector3(-item.EquipOffset.x, item.EquipOffset.y, item.EquipOffset.z) + AdditionalItemOffset; 
                 }
 
+                AdditionalItemOffset += OffsetToAdd;
             }
+        }
+
+        public bool CheckIfItemIsEquipped(Item item)
+        {
+            for (int i = 0; i < equippedItems.Count; i++)
+            {
+                if (equippedItems[i].name == item.name)
+                    return true;
+            }
+
+            return false;
         }
 
         public int GetEquippedItemCount()
@@ -44,6 +58,7 @@ public class Player : MonoBehaviour
                 Item toReturn = equippedItems[lastItem];
                 toReturn.transform.parent = null;
                 if (flip) toReturn.GetComponent<SpriteRenderer>().flipX = !flip;
+                AdditionalItemOffset -= OffsetToAdd;
                 equippedItems.RemoveAt(lastItem);
                 return toReturn;
             }
@@ -84,22 +99,10 @@ public class Player : MonoBehaviour
         playerStats.AddStat(Stats.healthStat, 10);
         playerStats.AddStat(Stats.moveSpeedStat, 10);
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-            if (hit.collider != null)
-            {
-                if (hit.collider.tag == "Item")
-                {
-                    hit.collider.GetComponent<Item>().OnClick();
-                }
-            }
-        }
     }
     
     public bool AddItem(Common.CharacterItemSlots targetSlot, Item item)
@@ -108,6 +111,7 @@ public class Player : MonoBehaviour
         if (slot.GetEquippedItemCount() < slot.maxItems)
         {
             slot.AddItem(item);
+            ApplyItemStats(item);
             return true;
         }
         else
@@ -120,10 +124,32 @@ public class Player : MonoBehaviour
     public Item RemoveItem(Common.CharacterItemSlots targetSlot)
     {
         EquipmentSlot slot = CharacterEquipment[targetSlot];
-        return slot.RemoveItem();
+        Item temp = slot.RemoveItem();
+        RemoveItemStats(temp);
+        return temp;
     }
 
-    public void OnClickItem(Item item)
+    void ApplyItemStats(Item item)
+    {
+        if (item.AppliedStats == null)
+            return;
+        foreach(KeyValuePair<string, int> entry in item.AppliedStats)
+        {
+            playerStats.AddStat(entry.Key, entry.Value);
+        }
+    }
+
+    void RemoveItemStats(Item item)
+    {
+        if (item.AppliedStats == null)
+            return;
+        foreach(KeyValuePair<string, int> entry in item.AppliedStats)
+        {
+            playerStats.AddStat(entry.Key, -entry.Value);
+        }
+    }
+
+    public void OnClickItemEquip(Item item)
     {
         if (item.targetSlots.Length == 0)
             return;
@@ -133,7 +159,17 @@ public class Player : MonoBehaviour
             if (TryToEquip(item.targetSlots[i], item))
                 return;
         }
+    }
 
+    public Item OnClickItemUnequip(Common.CharacterItemSlots[] targetSlots, Item item)
+    {
+        for (int i = 0; i < targetSlots.Length; i++)
+        {
+            if (CharacterEquipment[targetSlots[i]].CheckIfItemIsEquipped(item))
+                return RemoveItem(targetSlots[i]);
+        }
+
+        return null;
     }
 
     bool TryToEquip(Common.CharacterItemSlots targetSlot, Item item)
