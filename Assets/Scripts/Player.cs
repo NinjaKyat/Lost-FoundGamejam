@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     {
         private List<Item> equippedItems = new List<Item>();
         public Vector3 AdditionalItemOffset = Vector3.zero;
-        private Vector3 OffsetToAdd = new Vector3(0,0.15f);
+        private Vector3 OffsetToAdd = new Vector3(0,0.1f);
         public int maxItems;
         public Transform position;
         public bool flip;
