@@ -52,3 +52,38 @@ MonoBehaviour:
     grassPrefab: {fileID: 2417243549517297596, guid: 4f78fae905bbd2b4bbccc9abf78bc032, type: 3}
     sandPrefab: {fileID: 2417243549517297596, guid: a5f7e511e647d8240919516f40a0088f, type: 3}
     waterPrefab: {fileID: 2417243549517297596, guid: c94680893ebd39a4f8f47c994d652a15, type: 3}
+  thingsToSpawnInFreeTiles:
+  - go: {fileID: 8939394178460538978, guid: 5358f20fd8c7d4847bba094a27a13151, type: 3}
+    count: 60
+  - go: {fileID: 2827936956536487453, guid: e26c2358f779645dfbf43898991094be, type: 3}
+    count: 35
+  - go: {fileID: 6293935951009324787, guid: 40243151abe0c41cdac81f9fd15a7f4c, type: 3}
+    count: 1
+  - go: {fileID: 5590741215845554926, guid: a6ce8610de8a041148c8c13ed20df7b3, type: 3}
+    count: 1
+  - go: {fileID: 3196250416284661821, guid: 7e484e5e5272446809d180ad8e291e6c, type: 3}
+    count: 1
+  - go: {fileID: 1745644384450608539, guid: e9ea063ffcc6142fc8de94b9f025c769, type: 3}
+    count: 1
+  - go: {fileID: 6801431651300595940, guid: 388173b3579974cadbb09bf89b4f93cc, type: 3}
+    count: 2
+  - go: {fileID: 1208403469553548364, guid: 9cc2d55f6268941b4b517795aa98f0d8, type: 3}
+    count: 2
+  - go: {fileID: 9140043205100326903, guid: 73bb8197cf5de49619c1c24e14204821, type: 3}
+    count: 1
+  - go: {fileID: 3997725675738453059, guid: ad4fceda7909a43d898320116e8aa440, type: 3}
+    count: 2
+  - go: {fileID: 5217071845701201421, guid: c0f825dafcb374f1a97ead08bfe84989, type: 3}
+    count: 1
+  - go: {fileID: 1550314523989496595, guid: fd40236844a874a7cab0357078d1991e, type: 3}
+    count: 1
+  - go: {fileID: 3644735910509890019, guid: d8a233e9003d1413a9352bcbff60c03f, type: 3}
+    count: 1
+  - go: {fileID: 3602931792471980862, guid: b5dccb2bf399e40b79e6879f8bc83862, type: 3}
+    count: 1
+  - go: {fileID: 6210398296030408983, guid: f1338ebed2ff74e1db83b62ee2f5d250, type: 3}
+    count: 1
+  - go: {fileID: 7773776822698806049, guid: 4ddf9322f289d4740a7ad007a10df685, type: 3}
+    count: 1
+  - go: {fileID: 5281173988425870500, guid: 966e9400473c644238ea25697713e831, type: 3}
+    count: 1
