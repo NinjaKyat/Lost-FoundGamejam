@@ -134,6 +134,7 @@ MonoBehaviour:
   closestTarget: {fileID: 0}
   predator: 1
   deathParticles: {fileID: 0}
+  eventTag: snake
   isMoving: 0
 --- !u!58 &9199065722397212550
 CircleCollider2D:

@@ -105,7 +105,7 @@ public class Animal : MonoBehaviour, IInteractible
 
     public void Interact(Player interactingPlayer)
     {
-        EventMeister.GetRandomEvent(interactingPlayer.playerStats, eventTag);
+        EventUI.instance.DisplayEvent(EventMeister.GetRandomEvent(interactingPlayer.playerStats, eventTag));
         Destroy(gameObject);
     }
 
