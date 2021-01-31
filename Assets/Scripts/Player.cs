@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 
     class EquipmentSlot
     {
-        private List<Item> equippedItems = new List<Item>();
+        public List<Item> equippedItems = new List<Item>();
         public Vector3 AdditionalItemOffset = Vector3.zero;
         private Vector3 OffsetToAdd = new Vector3(0,0.1f);
         public int maxItems;
@@ -113,6 +113,11 @@ public class Player : MonoBehaviour
                 playerStats.AddStat(Stats.healthStat, -1);
             }
         }
+    }
+
+    public List<Item> GetItemsInSlot(Common.CharacterItemSlots slot)
+    {
+        return CharacterEquipment[slot].equippedItems;
     }
     
     void Update()

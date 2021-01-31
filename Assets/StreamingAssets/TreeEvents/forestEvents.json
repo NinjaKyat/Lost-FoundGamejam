@@ -21,6 +21,20 @@
                     ]
                 },
                 {
+                    "conditions": "minimumWage = 1",
+                    "actionText": "Looks like they are hiring! Go get a job!",
+                    "possibleOutcomes": [
+                        {
+                            "outcomeText": "",
+                            "actions": [
+                                "supermarketDiscovered += 1",
+                                "food += 1",
+                                "money += 1"
+                            ]
+                        }
+                    ]
+                },
+                {
                     "conditions": "",
                     "actionText": "Walk away.",
                     "possibleOutcomes": [
