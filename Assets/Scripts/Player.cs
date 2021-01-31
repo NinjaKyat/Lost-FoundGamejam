@@ -148,7 +148,7 @@ public class Player : MonoBehaviour
         EquipmentSlot slot = CharacterEquipment[targetSlot];
         Item temp = slot.RemoveItem();
         temp.equipped = false;
-        temp.ItemDropped();
+        temp.ItemDropped(this);
         RemoveItemStats(temp);
         return temp;
     }

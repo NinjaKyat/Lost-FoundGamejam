@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
                         }
                         else    //UN-EQUIP ITEM
                         {
-                            item.Interact();
+                            item.Interact(player);
                         }
                     } else
                     {
@@ -157,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 GetAndShowEvent(gridObject.GridPosition);
             }
-            targetInteractible.Interact();
+            targetInteractible.Interact(player);
             // Post-interaction event
             if (gridObject)
             {

@@ -39,6 +39,8 @@ public class Animal : MonoBehaviour, IInteractible
         }
     }
 
+    public string eventTag = "chicken";
+
     public bool isMoving = false;
 
     void Start()
@@ -101,9 +103,9 @@ public class Animal : MonoBehaviour, IInteractible
         }
     }
 
-    public void Interact()
+    public void Interact(Player interactingPlayer)
     {
-        Debug.Log("Omg it's an animal");
+        EventMeister.GetRandomEvent(interactingPlayer.playerStats, eventTag);
     }
 
     private void CheckForTargets()

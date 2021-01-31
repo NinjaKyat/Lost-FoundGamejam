@@ -7,7 +7,6 @@ public class Item : MonoBehaviour, IInteractible
     public Common.CharacterItemSlots[] targetSlots;
     public Vector3 EquipOffset;
     private SpriteRenderer rend;
-    private Player player;
     public bool equipped = false;
     public Dictionary<string, int> AppliedStats = new Dictionary<string, int>();
     public Collider2D Collider => _collider;
@@ -41,11 +40,11 @@ public class Item : MonoBehaviour, IInteractible
 
     }
 
-    public void Interact()
+    public void Interact(Player interactingPlayer)
     {
         if (!equipped)
         {
-            if (player.OnClickItemEquip(this))
+            if (interactingPlayer.OnClickItemEquip(this))
             {
                 equipped = true;
                 ItemPickedUp();
@@ -53,21 +52,21 @@ public class Item : MonoBehaviour, IInteractible
         }
         else
         {
-            Item returned = player.OnClickItemUnequip(targetSlots, this);
+            Item returned = interactingPlayer.OnClickItemUnequip(targetSlots, this);
             if (returned != null)
             {
                 returned.equipped = false;
-                returned.ItemDropped();
+                returned.ItemDropped(interactingPlayer);
             }
         }
-        if (player.transform.localScale.x >= 0)
+        if (interactingPlayer.transform.localScale.x >= 0)
             rend.flipX = false;
         else rend.flipX = true;
     }
 
-    public void ItemDropped()
+    public void ItemDropped(Player interactingPlayer)
     {
-        animations.ItemDropped(player.transform.position);
+        animations.ItemDropped(interactingPlayer.transform.position);
     }
 
     public void ItemPickedUp()
