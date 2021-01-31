@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private float interactDistance = 0.5f;
     private IInteractible targetInteractible;
     public bool isMoving = false;
+    public bool clickedOnObject = false;
 
     Vector2Int previousGridPosition;
 
@@ -54,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
             isMoving = true;
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !clickedOnObject)
         {
             targetPosition = point;
         }
@@ -67,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
                 var interactible = hit.GetComponent<IInteractible>();
                 if (interactible != null)
                 {
+                    clickedOnObject = true;
                     if (interactible is Item item)
                     {
                         if (!item.equipped)    //Set item to be equipped once we reach distance
@@ -84,6 +86,9 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+
+        if (Input.GetMouseButtonUp(0))
+            clickedOnObject = false;
         CheckToPickUp();
     }
 
