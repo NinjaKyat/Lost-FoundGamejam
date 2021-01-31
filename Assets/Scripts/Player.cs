@@ -156,8 +156,6 @@ public class Player : MonoBehaviour
             ApplyItemStats(item);
             return true;
         }
-
-        //Debug.Log($"Can't add item {item.name}. {slot.position.name}Slot is full");
         return false;
     }
 

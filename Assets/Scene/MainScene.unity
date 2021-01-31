@@ -1396,18 +1396,6 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5281173988425870496, guid: 966e9400473c644238ea25697713e831, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5281173988425870496, guid: 966e9400473c644238ea25697713e831, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5281173988425870496, guid: 966e9400473c644238ea25697713e831, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5281173988425870496, guid: 966e9400473c644238ea25697713e831, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.0900002
       objectReference: {fileID: 0}
@@ -1447,25 +1435,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5281173988425870499, guid: 966e9400473c644238ea25697713e831, type: 3}
-      propertyPath: itemStats.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5281173988425870499, guid: 966e9400473c644238ea25697713e831, type: 3}
-      propertyPath: itemStats.Array.data[1].statName
-      value: health
-      objectReference: {fileID: 0}
-    - target: {fileID: 5281173988425870499, guid: 966e9400473c644238ea25697713e831, type: 3}
-      propertyPath: itemStats.Array.data[1].statValue
-      value: -100
-      objectReference: {fileID: 0}
     - target: {fileID: 5281173988425870500, guid: 966e9400473c644238ea25697713e831, type: 3}
       propertyPath: m_Name
       value: Hat_TheInfiltrator
-      objectReference: {fileID: 0}
-    - target: {fileID: 5281173988425870500, guid: 966e9400473c644238ea25697713e831, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 966e9400473c644238ea25697713e831, type: 3}
