@@ -1449,7 +1449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5281173988425870499, guid: 966e9400473c644238ea25697713e831, type: 3}
       propertyPath: itemStats.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5281173988425870499, guid: 966e9400473c644238ea25697713e831, type: 3}
       propertyPath: itemStats.Array.data[1].statName
