@@ -23,7 +23,6 @@ public class Item : MonoBehaviour, IInteractible
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<Player>();
         animations = GetComponent<ItemAnimations>();
         rend = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();

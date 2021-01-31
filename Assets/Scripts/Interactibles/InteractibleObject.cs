@@ -13,7 +13,7 @@ public class InteractibleObject : MonoBehaviour, IInteractible
             _collider = GetComponent<Collider2D>();
     }
 
-    public void Interact()
+    public void Interact(Player interactingPlayer)
     {
         Destroy(gameObject);
     }
