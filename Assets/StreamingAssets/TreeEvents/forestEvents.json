@@ -2,6 +2,7 @@
     "events": [
         {
             "name": "A supermarket??",
+            "tags": "tree",
             "description": "While walking through the jungle you notice a... supermarket? There don't seem to be any buildings nearby, just this one chain-market building. What.",
             "conditions": "supermarketDiscovered = 0 & random < 10",
             "image": "supermarket",
@@ -34,6 +35,7 @@
         },
         {
             "name": "Coupons",
+            "tags": "tree grass",
             "description": "You find a coupon for the supermarket you saw before. Free sneakers for the first five customers!",
             "conditions": "supermarketDiscovered > 0 & supermarketCoupon = 0",
             "image": "supermarket",
@@ -54,6 +56,7 @@
         },
         {
             "name": "Supermarket... again?",
+            "tags": "tree",
             "description": "You notice a familiar sign. It's the jungle supermarket. And you have a coupon for those sneakers!",
             "conditions": "supermarketDiscovered > 0 & supermarketCoupon > 0 & superSneakers = 0",
             "image": "supermarket",

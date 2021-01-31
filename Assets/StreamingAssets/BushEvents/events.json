@@ -4,6 +4,7 @@
             "name": "Food?",
             "description": "You find berries.",
             "conditions": "",
+            "tags": "berries",
             "image": "berries",
             "choices": [
                 {
@@ -59,6 +60,7 @@
             "name": "Dangerous Encounter",
             "description": "You find some fruit, but notice a pair of eyes, peeking through a bush. You freeze, thinking about what to do next.",
             "conditions": "",
+            "tags": "berries bush",
             "image": "predator",
             "choices": [
                 {
@@ -125,8 +127,9 @@
         },
         {
             "name": "Chicken!",
-            "description": "You find a chicken hiding in the bush!",
+            "description": "You find a chicken!",
             "conditions": "",
+            "tags": "bush grass sand chicken",
             "image": "bird",
             "choices": [
                 {
@@ -203,7 +206,75 @@
             ]
         },
         {
+            "name": "Snake!",
+            "description": "You encounter a snake!",
+            "conditions": "",
+            "tags": "snake bush",
+            "image": "lizard",
+            "choices": [
+                {
+                    "conditions": "",
+                    "actionText": "Grab the snake.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 25,
+                            "outcomeText": "You jump towards the snake and wrangle it. You sigh in relief and eat a filling meal.",
+                            "actions": [
+                                "food += 5"
+                            ]
+                        },
+                        {
+                            "chance": 0,
+                            "outcomeText": "The snake strikes your arm, injecting you with its venom!",
+                            "actions": [
+                                "health -= 2"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "actionText": "Run away",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 10,
+                            "outcomeText": "The snake moves swiftly and manages to strike your leg before you can move away.",
+                            "actions": [
+                                "health -= 2"
+                            ]
+                        },
+                        {
+                            "chance": 0,
+                            "outcomeText": "You run away from the snake. That was a close one!",
+                            "actions": [
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "attack > 3",
+                    "actionText": "Hunt the snake.",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 75,
+                            "outcomeText": "Using your superior hunting skills and equipment you easily tackle the snake. You eat a filling meal.",
+                            "actions": [
+                                "food += 5"
+                            ]
+                        },
+                        {
+                            "chance": 0,
+                            "outcomeText": "Your attempt at hunting backfires! The snake bites you and slithers away.",
+                            "actions": [
+                                "health -= 2"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "name": "Healing Herbs",
+            "tags": "berries bush",
             "description": "You find some medicinal herbs. These could help you heal your wounds, but you might get an alergic reaction.",
             "conditions": "health < 6 & food > 0",
             "image": "berries",
@@ -258,6 +329,7 @@
         },
         {
             "name": "Mysterious Spices",
+            "tags": "berries bush",
             "description": "You find a bush with mysterious spices. It won't sate your hunger, but...",
             "conditions": "",
             "image": "berries",
@@ -320,7 +392,7 @@
                     "possibleOutcomes": [
                         {
                             "chance": 0,
-                            "outcomeText": "You rub your legs with the spices. They hurt become red like lobsters, but you feel like you can move faster now.",
+                            "outcomeText": "You rub your legs with the spices. They hurt and become red like lobsters, but you feel like you can move faster now.",
                             "actions": [
                                 "health -= 1",
                                 "movementSpeed += 1"
@@ -332,7 +404,8 @@
         },
         {
             "name": "Mysterious Box",
-            "description": "You find a mysterious box hidden inside the bushes. You wonder what could be inside.",
+            "tags": "bush grass sand",
+            "description": "You find a mysterious box. You wonder what could be inside.",
             "conditions": "",
             "image": "box",
             "choices": [

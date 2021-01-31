@@ -7,6 +7,7 @@ public class GameEvent : ISerializationCallbackReceiver
 {
     public string name;
     public string description;
+    public string tags;
     public EventConditionGroup Conditions { get; set; }
     [SerializeField]
     string conditions;

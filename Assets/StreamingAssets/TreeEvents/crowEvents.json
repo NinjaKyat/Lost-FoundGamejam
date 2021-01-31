@@ -2,6 +2,7 @@
     "events": [
         {
             "name": "Curious Crow",
+            "tags": "tree",
             "description": "You notice a crow watching you. Oddly enough, it does not seem to be afraid of you.",
             "conditions": "crowFriend = 0 & crowEnemy = 0",
             "image": "bird",
@@ -63,6 +64,7 @@
         },
         {
             "name": "Friendly Crow",
+            "tags": "tree",
             "description": "You notice a familiar crow. It caws and looks at you. It probably wants more food.",
             "conditions": "crowFriend = 1 & crowEnemy = 0",
             "image": "bird",
@@ -109,6 +111,7 @@
         },
         {
             "name": "Helpful Crow",
+            "tags": "tree",
             "description": "You notice a familiar crow. It caws and looks at you. It is holding a piece of meat with its talons. Is that for you?",
             "conditions": "crowFriend > 0 & crowEnemy = 0 & food <= 1",
             "image": "bird",
@@ -142,6 +145,7 @@
         },
         {
             "name": "The Crowerlord",
+            "tags": "tree",
             "description": "A mysterious, human/bird figure stands before you. \"I am the crowerlord\" is says. \"You are a true friend. If you are ever in trouble, we will be there to help you\". The figure disappears into the jungle.",
             "conditions": "crowFriend = 2 & crowEnemy = 0",
             "image": "bird",
@@ -163,6 +167,7 @@
         },
         {
             "name": "Furious Crow",
+            "tags": "tree grass bush",
             "description": "All of a sudden, a crow starts pecking and scratching your head. It's furious! The crow appears to be aiming for the eyes.",
             "conditions": "crowEnemy > 1",
             "image": "bird",
@@ -210,6 +215,7 @@
         },
         {
             "name": "Giant Crow",
+            "tags": "tree",
             "description": "The sky darkens as a large bird approaches you. The majestic creature lands on top of a nearby tree. It prepares to dive towards you.",
             "conditions": "crowEnemy > 2",
             "image": "bird",
