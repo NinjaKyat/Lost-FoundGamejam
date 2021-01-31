@@ -87,6 +87,19 @@ public class EventUI : MonoBehaviour
         });
     }
 
+    public void DisplayDialog(string name, string description, System.Action onClick)
+    {
+        ResetState();
+        SetUIVisibility(true);
+        nameField.text = name;
+        descriptionField.text = description;
+        CreateButton("Okay", () => {
+            SetUIVisibility(false);
+            onClick();
+        });
+    }
+
+
     public void CreateButtonForChoice(GameEvent mainEvent, EventChoice choice)
     {
         CreateButton(choice.actionText, () => { PerformChoice(mainEvent, choice); });
