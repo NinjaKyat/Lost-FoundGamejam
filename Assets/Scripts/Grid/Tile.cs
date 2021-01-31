@@ -118,6 +118,13 @@ public class Tile
         contents.Add(newContents);
     }
 
+    internal void AddContentAndSpawn(ITileContent content, TileObject.TileObjectRepresentations representations)
+    {
+        contents.Add(content);
+        if (content is TileObject tileObject)
+            tileObject.Spawn(representations, this, contents.Count - 1);
+    }
+
     public void RemoveTopContent()
     {
         contents.RemoveAt(contents.Count - 1);
@@ -131,6 +138,24 @@ public class Tile
             tileObject.DestroyRepresentations();
         }
         contents.RemoveAt(index);
+    }
+
+    public void RemoveContentDownTo(int index)
+    {
+        for (int i = contents.Count - 1; i >= index; i--)
+        {
+            RemoveContent(index);
+        }
+    }
+
+    public int IndexOfContent(Func<ITileContent, bool> searchFunc)
+    {
+        for (int i = contents.Count -1; i>= 0; i--)
+        {
+            if (searchFunc(contents[i]))
+                return i;
+        }
+        return -1;
     }
 
     internal void SpawnContents(TileObject.TileObjectRepresentations representations)
@@ -151,6 +176,22 @@ public class Tile
                 return true;
         }
         return false;
+    }
+
+    public int CountAround(Func<ITileContent, bool> searchFunc, float distance)
+    {
+        var result = 0;
+        for (int x = -Mathf.CeilToInt(distance); x < Mathf.CeilToInt(distance); x++)
+        {
+            for (int y = -Mathf.CeilToInt(distance); y < Mathf.CeilToInt(distance); y++)
+            {
+                var offset = new Vector2Int(x, y);
+                if (offset.sqrMagnitude <= distance * distance)
+                    if (Grid.GetTile(Grid.LocalToLocalWrappedPosition(LocalPosition + offset)).Contains(searchFunc))
+                        result++;
+            }
+        }
+        return result;
     }
 
     public GameEvent GetTopEventIfAvailable(Player player)

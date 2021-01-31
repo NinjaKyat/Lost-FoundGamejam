@@ -43,6 +43,18 @@ public class GameGrid
         }
     }
 
+    public void ForEachTile(TileRef action, Func<ITileContent, bool> searchFunc)
+    {
+        for (int x = 0; x < size.x; x++)
+        {
+            for (int y = 0; y < size.y; y++)
+            {
+                if (data[x, y].Contains(searchFunc))
+                    action.Invoke(new Vector2Int(x, y), ref data[x, y]);
+            }
+        }
+    }
+
     public void GetTiles(List<Tile> tiles, Func<ITileContent, bool> exceptFunc)
     {
         for (int x = 0; x < size.x; x++)
@@ -87,5 +99,10 @@ public class GameGrid
         var localIntPosition = Vector2Int.RoundToInt(position + size / 2);
         var newLocalIntPosition = localIntPosition;
         return new Vector2Int(((newLocalIntPosition.x % size.x) + size.x) % size.x, ((newLocalIntPosition.y % size.y) + size.y) % size.y);
+    }
+
+    public Vector2Int LocalToLocalWrappedPosition(Vector2Int localPosition)
+    {
+        return new Vector2Int(((localPosition.x % size.x) + size.x) % size.x, ((localPosition.y % size.y) + size.y) % size.y);
     }
 }

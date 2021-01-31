@@ -9,6 +9,7 @@ public class GridGenerator : MonoBehaviour
     public TileObject.TileObjectRepresentations representations;
 
     GameGrid grid;
+    int generation = 0;
 
     [System.Serializable]
     public struct ThingsToSpawn
@@ -41,6 +42,7 @@ public class GridGenerator : MonoBehaviour
         }
 
         grid.ForEachTile(SpawnObjects);
+        Advance();
     }
 
 
@@ -52,7 +54,85 @@ public class GridGenerator : MonoBehaviour
 
     public void Advance()
     {
+        generation++;
+        for (int i = 0; i < 5; i++)
+        {
+            grid.ForEachTile(GrowBushes);
+            grid.ForEachTile(GrowTrees);
+        }
+    }
 
+    void GrowTrees(Vector2Int position, ref Tile tile)
+    {
+        if (!tile.Contains(IsGrass))
+            return;
+
+        var treeCount = tile.CountAround(IsTree, 1);
+        if (treeCount > 5 && SampleNoise(Vector2.one * 3.598f, Vector2.one * 14.77f, tile.LocalPosition) > 0.8f)
+        {
+            var index = tile.IndexOfContent(IsTree);
+            if (index > 0)
+                tile.RemoveContentDownTo(index);
+        }
+
+        if (tile.Contains(IsBlocked))
+            return;
+
+        if (treeCount == 1 && SampleNoise(Vector2.one * 0.214f, Vector2.one * 44.2f, tile.LocalPosition) > 0.8f)
+        {
+            tile.AddContentAndSpawn(new TileObject(TileObject.Type.Tree), representations);
+        }
+    }
+
+    void GrowBushes(Vector2Int position, ref Tile tile)
+    {
+        if (!tile.Contains(IsGrass))
+            return;
+
+        var bushCount = tile.CountAround(IsBush, 2);
+        if (SampleNoise(Vector2.one * 0.4445f, Vector2.one * 67.3333f, tile.LocalPosition) > 0.8f)
+        {
+
+            var index = tile.IndexOfContent(IsBush);
+            if (index > 0)
+                tile.RemoveContentDownTo(index);
+        }
+
+        if (tile.Contains(IsBlocked))
+            return;
+
+        if (bushCount < 2 && SampleNoise(Vector2.one * 0.798f, Vector2.one * 123.132f, tile.LocalPosition) > 0.7f)
+        {
+            if (SampleNoise(Vector2.one * 0.7498f, Vector2.one * 1423.132f, tile.LocalPosition) > 0.5f)
+            {
+                tile.AddContentAndSpawn(new TileObject(TileObject.Type.Bush), representations);
+            }
+            else
+            {
+                tile.AddContentAndSpawn(new TileObject(TileObject.Type.Berries), representations);
+                tile.AddContent(new TileEvent());
+            }
+        }
+    }
+
+    bool IsTree(ITileContent content)
+    {
+        return content is TileObject ob && ob.type == TileObject.Type.Tree;
+    }
+
+    bool IsBush(ITileContent content)
+    {
+        return content is TileObject ob && (ob.type == TileObject.Type.Bush || ob.type == TileObject.Type.Berries);
+    }
+
+    bool IsBlocked(ITileContent content)
+    {
+        return content is TileObject ob && (ob.type == TileObject.Type.Bush || ob.type == TileObject.Type.Rock || ob.type == TileObject.Type.Berries || ob.type == TileObject.Type.Tree);
+    }
+
+    bool IsGrass(ITileContent content)
+    {
+        return content is TileObject ob && ob.type == TileObject.Type.Grass;
     }
 
     void PlaceGround(Vector2Int position, ref Tile tile)
@@ -133,6 +213,6 @@ public class GridGenerator : MonoBehaviour
 
     float PerlinNoise(Vector2 sample)
     {
-        return Mathf.PerlinNoise(sample.x, sample.y);
+        return Mathf.PerlinNoise(sample.x + generation * 23.13f, sample.y + generation * 13.17f);
     }
 }

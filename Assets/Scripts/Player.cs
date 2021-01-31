@@ -144,6 +144,7 @@ public class Player : MonoBehaviour
         }
         Instantiate(playerDeathPrefab, transform.position, transform.rotation, null);
         FindObjectOfType<GameManager>().Respawn();
+        FindObjectOfType<GridGenerator>().Advance();
         Destroy(this.gameObject);
     }
     
