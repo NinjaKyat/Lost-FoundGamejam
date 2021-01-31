@@ -116,6 +116,9 @@ MonoBehaviour:
   targetSlots: 0100000002000000
   EquipOffset: {x: 0.06, y: 0.04, z: 0}
   equipped: 0
+  itemStats:
+  - statName: attack
+    statValue: 3
 --- !u!114 &1392089357
 MonoBehaviour:
   m_ObjectHideFlags: 0

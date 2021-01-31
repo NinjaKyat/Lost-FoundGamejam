@@ -150,7 +150,7 @@
                     ]
                 },
                 {
-                    "conditions": "speed > 6",
+                    "conditions": "movementSpeed > 6",
                     "actionText": "Chase the chicken.",
                     "possibleOutcomes": [
                         {
@@ -214,7 +214,7 @@
                     "possibleOutcomes": [
                         {
                             "chance": 25,
-                            "outcomeText": "You pick the herbs and tend to your wounds. You gain a sudden and intense alergic reaction!",
+                            "outcomeText": "You pick the herbs and tend to your wounds. You gain a sudden and intense allergic reaction!",
                             "actions": [
                                 "health -= 3",
                                 "herbKnowledge += 1"

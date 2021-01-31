@@ -116,6 +116,11 @@ MonoBehaviour:
   targetSlots: 00000000
   EquipOffset: {x: 0, y: 0, z: 0}
   equipped: 0
+  itemStats:
+  - statName: spiceLord
+    statValue: 1
+  - statName: encyclopedia
+    statValue: -1
 --- !u!114 &1895258671
 MonoBehaviour:
   m_ObjectHideFlags: 0
