@@ -78,7 +78,7 @@ public class EventUI : MonoBehaviour
         ResetState();
         SetUIVisibility(true);
         nameField.text = mainEvent.name;
-        descriptionField.text = outcome.outcomeText;
+        descriptionField.text = outcome.outcomeText + "\n\n" + ExtractStatChangesFromOutcome(outcome);
         eventImage.sprite = mainEvent.Image;
         CreateButton("Okay", () =>
         {
@@ -86,6 +86,27 @@ public class EventUI : MonoBehaviour
             outcome.Evaluate(player.playerStats);
         });
     }
+
+    string ExtractStatChangesFromOutcome(EventOutcome outcome)
+    {
+        var sb = new System.Text.StringBuilder();
+        foreach(var action in outcome.Actions)
+        {
+            var operatorString = "=";
+            if (action.stateOperator == StateOperator.Add)
+            {
+                operatorString = "+";
+            }
+            else if (action.stateOperator == StateOperator.Subtract)
+            {
+                operatorString = "-";
+            }
+
+            sb.AppendFormat("{0} {1}{2}\n", action.targetStat, operatorString, action.statToUse ?? action.numberToUse.ToString());
+        }
+        return sb.ToString();
+    }
+
 
     public void DisplayDialog(string name, string description, System.Action onClick)
     {
@@ -98,6 +119,7 @@ public class EventUI : MonoBehaviour
             onClick();
         });
     }
+
 
 
     public void CreateButtonForChoice(GameEvent mainEvent, EventChoice choice)
