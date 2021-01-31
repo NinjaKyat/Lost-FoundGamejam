@@ -40,8 +40,7 @@ public class Plane : MonoBehaviour
 
     void WinTheGame()
     {
-        
-        Debug.Log("You're winner");
+        EventUI.instance.DisplayDialog("You win!", "You found a way to escape the jungle!", "win", null);
         brokedPlane.gameObject.SetActive(false);
         fixedPlane.gameObject.SetActive(true);
     }

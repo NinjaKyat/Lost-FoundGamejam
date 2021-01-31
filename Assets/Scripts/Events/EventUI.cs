@@ -108,15 +108,16 @@ public class EventUI : MonoBehaviour
     }
 
 
-    public void DisplayDialog(string name, string description, System.Action onClick)
+    public void DisplayDialog(string name, string description, string icon, System.Action onClick)
     {
         ResetState();
         SetUIVisibility(true);
         nameField.text = name;
+        eventImage.sprite = EventMeister.GetImage(icon);
         descriptionField.text = description;
         CreateButton("Okay", () => {
             SetUIVisibility(false);
-            onClick();
+            onClick?.Invoke();
         });
     }
 
