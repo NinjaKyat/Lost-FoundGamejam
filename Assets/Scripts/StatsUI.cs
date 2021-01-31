@@ -23,9 +23,12 @@ public class StatsUI : MonoBehaviour
     void Update()
     {
         var sb = new StringBuilder();
-        foreach(var stat in statsToDisplay)
+        foreach(var stat in player.playerStats.GetDictionary())
         {
-            sb.AppendFormat("{0}: {1}\n", stat, player.playerStats.GetStat(stat));
+            if (stat.Value > 0)
+            {
+                sb.AppendFormat("{0}: {1}\n", stat.Key, stat.Value);
+            }
         }
 
         textUI.text = sb.ToString();

@@ -12,6 +12,11 @@ public class Stats
     public const string attackStat = "attack";
     public const string randomStat = "random";
 
+    public Dictionary<string,int> GetDictionary()
+    {
+        return internalStats;
+    }
+
     public int GetStat(string stat)
     {
         if (stat == randomStat)
