@@ -119,6 +119,8 @@ MonoBehaviour:
   itemStats:
   - statName: crowFriend
     statValue: 1
+  - statName: magic
+    statValue: 1
 --- !u!114 &1821327783
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -57,6 +57,148 @@
             ]
         },
         {
+            "name": "Magic In the air",
+            "description": "You feel a strange force in the air, almost palpable. You think you could focus on it, reach out and grab at it. Maybe something might happen?",
+            "conditions": "magic > 0",
+            "tags": "grass sand tree bush",
+            "image": "",
+            "choices": [
+                {
+                    "conditions": "magic = 1",
+                    "actionText": "Reach out with your mind and grab it",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 50,
+                            "outcomeText": "Crossing your eyes, you reach out and wildly flail around. Nothing happens. You do feel a bit hungrier due to the expensed energy. Still, you feel like you learned something",
+                            "actions": [
+                                "food -= 1",
+                                "magic += 1"
+                            ]
+                        },
+                        {
+                            "chance": 25,
+                            "outcomeText": "You focus intently and manage to grasp the flowing energy, manipulating it to your wish. You feel more powerful",
+                            "actions": [
+                                "magic += 2",
+                                "attack += 1"
+                            ]
+                        },
+                        {
+                            "chance": 0,
+                            "outcomeText": "It takes about an hour for you to realize it was just the wind. Meanwhile, your stomach is grumbling",
+                            "actions": [
+                                "food -= 2"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "",
+                    "actionText": "Forget about it. What if it's a ghost?",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 5,
+                            "outcomeText": "LORD ALMIGHTY IT WAS A GHOST! It saps your life energy while telling that magic is real and how a great being in the sky waits to devour the world. Eventually you wake up dazed and confused, but alive...",
+                            "actions": [
+                                "magic += 2",
+                                "health -= 2",
+                                "movementSpeed -= 1",
+                                "food -= 1"
+                            ]
+                        },
+                        {
+                            "chance": 0,
+                            "outcomeText": "These days you never know what lurks behind the veil. Better leave those forces alone",
+                            "actions": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "You're a wizard Harry!",
+            "description": "You see some shimmering light in front of you! Slowly some tangible form creeps out of the portal. It's long and dark form starts shambling towards you!",
+            "conditions": "magic > 2",
+            "tags": "grass sand tree bush",
+            "image": "",
+            "choices": [
+                {
+                    "conditions": "attack > 3",
+                    "actionText": "Whatever this beast is, clearly it has no knowledge of your prowess! En guarde!",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 50,
+                            "outcomeText": "You valiantly assault the strange being and put it down using your various skills. Turns out it was carrying some strange artifact. It makes you feel a little better",
+                            "actions": [
+                                "magic += 1",
+                                "health += 3",
+                                "attack += 1"
+                            ]
+                        },
+                        {
+                            "chance": 0,
+                            "outcomeText": "The strange creature suddenly grows in size and opens its giant maw to rip at your limbs. You suffer violent injuries before managing to slink away",
+                            "actions": [
+                                "health -= 5",
+                                "magic += 1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "movementSpeed > 4",
+                    "actionText": "What a horrid apparition! Time to get out of here!",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 50,
+                            "outcomeText": "Due to your quick reflexes and keen survival instinct, you manage to slip out of there without a scratch. The sprint took some energy out of you though",
+                            "actions": [
+                                "food -= 1"
+                            ]
+                        },
+                        {
+                            "chance": 0,
+                            "outcomeText": "As you are running, the beast manages to get a few scratches at you. You shudder to think what might have happened had you stayed. This whole experience left you a bit peckish",
+                            "actions": [
+                                "health -= 1",
+                                "food -= 1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "conditions": "",
+                    "actionText": "Try to reason with it. Maybe it seeks no harm?",
+                    "possibleOutcomes": [
+                        {
+                            "chance": 5,
+                            "outcomeText": "Trying your best to stay diplomatic, you approach the figure and try to start a dialogue. A pair of bulging eyes appear in the black mass and you find yourself unable to turn your gaze away. Your mind falls apart as your body is torn to shreds",
+                            "actions": [
+                                "health = 0"
+                            ]
+                        },
+                        {
+                            "chance": 10,
+                            "outcomeText": "It turns out the figure is actually a space traveler, who is looking for folks in peril and you seem like you need some help. You gratiously accept",
+                            "actions": [
+                                "health += 2",
+                                "food += 2",
+                                "attack +=1"
+                            ]
+                        },
+                        {
+                            "chance": 0,
+                            "outcomeText": "As you approach the beast starts snarling and growling violently, spewing burning hot liquid at you. Some of it hits your leg. The pain is excruciating, but you manage to slip away",
+                            "actions": [
+                                "health -= 2",
+                                "movementSpeed -= 1"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "name": "Dangerous Encounter",
             "description": "You find some fruit, but notice a pair of eyes, peeking through a bush. You freeze, thinking about what to do next.",
             "conditions": "",
