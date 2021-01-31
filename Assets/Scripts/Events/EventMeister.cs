@@ -11,11 +11,21 @@ public class EventMeister : MonoBehaviour
     Sprite defaultImage;
     static EventMeister instance;
     Dictionary<string, Sprite> imageLibrary = new Dictionary<string, Sprite>();
-    EventCollection treeEvents = null;
 
     const string imageFolder = "Images";
     const string treeEventsFolder = "TreeEvents";
     const string bushEventsFolder = "BushEvents";
+
+    public const string treeTag = "tree";
+    public const string berriesTag = "berries";
+    public const string bushTag = "bush";
+    public const string sandTag = "sand";
+    public const string grassTag = "grass";
+    public const string snakeTag = "snake";
+    public const string chickenTag = "chicken";
+
+    Dictionary<string, EventCollection> possibleEvents = new Dictionary<string, EventCollection>();
+
 
     void Awake()
     {
@@ -60,8 +70,6 @@ public class EventMeister : MonoBehaviour
         var bushEventsPath = Path.Combine(Application.streamingAssetsPath, bushEventsFolder);
         LoadEventsAtPath(treeEventsPath, ref eventCollection);
         LoadEventsAtPath(bushEventsPath, ref eventCollection);
-
-        treeEvents = eventCollection;
     }
 
     void LoadEventsAtPath(string path, ref EventCollection eventCollection)
@@ -75,14 +83,7 @@ public class EventMeister : MonoBehaviour
                 {
                     var text = File.ReadAllText(file);
                     var collection = JsonUtility.FromJson<EventCollection>(text);
-                    if (eventCollection == null)
-                    {
-                        eventCollection = collection;
-                    }
-                    else
-                    {
-                        eventCollection.events.AddRange(collection.events);
-                    }
+                    ProcessEventCollection(eventCollection);
                 }
                 catch (Exception ex)
                 {
@@ -92,16 +93,32 @@ public class EventMeister : MonoBehaviour
         }
     }
 
-    public static GameEvent GetRandomEvent(Stats playerStats)
+    void ProcessEventCollection(EventCollection events)
     {
-        return instance.GetRandomEventInternal(playerStats);
+        foreach(var evt in events.events)
+        {
+            var tags = evt.tags.ToLower().Split(' ');
+            foreach(var tag in tags)
+            {
+                if (!possibleEvents.ContainsKey(tag))
+                {
+                    possibleEvents[tag] = new EventCollection();
+                }
+                possibleEvents[tag].events.Add(evt);
+            }
+        }
     }
 
-    private GameEvent GetRandomEventInternal(Stats playerStats)
+    public static GameEvent GetRandomEvent(Stats playerStats, string tag)
     {
-        if (treeEvents != null)
+        return instance.GetRandomEventInternal(playerStats, tag);
+    }
+
+    private GameEvent GetRandomEventInternal(Stats playerStats, string tag)
+    {
+        if (possibleEvents.ContainsKey(tag))
         {
-            var eventList = treeEvents.events;
+            var eventList = possibleEvents[tag].events;
             var searchStartIndex = UnityEngine.Random.Range(0, eventList.Count);
             var currentIndex = searchStartIndex;
             do
@@ -120,6 +137,7 @@ public class EventMeister : MonoBehaviour
             }
             while (currentIndex != searchStartIndex);
         }
+
         return GameEvent.GetTestEvent();
     }
 
