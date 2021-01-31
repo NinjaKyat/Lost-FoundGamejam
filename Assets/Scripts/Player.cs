@@ -128,6 +128,11 @@ public class Player : MonoBehaviour
             Debug.Log("YOU ARE DEAD");
         }
     }
+
+    void PlayerDied()
+    {
+        
+    }
     
     public bool AddItem(Common.CharacterItemSlots targetSlot, Item item)
     {
