@@ -44,7 +44,7 @@ public class GridGenerator : MonoBehaviour
             placedTile = TileObject.Type.Water;
 
         tile.AddContent(new TileObject(placedTile));
-        if (SampleNoise(scaledPos * 5, offset * 2f, position) > 0.5f)
+        if (SampleNoise(scaledPos * 5, offset * 2f, position) > 0.9f)
             tile.AddContent(new TileEvent());
     }
 
@@ -80,7 +80,7 @@ public class GridGenerator : MonoBehaviour
                 else
                 {
                     tile.AddContent(new TileObject(TileObject.Type.Tree));
-                    if (SampleNoise(scale * 5, Vector2.zero, position) > 0.5f)
+                    if (SampleNoise(scale * 5, Vector2.zero, position) > 0.8f)
                         tile.AddContent(new TileEvent());
                 }
             }
