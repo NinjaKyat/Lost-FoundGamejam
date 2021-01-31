@@ -33,8 +33,8 @@ public class PlayerMovement : MonoBehaviour
         if (EventUI.instance && EventUI.instance.IsShowingUI())
         {
             isMoving = false;
-            targetInteractible = null;
             targetPosition = transform.position;
+            targetInteractible = null;
             return;
         }
 
@@ -166,6 +166,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 GetAndShowEvent(gridObject.LocalGridPosition);
             }
+            isMoving = false;
+            targetPosition = transform.position;
             targetInteractible = null;
         }
     }
