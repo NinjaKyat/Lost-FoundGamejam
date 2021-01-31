@@ -119,6 +119,8 @@ MonoBehaviour:
   itemStats:
   - statName: encyclopedia
     statValue: 1
+  - statName: magic
+    statValue: -2
 --- !u!114 &1145189869
 MonoBehaviour:
   m_ObjectHideFlags: 0

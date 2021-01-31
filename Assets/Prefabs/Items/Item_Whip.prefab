@@ -116,6 +116,9 @@ MonoBehaviour:
   targetSlots: 0100000002000000
   EquipOffset: {x: 0.06, y: 0.04, z: 0}
   equipped: 0
+  itemStats:
+  - statName: movementSpeed
+    statValue: 1
 --- !u!114 &1001583141
 MonoBehaviour:
   m_ObjectHideFlags: 0

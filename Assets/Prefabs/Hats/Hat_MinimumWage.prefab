@@ -121,6 +121,8 @@ MonoBehaviour:
     statValue: 1
   - statName: encyclopedia
     statValue: -1
+  - statName: minimumWage
+    statValue: 1
 --- !u!114 &1895258671
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1121,10 +1121,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3997725675738453058, guid: ad4fceda7909a43d898320116e8aa440, type: 3}
-      propertyPath: ItemStats.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3997725675738453059, guid: ad4fceda7909a43d898320116e8aa440, type: 3}
       propertyPath: m_Name
       value: Item_Whip
