@@ -25,7 +25,7 @@
                     "actionText": "Looks like they are hiring! Go get a job!",
                     "possibleOutcomes": [
                         {
-                            "outcomeText": "",
+                            "outcomeText": "You spend a few hours working at a fast food restaurant. You get a free burger out of it and some money",
                             "actions": [
                                 "supermarketDiscovered += 1",
                                 "food += 1",
