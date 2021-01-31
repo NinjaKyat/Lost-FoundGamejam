@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2093221304134046115}
   - component: {fileID: 4548420766730069151}
+  - component: {fileID: 9047269974211893251}
   m_Layer: 0
   m_Name: PalmTree2_Head
   m_TagString: Untagged
@@ -82,6 +83,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &9047269974211893251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410806677581144712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88d2988f3f78304db152c4333e24d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 3945558738167118592}
+  tile: {fileID: 2417243549517297596}
+  flipX: 1
+  tilt: 5
+  scale: 0.05
 --- !u!1 &2465000371160260444
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +112,7 @@ GameObject:
   - component: {fileID: -5733164250626337619}
   - component: {fileID: 2417243549517297596}
   - component: {fileID: 9093872347788974087}
+  - component: {fileID: 1879953798136460254}
   m_Layer: 0
   m_Name: Object_Tree_Palm_1
   m_TagString: Untagged
@@ -170,6 +189,19 @@ MonoBehaviour:
   _collider: {fileID: -5733164250626337619}
   health: 3
   tileObject: {fileID: 2417243549517297596}
+--- !u!114 &1879953798136460254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2465000371160260444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8638ae916398b7f4785955465eaa5092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tile: {fileID: 2417243549517297596}
 --- !u!1 &4323236255737234744
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +658,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8416572308535821649}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.006, y: -0.045, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4881024709153073022}
@@ -698,5 +730,5 @@ MonoBehaviour:
   spriteRenderer: {fileID: 3945558738167118592}
   tile: {fileID: 2417243549517297596}
   flipX: 1
-  tilt: 25
+  tilt: 5
   scale: 0.05
