@@ -28,18 +28,18 @@ public class TileObject : ITileContent
         public TileObjectRepresentation treePrefab;
         public TileObjectRepresentation rockPrefab;
         public TileObjectRepresentation bushPrefab;
+        public TileObjectRepresentation berriesPrefab;
 
         public TileObjectRepresentation grassPrefab;
         public TileObjectRepresentation sandPrefab;
         public TileObjectRepresentation waterPrefab;
-
 
         public TileObjectRepresentation GetPrefab(Type type)
         {
             switch (type)
             {
                 case Type.Water:
-                    return waterPrefab; //waterPrefab;
+                    return waterPrefab;
                 case Type.Sand:
                     return sandPrefab;
                 case Type.Grass:
@@ -50,6 +50,8 @@ public class TileObject : ITileContent
                     return rockPrefab;
                 case Type.Bush:
                     return bushPrefab;
+                case Type.Berries:
+                    return berriesPrefab;
                 default:
                     return null;
             }
@@ -88,13 +90,18 @@ public class TileObject : ITileContent
             GameObject.Destroy(representation);
         }
     }
+
+    public override string ToString()
+    {
+        return type.ToString();
+    }
 }
 
 public class Tile
 {
     public GameGrid Grid { get; private set; }
-    public Vector2Int Position { get; private set; }
-    public Vector2 WorldPosition => Grid.LocalToWorldPosition(Position);
+    public Vector2Int LocalPosition { get; private set; }
+    public Vector2 WorldPosition => Grid.LocalToWorldPosition(LocalPosition);
 
     List<ITileContent> contents;
     public IReadOnlyList<ITileContent> Contents => contents;
@@ -102,7 +109,7 @@ public class Tile
     public Tile(GameGrid grid, Vector2Int position)
     {
         Grid = grid;
-        Position = position;
+        LocalPosition = position;
         contents = new List<ITileContent>();
     }
 
@@ -162,6 +169,7 @@ public class Tile
                     if (contents[i] is TileObject tileObject)
                     {
                         tag = tileObject.type.ToString().ToLowerInvariant();
+                        break;
                     }
                 }
                 gameEvent = EventMeister.GetRandomEvent(player.playerStats, tag);
@@ -171,5 +179,16 @@ public class Tile
         }
         else
             return null;
+    }
+
+    public string GetString()
+    {
+        var s = "";
+        s += LocalPosition ;
+        foreach (var content in contents)
+        {
+            s += "\n" + content.ToString();
+        }
+        return s;
     }
 }

@@ -27,9 +27,9 @@ public class RandomizeSpriteRendererFeatures : MonoBehaviour
 
     private void HandleTileInitialized()
     {
-        var hash = tile.GridPosition.x * 13;
+        var hash = tile.LocalGridPosition.x * 13;
         hash ^= 2147483647;
-        hash ^= tile.GridPosition.y * 17;
+        hash ^= tile.LocalGridPosition.y * 17;
         hash ^= (transform.GetSiblingIndex() * 13);
         hash ^= 47581;
 

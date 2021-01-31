@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TileObjectRepresentation : MonoBehaviour
 {
-    public Vector2Int GridPosition => tile.Position;
+    public Vector2Int LocalGridPosition => tile.LocalPosition;
     Tile tile;
     int indexInTile;
     TileObjectRepresentation original;
@@ -15,7 +15,7 @@ public class TileObjectRepresentation : MonoBehaviour
     public void Spawn(Tile tile, int indexInTile, List<GameObject> representations)
     {
         var worldPosition = tile.WorldPosition;
-        var gridPosition = tile.Position;
+        var gridPosition = tile.LocalPosition;
         var original = Instantiate(this, worldPosition, Quaternion.identity);
         original.Initialize(tile, indexInTile, original, representations);
         var gridSize = tile.Grid.Size;

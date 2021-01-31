@@ -43,10 +43,9 @@ public class GameGrid
         }
     }
 
-    public Tile GetTile(Vector2Int position)
+    public Tile GetTile(Vector2Int localGridPosition)
     {
-        var warpedPosition = new Vector2Int((position.x % size.x + size.x) % size.x, (position.y % size.y + size.y) % size.y);
-        return data[warpedPosition.x, warpedPosition.y];
+        return data[localGridPosition.x, localGridPosition.y];
     }
 
     public Vector2Int LocalToWorldPosition(Vector2Int localPosition)
@@ -57,7 +56,7 @@ public class GameGrid
     public bool WrapAround(ref Vector2 worldPosition)
     {
         var intPosition = Vector2Int.RoundToInt(worldPosition);
-        var wrappedPosition = WrappedPosition(worldPosition);
+        var wrappedPosition = WorldToLocalWrappedPosition(worldPosition) - size / 2;
         if (intPosition != wrappedPosition)
         {
             worldPosition += wrappedPosition - intPosition;
@@ -69,10 +68,10 @@ public class GameGrid
         }
     }
 
-    public Vector2Int WrappedPosition(Vector2 position)
+    public Vector2Int WorldToLocalWrappedPosition(Vector2 position)
     {
-        var intPosition = Vector2Int.RoundToInt(position);
-        var newIntPosition = intPosition + size / 2;
-        return new Vector2Int(((newIntPosition.x % size.x) + size.x) % size.x, ((newIntPosition.y % size.y) + size.y) % size.y) - size / 2;
+        var localIntPosition = Vector2Int.RoundToInt(position + size / 2);
+        var newLocalIntPosition = localIntPosition;
+        return new Vector2Int(((newLocalIntPosition.x % size.x) + size.x) % size.x, ((newLocalIntPosition.y % size.y) + size.y) % size.y);
     }
 }

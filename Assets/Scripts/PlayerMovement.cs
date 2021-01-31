@@ -125,18 +125,20 @@ public class PlayerMovement : MonoBehaviour
         if (GameGrid.instance == null)
             return;
 
-        var gridPosition = GameGrid.instance.WrappedPosition(transform.position);
-        if (gridPosition != previousGridPosition)
+        var localGridPosition = GameGrid.instance.WorldToLocalWrappedPosition(transform.position);
+        if (localGridPosition != previousGridPosition)
         {
-            GetAndShowEvent(gridPosition);
+            GetAndShowEvent(localGridPosition);
         }
 
-        previousGridPosition = gridPosition;
+        previousGridPosition = localGridPosition;
     }
 
-    void GetAndShowEvent(Vector2Int gridPosition)
+    void GetAndShowEvent(Vector2Int localGridPosition)
     {
-        var gameEvent = GameGrid.instance.GetTile(gridPosition).GetTopEventIfAvailable(player);
+        var tile = GameGrid.instance.GetTile(localGridPosition);
+        Debug.Log(tile.GetString());
+        var gameEvent = tile.GetTopEventIfAvailable(player);
         if (gameEvent != null)
         {
             EventUI.instance.DisplayEvent(gameEvent);
@@ -152,16 +154,17 @@ public class PlayerMovement : MonoBehaviour
         if (distance < interactDistance)
         {
             var gridObject = targetInteractible.Collider.GetComponent<TileObjectRepresentation>();
+
             // Pre-interaction event
             if (gridObject)
             {
-                GetAndShowEvent(gridObject.GridPosition);
+                GetAndShowEvent(gridObject.LocalGridPosition);
             }
             targetInteractible.Interact(player);
             // Post-interaction event
             if (gridObject)
             {
-                GetAndShowEvent(gridObject.GridPosition);
+                GetAndShowEvent(gridObject.LocalGridPosition);
             }
             targetInteractible = null;
         }

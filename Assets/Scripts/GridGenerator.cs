@@ -20,6 +20,18 @@ public class GridGenerator : MonoBehaviour
         grid.ForEachTile(PlaceObjects);
     }
 
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.KeypadPlus))
+            Advance();
+    }
+
+    public void Advance()
+    {
+
+    }
+
     void PlaceGround(Vector2Int position, ref Tile tile)
     {
         var scaledPos = new Vector2(0.51f, 0.37f) * 0.2f;
@@ -31,8 +43,9 @@ public class GridGenerator : MonoBehaviour
         if (noiseValue <= 0.1f)
             placedTile = TileObject.Type.Water;
 
-
         tile.AddContent(new TileObject(placedTile));
+        if (SampleNoise(scaledPos * 5, offset * 2f, position) > 0.5f)
+            tile.AddContent(new TileEvent());
     }
 
     void PlaceRocks(Vector2Int position, ref Tile tile)
@@ -49,16 +62,27 @@ public class GridGenerator : MonoBehaviour
             var scale = new Vector2(0.69f, 0.35f) * 0.2f;
             if (SampleNoise(scale, Vector2.zero, position) > 0.5f)
             {
-                if (SampleNoise(scale * 0.95f, Vector2.up * 0.1f, position) > 0.65f)
+                var noise = SampleNoise(scale * 0.95f, Vector2.up * 0.1f, position);
+                if (noise > 0.65f)
                 {
-                    tile.AddContent(new TileObject(TileObject.Type.Bush));
+                    if (noise < 0.7f)
+                    {
+                        tile.AddContent(new TileObject(TileObject.Type.Berries));
+                        tile.AddContent(new TileEvent());
+                    }
+                    else
+                    {
+                        tile.AddContent(new TileObject(TileObject.Type.Bush));
+                        if (SampleNoise(scale * 5, Vector2.zero, position) > 0.5f)
+                            tile.AddContent(new TileEvent());
+                    }
                 }
                 else
                 {
                     tile.AddContent(new TileObject(TileObject.Type.Tree));
+                    if (SampleNoise(scale * 5, Vector2.zero, position) > 0.5f)
+                        tile.AddContent(new TileEvent());
                 }
-                if (SampleNoise(scale * 5, Vector2.zero, position) > 0.5f)
-                    tile.AddContent(new TileEvent());
             }
         }
     }
