@@ -319,7 +319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6610036206564438479, guid: 1e36e603c24824cdb80a74ae86fd025a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e36e603c24824cdb80a74ae86fd025a, type: 3}
@@ -995,6 +995,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2827936956536487452, guid: e26c2358f779645dfbf43898991094be, type: 3}
+      propertyPath: moveSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2827936956536487453, guid: e26c2358f779645dfbf43898991094be, type: 3}
       propertyPath: m_Name
       value: Animal_Snek
@@ -1005,11 +1009,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2827936956536487454, guid: e26c2358f779645dfbf43898991094be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.44
+      value: -3.31
       objectReference: {fileID: 0}
     - target: {fileID: 2827936956536487454, guid: e26c2358f779645dfbf43898991094be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.46
+      value: 3.28
       objectReference: {fileID: 0}
     - target: {fileID: 2827936956536487454, guid: e26c2358f779645dfbf43898991094be, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1337,6 +1341,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1577940635, guid: 5358f20fd8c7d4847bba094a27a13151, type: 3}
+      propertyPath: m_Name
+      value: DeathParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 8939394178460538977, guid: 5358f20fd8c7d4847bba094a27a13151, type: 3}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8939394178460538977, guid: 5358f20fd8c7d4847bba094a27a13151, type: 3}
+      propertyPath: deathParticles
+      value: 
+      objectReference: {fileID: 5653622865823184209, guid: 555eb17cb650b48cf81c9b57970d7738, type: 3}
     - target: {fileID: 8939394178460538978, guid: 5358f20fd8c7d4847bba094a27a13151, type: 3}
       propertyPath: m_Name
       value: Animal_CAWK
@@ -1347,11 +1363,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8939394178460539007, guid: 5358f20fd8c7d4847bba094a27a13151, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.9499998
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 8939394178460539007, guid: 5358f20fd8c7d4847bba094a27a13151, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.4
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 8939394178460539007, guid: 5358f20fd8c7d4847bba094a27a13151, type: 3}
       propertyPath: m_LocalPosition.z

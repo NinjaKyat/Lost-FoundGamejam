@@ -23,6 +23,8 @@ public class Animal : MonoBehaviour, IInteractible
 
     public bool predator = false;
     private bool _isFleeing = false;
+
+    public GameObject deathParticles;
     public bool isFleeing
     {
         get { return _isFleeing;}
@@ -36,7 +38,9 @@ public class Animal : MonoBehaviour, IInteractible
             _isFleeing = value;
         }
     }
-    
+
+    public bool isMoving = false;
+
     void Start()
     {
         _collider = GetComponent<Collider2D>();
@@ -70,6 +74,7 @@ public class Animal : MonoBehaviour, IInteractible
     {
         if (closestTarget != null)
         {
+            isMoving = true;
             if (predator)
                 rb.MovePosition(Vector2.MoveTowards(this.transform.position, closestTarget.position,
                 moveSpeed * Time.deltaTime));
@@ -80,7 +85,20 @@ public class Animal : MonoBehaviour, IInteractible
                     moveSpeed * Time.deltaTime));
             }
         }
-        else rb.MovePosition(Vector2.MoveTowards(this.transform.position, targetPosition, moveSpeed * Time.deltaTime));
+        else
+        {
+            if (isMoving)
+                rb.MovePosition(Vector2.MoveTowards(this.transform.position, targetPosition, moveSpeed * Time.deltaTime));
+            if (Vector3.Distance(transform.position, targetPosition) < 0.2f)
+            {
+                targetPosition = transform.position;
+                isMoving = false;
+            }
+            else
+            {
+                isMoving = true;
+            }
+        }
     }
 
     public void Interact()
@@ -107,9 +125,9 @@ public class Animal : MonoBehaviour, IInteractible
             }
             else
             {
-                if (!predator && animal.predator)
+                if (!predator && animal.predator)        //If you're not a predator and see a predator you target it as a flee target
                     closestTarget = animal.GetComponent<Transform>();
-                if (predator && !animal.predator)
+                if (predator && !animal.predator)        //If you're a predator and see non predator you target it as a pursue target
                     closestTarget = animal.GetComponent<Transform>();
             }
         }
@@ -121,4 +139,15 @@ public class Animal : MonoBehaviour, IInteractible
             } 
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Animal otherAnimal = other.collider.GetComponent<Animal>();
+        if (otherAnimal == null)
+            return;
+        if (!predator && otherAnimal.predator)
+        {
+            if (deathParticles != null)Instantiate(deathParticles, transform.position, transform.rotation);
+            Destroy(this.gameObject);
+        }
+    }
 }

@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 8939394178460538977}
   - component: {fileID: 2605830657285617673}
   - component: {fileID: 9003838722318269413}
+  - component: {fileID: 1363192178}
   m_Layer: 0
   m_Name: Animal_CAWK
   m_TagString: Untagged
@@ -129,9 +130,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolBounds: 3
-  moveSpeed: 4
+  moveSpeed: 3
   closestTarget: {fileID: 0}
   predator: 0
+  deathParticles: {fileID: 5653622865823184209, guid: 555eb17cb650b48cf81c9b57970d7738, type: 3}
+  isMoving: 0
 --- !u!58 &2605830657285617673
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -169,3 +172,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &1363192178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8939394178460538978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab0dc801bcae427593b6dc8c2b70bd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
