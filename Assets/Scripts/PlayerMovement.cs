@@ -142,7 +142,6 @@ public class PlayerMovement : MonoBehaviour
     void GetAndShowEvent(Vector2Int localGridPosition)
     {
         var tile = GameGrid.instance.GetTile(localGridPosition);
-        Debug.Log(tile.GetString());
         var gameEvent = tile.GetTopEventIfAvailable(player);
         if (gameEvent != null)
         {
