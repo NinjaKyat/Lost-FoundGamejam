@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
     Dictionary<Common.CharacterItemSlots, EquipmentSlot> CharacterEquipment = new Dictionary<Common.CharacterItemSlots,EquipmentSlot>();
     public Transform[] equipmentSlotPositions;
     private Camera cam;
+    public GameObject playerDeathPrefab;
     void Start()
     {
         cam = Camera.main;
@@ -125,13 +126,25 @@ public class Player : MonoBehaviour
         var currentHealth = playerStats.GetStat(Stats.healthStat);
         if (currentHealth < 1)
         {
-            Debug.Log("YOU ARE DEAD");
+            PlayerDied();
         }
     }
 
     void PlayerDied()
     {
-        
+        foreach (KeyValuePair<Common.CharacterItemSlots, EquipmentSlot> entry in CharacterEquipment)
+        {
+            var slot = entry.Value;
+            if (slot.equippedItems.Count < 1)
+                continue;
+            for (int i = 0; i < slot.equippedItems.Count; i++)
+            {
+                RemoveItem(entry.Key);
+            }
+        }
+        Instantiate(playerDeathPrefab, transform.position, transform.rotation, null);
+        FindObjectOfType<GameManager>().Respawn();
+        Destroy(this.gameObject);
     }
     
     public bool AddItem(Common.CharacterItemSlots targetSlot, Item item)

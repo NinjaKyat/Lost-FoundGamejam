@@ -5,14 +5,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject playerPrefab;
-    private Player player;
     void Start()
     {
-        player = FindObjectOfType<Player>();
     }
-    
-    void Update()
+
+    public void Respawn()
     {
-        
+        Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
     }
 }

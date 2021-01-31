@@ -136,6 +136,7 @@ MonoBehaviour:
   - {fileID: 6610036207546839501}
   - {fileID: 6610036207322503162}
   - {fileID: 6610036207589184871}
+  playerDeathPrefab: {fileID: 5001139165224609045, guid: a9b10ae1544e44fd0a665d4d8222dc14, type: 3}
 --- !u!114 &6610036206564438478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cfa3b9ba7bc46d79cb04aa5d32bbe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipDistance: 0.5
+  interactDistance: 0.5
   isMoving: 0
 --- !u!114 &1165217934118546975
 MonoBehaviour:

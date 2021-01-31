@@ -59,12 +59,11 @@
         {
             "name": "Magic In the air",
             "description": "You feel a strange force in the air, almost palpable. You think you could focus on it, reach out and grab at it. Maybe something might happen?",
-            "conditions": "magic > 0",
+            "conditions": "magic = 1",
             "tags": "grass sand tree bush",
             "image": "",
             "choices": [
                 {
-                    "conditions": "magic = 1",
                     "actionText": "Reach out with your mind and grab it",
                     "possibleOutcomes": [
                         {
@@ -118,7 +117,7 @@
         {
             "name": "You're a wizard Harry!",
             "description": "You see some shimmering light in front of you! Slowly some tangible form creeps out of the portal. It's long and dark form starts shambling towards you!",
-            "conditions": "magic > 2",
+            "conditions": "magic > 1",
             "tags": "grass sand tree bush",
             "image": "",
             "choices": [
