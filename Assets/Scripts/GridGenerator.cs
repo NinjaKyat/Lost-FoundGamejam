@@ -16,7 +16,7 @@ public class GridGenerator : MonoBehaviour
         grid.ForEachTile(PlaceGround);
         grid.ForEachTile(PlaceRocks);
         grid.ForEachTile(PlaceTrees);
-        //grid.ForEachTile(PlaceEvents);
+        grid.ForEachTile(PlaceEvents);
         grid.ForEachTile(PlaceObjects);
     }
 
@@ -54,8 +54,8 @@ public class GridGenerator : MonoBehaviour
                 }
                 else
                 {
-                    //if (SampleNoise(scale * 100, Vector2.zero, position) > 0.9f)
-                        tile.AddContent(new TileEvent(GameEvent.GetTestEvent()));
+                    if (SampleNoise(scale * 5, Vector2.zero, position) > 0.5f)
+                        tile.AddContent(new TileEvent());
                     tile.AddContent(new TileObject(TileObject.Type.Tree));
                 }
         }

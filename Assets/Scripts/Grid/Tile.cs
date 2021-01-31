@@ -15,6 +15,8 @@ public class TileEvent : ITileContent
     {
         this.gameEvent = gameEvent;
     }
+    public TileEvent()
+    { }
 
 }
 
@@ -62,6 +64,7 @@ public class TileObject : ITileContent
         Tree,
         Rock,
         Bush,
+        Berries,
     }
     public Type type;
     List<GameObject> representations;
@@ -152,7 +155,17 @@ public class Tile
         {
             var gameEvent = eventTile.gameEvent;
             if (gameEvent == null)
-                gameEvent = EventMeister.GetRandomEvent(player.playerStats);
+            {
+                var tag = "";
+                for (int i = Contents.Count - 1; i >= 0; i--)
+                {
+                    if (contents[i] is TileObject tileObject)
+                    {
+                        tag = tileObject.type.ToString().ToLowerInvariant();
+                    }
+                }
+                gameEvent = EventMeister.GetRandomEvent(player.playerStats, tag);
+            }
             RemoveTopContent();
             return gameEvent;
         }
