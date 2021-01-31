@@ -275,7 +275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6610036206564438472, guid: 1e36e603c24824cdb80a74ae86fd025a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.24
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 6610036206564438472, guid: 1e36e603c24824cdb80a74ae86fd025a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -319,7 +319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6610036206564438479, guid: 1e36e603c24824cdb80a74ae86fd025a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e36e603c24824cdb80a74ae86fd025a, type: 3}
@@ -938,6 +938,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1745644384450608533, guid: e9ea063ffcc6142fc8de94b9f025c769, type: 3}
+      propertyPath: itemStats.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745644384450608533, guid: e9ea063ffcc6142fc8de94b9f025c769, type: 3}
+      propertyPath: itemStats.Array.data[0].statName
+      value: movementSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745644384450608533, guid: e9ea063ffcc6142fc8de94b9f025c769, type: 3}
+      propertyPath: itemStats.Array.data[0].statValue
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 1745644384450608534, guid: e9ea063ffcc6142fc8de94b9f025c769, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -995,13 +1007,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2827936956536487452, guid: e26c2358f779645dfbf43898991094be, type: 3}
-      propertyPath: moveSpeed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2827936956536487453, guid: e26c2358f779645dfbf43898991094be, type: 3}
       propertyPath: m_Name
       value: Animal_Snek
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827936956536487453, guid: e26c2358f779645dfbf43898991094be, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2827936956536487454, guid: e26c2358f779645dfbf43898991094be, type: 3}
       propertyPath: m_RootOrder
@@ -1104,6 +1116,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Item_Wheel
       objectReference: {fileID: 0}
+    - target: {fileID: 3196250416284661823, guid: 7e484e5e5272446809d180ad8e291e6c, type: 3}
+      propertyPath: itemStats.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196250416284661823, guid: 7e484e5e5272446809d180ad8e291e6c, type: 3}
+      propertyPath: itemStats.Array.data[0].statName
+      value: movementSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196250416284661823, guid: 7e484e5e5272446809d180ad8e291e6c, type: 3}
+      propertyPath: itemStats.Array.data[0].statValue
+      value: -2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e484e5e5272446809d180ad8e291e6c, type: 3}
 --- !u!1001 &3997725674741409379
@@ -1113,6 +1137,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3997725675738453058, guid: ad4fceda7909a43d898320116e8aa440, type: 3}
+      propertyPath: ItemStats.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3997725675738453059, guid: ad4fceda7909a43d898320116e8aa440, type: 3}
       propertyPath: m_Name
       value: Item_Whip
@@ -1214,6 +1242,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6293935951009324786, guid: 40243151abe0c41cdac81f9fd15a7f4c, type: 3}
+      propertyPath: itemStats.Array.data[0].statName
+      value: movementSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 6293935951009324786, guid: 40243151abe0c41cdac81f9fd15a7f4c, type: 3}
+      propertyPath: itemStats.Array.data[0].statValue
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 6293935951009324787, guid: 40243151abe0c41cdac81f9fd15a7f4c, type: 3}
       propertyPath: m_Name
       value: Item_Engine
@@ -1230,6 +1266,18 @@ PrefabInstance:
     - target: {fileID: 5590741215845554926, guid: a6ce8610de8a041148c8c13ed20df7b3, type: 3}
       propertyPath: m_Name
       value: Item_Propeller
+      objectReference: {fileID: 0}
+    - target: {fileID: 5590741215845554928, guid: a6ce8610de8a041148c8c13ed20df7b3, type: 3}
+      propertyPath: itemStats.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5590741215845554928, guid: a6ce8610de8a041148c8c13ed20df7b3, type: 3}
+      propertyPath: itemStats.Array.data[0].statName
+      value: movementSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 5590741215845554928, guid: a6ce8610de8a041148c8c13ed20df7b3, type: 3}
+      propertyPath: itemStats.Array.data[0].statValue
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 5590741215845554931, guid: a6ce8610de8a041148c8c13ed20df7b3, type: 3}
       propertyPath: m_RootOrder
@@ -1341,18 +1389,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1577940635, guid: 5358f20fd8c7d4847bba094a27a13151, type: 3}
-      propertyPath: m_Name
-      value: DeathParticles
-      objectReference: {fileID: 0}
-    - target: {fileID: 8939394178460538977, guid: 5358f20fd8c7d4847bba094a27a13151, type: 3}
-      propertyPath: moveSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8939394178460538977, guid: 5358f20fd8c7d4847bba094a27a13151, type: 3}
-      propertyPath: deathParticles
-      value: 
-      objectReference: {fileID: 5653622865823184209, guid: 555eb17cb650b48cf81c9b57970d7738, type: 3}
     - target: {fileID: 8939394178460538978, guid: 5358f20fd8c7d4847bba094a27a13151, type: 3}
       propertyPath: m_Name
       value: Animal_CAWK
@@ -1453,6 +1489,18 @@ PrefabInstance:
     - target: {fileID: 9140043205100326891, guid: 73bb8197cf5de49619c1c24e14204821, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140043205100326902, guid: 73bb8197cf5de49619c1c24e14204821, type: 3}
+      propertyPath: ItemStats.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140043205100326902, guid: 73bb8197cf5de49619c1c24e14204821, type: 3}
+      propertyPath: ItemStats.Array.data[0].statName
+      value: attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140043205100326902, guid: 73bb8197cf5de49619c1c24e14204821, type: 3}
+      propertyPath: ItemStats.Array.data[0].statValue
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9140043205100326903, guid: 73bb8197cf5de49619c1c24e14204821, type: 3}
       propertyPath: m_Name

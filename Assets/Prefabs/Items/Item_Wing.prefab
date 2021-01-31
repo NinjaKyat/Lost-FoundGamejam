@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745644384450608539}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.53, y: 1.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -116,6 +116,9 @@ MonoBehaviour:
   targetSlots: 03000000
   EquipOffset: {x: 0, y: 0, z: 0}
   equipped: 0
+  itemStats:
+  - statName: movementSpeed
+    statValue: -2
 --- !u!114 &1745644384450608538
 MonoBehaviour:
   m_ObjectHideFlags: 0

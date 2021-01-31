@@ -9,11 +9,18 @@ public class Item : MonoBehaviour, IInteractible
     private SpriteRenderer rend;
     private Player player;
     public bool equipped = false;
-    public Dictionary<string, int> AppliedStats;
+    public Dictionary<string, int> AppliedStats = new Dictionary<string, int>();
     public Collider2D Collider => _collider;
     Collider2D _collider;
     private ItemAnimations animations;
+    [System.Serializable]
+    public struct ItemStats
+    {
+        public string statName;
+        public int statValue;
+    }
     
+    public ItemStats[] itemStats;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +28,11 @@ public class Item : MonoBehaviour, IInteractible
         animations = GetComponent<ItemAnimations>();
         rend = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
+
+        for (int i = 0; i < itemStats.Length; i++)
+        {
+            AppliedStats[itemStats[i].statName] = itemStats[i].statValue;
+        }
     }
 
     // Update is called once per frame
