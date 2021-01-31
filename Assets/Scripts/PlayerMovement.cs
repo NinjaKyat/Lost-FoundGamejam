@@ -128,14 +128,19 @@ public class PlayerMovement : MonoBehaviour
         var gridPosition = GameGrid.instance.WrappedPosition(transform.position);
         if (gridPosition != previousGridPosition)
         {
-            var gameEvent = GameGrid.instance.GetTile(gridPosition).GetTopEventIfAvailable(player);
-            if (gameEvent != null)
-            {
-                EventUI.instance.DisplayEvent(gameEvent);
-            }
+            GetAndShowEvent(gridPosition);
         }
 
         previousGridPosition = gridPosition;
+    }
+
+    void GetAndShowEvent(Vector2Int gridPosition)
+    {
+        var gameEvent = GameGrid.instance.GetTile(gridPosition).GetTopEventIfAvailable(player);
+        if (gameEvent != null)
+        {
+            EventUI.instance.DisplayEvent(gameEvent);
+        }
     }
 
     void CheckToPickUp()
@@ -146,7 +151,18 @@ public class PlayerMovement : MonoBehaviour
         float distance = _collider.Distance(targetInteractible.Collider).distance;
         if (distance < interactDistance)
         {
+            var gridObject = targetInteractible.Collider.GetComponent<TileObjectRepresentation>();
+            // Pre-interaction event
+            if (gridObject)
+            {
+                GetAndShowEvent(gridObject.GridPosition);
+            }
             targetInteractible.Interact();
+            // Post-interaction event
+            if (gridObject)
+            {
+                GetAndShowEvent(gridObject.GridPosition);
+            }
             targetInteractible = null;
         }
     }

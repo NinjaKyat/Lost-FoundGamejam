@@ -16,7 +16,7 @@ public class GridGenerator : MonoBehaviour
         grid.ForEachTile(PlaceGround);
         grid.ForEachTile(PlaceRocks);
         grid.ForEachTile(PlaceTrees);
-        grid.ForEachTile(PlaceEvents);
+        //grid.ForEachTile(PlaceEvents);
         grid.ForEachTile(PlaceObjects);
     }
 
@@ -49,25 +49,27 @@ public class GridGenerator : MonoBehaviour
             var scale = new Vector2(0.69f, 0.35f) * 0.2f;
             if (SampleNoise(scale, Vector2.zero, position) > 0.5f)
                 if (SampleNoise(scale * 0.95f, Vector2.up * 0.1f, position) > 0.65f)
+                {
                     tile.AddContent(new TileObject(TileObject.Type.Bush));
+                }
                 else
+                {
+                    //if (SampleNoise(scale * 100, Vector2.zero, position) > 0.9f)
+                        tile.AddContent(new TileEvent(GameEvent.GetTestEvent()));
                     tile.AddContent(new TileObject(TileObject.Type.Tree));
+                }
         }
     }
 
     void PlaceEvents(Vector2Int position, ref Tile tile)
     {
-        if (position.x % 2 == position.y % 3)
-            tile.AddContent(new TileEvent());
+        //if (position.x % 2 == position.y % 3)
+            //tile.AddContent(new TileEvent());
     }
 
     void PlaceObjects(Vector2Int position, ref Tile tile)
     {
-        foreach (var contents in tile.Contents)
-        {
-            if (contents is TileObject tileObject)
-                tileObject.Spawn(representations, tile);
-        }
+        tile.SpawnContents(representations);
     }
 
     float SampleNoise(Vector2 scale, Vector2 offset, Vector2Int gridPosition)
