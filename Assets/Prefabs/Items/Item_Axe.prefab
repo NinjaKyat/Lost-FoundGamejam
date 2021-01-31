@@ -119,6 +119,8 @@ MonoBehaviour:
   itemStats:
   - statName: attack
     statValue: 1
+  - statName: woodcutting
+    statValue: 1
 --- !u!114 &1698744627
 MonoBehaviour:
   m_ObjectHideFlags: 0

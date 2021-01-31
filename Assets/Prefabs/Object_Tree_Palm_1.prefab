@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: -5733164250626337619}
+  health: 3
   tileObject: {fileID: 2417243549517297596}
 --- !u!1 &4323236255737234744
 GameObject:
