@@ -167,6 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 887fd00a3aad96842b916ca0e10506dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: -5733164250626337619}
+  tileObject: {fileID: 2417243549517297596}
 --- !u!1 &4323236255737234744
 GameObject:
   m_ObjectHideFlags: 0

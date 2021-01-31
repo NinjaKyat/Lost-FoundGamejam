@@ -48,16 +48,18 @@ public class GridGenerator : MonoBehaviour
         {
             var scale = new Vector2(0.69f, 0.35f) * 0.2f;
             if (SampleNoise(scale, Vector2.zero, position) > 0.5f)
+            {
                 if (SampleNoise(scale * 0.95f, Vector2.up * 0.1f, position) > 0.65f)
                 {
                     tile.AddContent(new TileObject(TileObject.Type.Bush));
                 }
                 else
                 {
-                    if (SampleNoise(scale * 5, Vector2.zero, position) > 0.5f)
-                        tile.AddContent(new TileEvent());
                     tile.AddContent(new TileObject(TileObject.Type.Tree));
                 }
+                if (SampleNoise(scale * 5, Vector2.zero, position) > 0.5f)
+                    tile.AddContent(new TileEvent());
+            }
         }
     }
 

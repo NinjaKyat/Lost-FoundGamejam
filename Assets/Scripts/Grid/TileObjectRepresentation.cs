@@ -53,11 +53,8 @@ public class TileObjectRepresentation : MonoBehaviour
         onInitialized?.Invoke();
     }
 
-    private void OnDisable()
+    public void Remove()
     {
-        if (this == original)
-        {
-            tile.RemoveContent(indexInTile);
-        }
+        tile.RemoveContent(indexInTile);
     }
 }
