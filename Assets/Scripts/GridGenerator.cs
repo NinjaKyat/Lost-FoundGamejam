@@ -10,6 +10,14 @@ public class GridGenerator : MonoBehaviour
 
     GameGrid grid;
 
+    [System.Serializable]
+    public struct ThingsToSpawn
+    {
+        public GameObject go;
+        public int count;
+    }
+    public ThingsToSpawn[] thingsToSpawnInFreeTiles; 
+
     void Awake()
     {
         grid = new GameGrid(size);
@@ -17,7 +25,22 @@ public class GridGenerator : MonoBehaviour
         grid.ForEachTile(PlaceRocks);
         grid.ForEachTile(PlaceTrees);
         grid.ForEachTile(PlaceEvents);
-        grid.ForEachTile(PlaceObjects);
+        var freeTiles = new List<Tile>();
+        grid.GetTiles(freeTiles, x => x is TileObject ob && (ob.type == TileObject.Type.Rock || ob.type == TileObject.Type.Water));
+        foreach (var spawnable in thingsToSpawnInFreeTiles)
+        {
+            for (int i = 0; i < spawnable.count; i++)
+            {
+                if (freeTiles.Count > 0)
+                {
+                    var index = Random.Range(0, freeTiles.Count);
+                    Instantiate(spawnable.go, freeTiles[index].WorldPosition, Quaternion.identity);
+                    freeTiles.RemoveAt(index);
+                }
+            }
+        }
+
+        grid.ForEachTile(SpawnObjects);
     }
 
 
@@ -93,7 +116,7 @@ public class GridGenerator : MonoBehaviour
             //tile.AddContent(new TileEvent());
     }
 
-    void PlaceObjects(Vector2Int position, ref Tile tile)
+    void SpawnObjects(Vector2Int position, ref Tile tile)
     {
         tile.SpawnContents(representations);
     }

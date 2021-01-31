@@ -43,6 +43,20 @@ public class GameGrid
         }
     }
 
+    public void GetTiles(List<Tile> tiles, Func<ITileContent, bool> exceptFunc)
+    {
+        for (int x = 0; x < size.x; x++)
+        {
+            for (int y = 0; y < size.y; y++)
+            {
+                if (!data[x, y].Contains(exceptFunc))
+                {
+                    tiles.Add(data[x, y]);
+                }
+            }
+        }
+    }
+
     public Tile GetTile(Vector2Int localGridPosition)
     {
         return data[localGridPosition.x, localGridPosition.y];
