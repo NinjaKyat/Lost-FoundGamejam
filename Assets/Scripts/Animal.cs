@@ -144,6 +144,9 @@ public class Animal : MonoBehaviour, IInteractible
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        Player player = other.collider.GetComponent<Player>();
+        if (player != null)
+            Interact(player);
         Animal otherAnimal = other.collider.GetComponent<Animal>();
         if (otherAnimal == null)
             return;
