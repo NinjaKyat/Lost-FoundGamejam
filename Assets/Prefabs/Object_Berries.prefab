@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: -3025154347207360233}
+  health: 1
   tileObject: {fileID: 2417243549517297596}
 --- !u!61 &-3025154347207360233
 BoxCollider2D:
