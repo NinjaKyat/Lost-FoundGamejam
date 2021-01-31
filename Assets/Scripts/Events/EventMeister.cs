@@ -65,14 +65,13 @@ public class EventMeister : MonoBehaviour
 
     void LoadEvents()
     {
-        EventCollection eventCollection = null;
         var treeEventsPath = Path.Combine(Application.streamingAssetsPath, treeEventsFolder);
         var bushEventsPath = Path.Combine(Application.streamingAssetsPath, bushEventsFolder);
-        LoadEventsAtPath(treeEventsPath, ref eventCollection);
-        LoadEventsAtPath(bushEventsPath, ref eventCollection);
+        LoadEventsAtPath(treeEventsPath);
+        LoadEventsAtPath(bushEventsPath);
     }
 
-    void LoadEventsAtPath(string path, ref EventCollection eventCollection)
+    void LoadEventsAtPath(string path)
     {
         if (Directory.Exists(path))
         {
@@ -83,7 +82,7 @@ public class EventMeister : MonoBehaviour
                 {
                     var text = File.ReadAllText(file);
                     var collection = JsonUtility.FromJson<EventCollection>(text);
-                    ProcessEventCollection(eventCollection);
+                    ProcessEventCollection(collection);
                 }
                 catch (Exception ex)
                 {
